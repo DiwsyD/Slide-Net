@@ -1,0 +1,145 @@
+/* css rules for header */
+@import url(header.css) all;
+@import url(footer.css) all;
+
+body{
+    height: 100vh;
+}
+
+iframe {
+    width: 100%;
+    height: 615px;
+    border: none;
+}
+
+.content_table {
+    text-align: center;
+    width: 1280px;
+    margin: auto;
+}
+
+h1 {
+    color: #fd4646;
+}
+
+/*-------User cabinet----------*/
+.member_info li {
+    height: 40px;
+    margin: 5px 0;
+}
+.member_info li:before {
+    content: none;
+}
+
+.member_info, .tech_info, .services {
+    margin: 25px 0 50px;
+    font-family: "Raleway_SemiBold";
+}
+
+.member_info div, .tech_info div {
+    min-width: 30%;
+    display: inline-block;
+}
+
+.static_info {
+    font-family: "Raleway_SemiBold";
+    float: left;
+}
+
+.dynamic_info {
+    font-family: "Raleway_Medium";
+}
+
+.service {
+    margin: 50px 0 50px;
+}
+
+.service li {
+    margin: 15px 0;
+}
+
+.service li:before {
+    content: none;
+}
+
+.service select:disabled {
+    opacity: 1;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px 15px 5px 35px;
+}
+
+.service a {
+    margin: 0 20px;
+}
+
+hr {
+    color: #1e4995;
+    background: #1e4995;
+    border: none;
+    height: 2px;
+}
+
+/*----------Admin Account Editor--------------*/
+.select_account_status {
+    height: 30px;
+    width: auto;
+    padding: 5px;
+}
+
+.select_account_status:focus {
+    color: darkgrey;
+}
+
+.service_chooser {
+    margin-right: 30px;
+}
+
+.save-cancel-editing{
+    text-align: right;
+    margin-bottom: 13px;
+}
+
+.save-cancel-editing button{
+    margin-left: 50px;
+}
+
+/*---------------Service_mng table---------------*/
+
+.any-form {
+    text-align: center;
+    font-family: "Raleway_Bold";
+    margin-top: 100px;
+}
+
+.any-form form {
+    width: 300px;
+    background: #f3f3f3;
+    border: 2px solid #1e4995;
+    margin: 0 auto 0;
+    padding: 25px 10px;
+}
+
+.any-form input {
+    padding: 20px 15px;
+    margin-bottom: 25px;
+    width: 90%;
+}
+
+.any-form button {
+    width: 90%;
+    padding: 10px 15px;
+}
+
+#invalid-data-error {
+    font-family: "Raleway_BoldItalic";
+    color: #f55353;
+    margin-bottom: 15px;
+}
+
+#topup_balance_result {
+    font-family: "Raleway_BoldItalic";
+    color: #e59c42;
+    margin-bottom: 15px;
+}

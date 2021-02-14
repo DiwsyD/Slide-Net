@@ -1,0 +1,17 @@
+
+P
+java:S3416"3Update this logger to use "SignInOutServlet.class".(å¹½8Òû¿Ÿö.
+c
+java:S1192+"FDefine a constant instead of duplicating this literal "login" 4 times.(ë‰í×8³Ù’‹ô.
+u
+java:S1989b"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ŞÇÓñúÿÿÿÿ8ïÅ›”ø.
+|
+java:S1989g"_Handle the following exceptions that could be thrown by "doGet": ServletException, IOException.(ï¶ßû8¦‡öô.
+u
+java:S19895"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ŞÇÓñúÿÿÿÿ8£¶î‡ø.
+u
+java:S19893"SHandle the following exception that could be thrown by "sendRedirect": IOException.(±œ¹úÿÿÿÿ8ƒúˆø.
+ƒ
+java:S19898"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(™‚œ„úÿÿÿÿ8©´—‹ô.
+u
+java:S1989Y"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ò”Íşÿÿÿÿ8ïÅ›”ø.

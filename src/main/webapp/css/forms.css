@@ -1,0 +1,354 @@
+
+
+/*--------------------Input--------------------*/
+
+.content-container {
+    width: 1280px;
+    margin: auto;
+}
+
+.body-info {
+    padding-top: 75px;
+    min-height: 644px;
+}
+
+.page_title {
+    font-family: "Raleway_Bold";
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.page_subtitle {
+    font-family: "Raleway_Bold";
+    font-size: 25px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+
+/*--------------------Input--------------------*/
+input {
+    border: 2px #D8D8D8 solid;
+    border-radius: 25px;
+    padding: 10px 10px;
+    height: 30px;
+    font-size: 15px;
+    font-family: 'Calibri', bold;
+    outline: none;
+}
+
+input:focus {
+    border: 2px #4B4B4B solid;
+    font-family: 'Calibri', bold;
+}
+
+input::placeholder {
+    color: #BBB;
+}
+
+.input-account-data {
+    width: auto;
+    padding: 5px 10px;
+    height: 30px;
+    margin: 0;
+}
+
+.input-account-data:disabled {
+    border: none;
+    background: white;
+    font-size: 16px;
+}
+
+
+.invalid {
+    border: 1px solid #ff2600;
+}
+
+.valid {
+    border: 1px solid #00fa53;
+}
+
+
+textarea{
+    width: 100%;
+    border: 2px #D8D8D8 solid;
+    border-radius: 25px;
+    font-size: 18px;
+    font-family: 'Calibri', bold;
+    outline: none;
+    resize: none;
+    padding: 15px 25px 10px;
+}
+
+/*--------------------Buttons--------------------*/
+
+.index-private-cabinet {
+    margin: 3% 0;
+    border-radius: 55px;
+    background: #3f61a9;
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 20px 120px;
+    font-family: 'Raleway_SemiBold';
+    font-size: 20px;
+    text-decoration: none;
+}
+
+button {
+    margin: 3% 0;
+    border-radius: 55px;
+    background: #3f61a9;
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 20px 80px;
+    font-family: 'Raleway_SemiBold';
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+button.activate_button, button.deactivate_button  {
+    height: 35px;
+    padding: 10px 10px;
+    margin: 0;
+}
+
+/*---------------------------*/
+.add_button, .save_button, .edit_button, .remove_button, .cancel_button{
+    width: 140px;
+    height: 30px;
+    margin: 0;
+    padding: 8px 35px;
+    max-width: 120px;
+
+    border-radius: 55px;
+    border: none;
+    color: white;
+    font-family: 'Raleway_SemiBold';
+    text-decoration: none;
+}
+
+/*---------------------------*/
+.edit_button {
+    background-color: #fac85c;
+}
+
+.edit_button:hover {
+    background-color: #dbb33b;
+}
+
+/*---------------------------*/
+.save_button {
+    background-color: #76de76;
+}
+
+.save_button:hover {
+    background-color: #63d463;
+}
+
+/*---------------------------*/
+.add_button {
+    background-color: #7f94d8;
+}
+
+.add_button:hover {
+    background-color: #576fb8;
+}
+
+/*---------------------------*/
+.remove_button {
+    background-color: #ff5e3e;
+}
+
+.remove_button:hover {
+    background-color: #d0482f;
+}
+
+/*---------------------------*/
+.cancel_button {
+    background-color: #212121;
+}
+
+.cancel_button:hover {
+    background-color: #1d1d1d;
+}
+
+/*--------------links--------------*/
+.sort-link {
+    color: #4068c1;
+    font-family: 'Raleway_Medium';
+    text-decoration: none;
+}
+.sort-link:hover {
+     color: #294781;
+ }
+
+/*--------------tab-buttons--------------*/
+
+.service_tabs {
+    position: relative;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: justify;
+    font-family: 'Raleway_Medium';
+}
+
+.service_tabs:after {
+    display: inline-block;
+    width: 100%;
+    content: '';
+}
+
+.tablink {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    min-width: auto;
+    padding: 20px 35px;
+    width: auto;
+    margin: 0;
+    vertical-align: top;
+    font-size: 15px;
+    border: #b0b0b0 2px solid;
+    background: white;
+    color: #3f61a9 ;
+    text-decoration: none;
+    border-radius: 55px;
+}
+
+.tablink:hover {
+    background: #3f61a9;
+    color: white;
+    border: #3f61a9 2px solid;
+}
+
+._active {
+    border: #3f61a9 2px solid;
+    background: #3f61a9;
+    color: white;
+}
+
+.service_table > table {
+    width: 100%;
+}
+
+.button-column {
+    width: 120px;
+}
+
+.pagination-control {
+    margin-top: 50px;
+    font-family: 'Raleway_SemiBold';
+    display: inline-flex;
+}
+
+.pagination-control a {
+    font-family: 'Raleway_Bold';
+    margin: 0 5px;
+    padding: 4px 6px 0;
+    text-decoration: none;
+    text-underline: none;
+    border-radius: 55px;
+}
+
+.active-link {
+    color: #1e4995;
+}
+
+.inactive-link {
+    color: #606060;
+}
+
+.active-link-2 {
+    color: #e59724;
+}
+
+
+.pagination-control li{
+    display: inline;
+    margin: 0 5px;
+    padding: 4px;
+    border: #3f61a9 2px solid;
+    border-radius: 55px;
+    color: #3f61a9 ;
+    background: white;
+}
+
+.pagination-control li._active {
+    color: white;
+    background: #3f61a9;
+}
+
+/*--------------------Tables--------------------*/
+table {
+    border-spacing: 0 10px;
+    font-family: 'Raleway_Medium';
+    font-size: 13px;
+    margin: 0 auto 0;
+    width: 100%;
+}
+
+.table {
+    min-height: 400px;
+}
+
+table tbody tr:nth-child(odd) {
+    background: #efefef;
+}
+
+table tbody tr:nth-child(even) {
+
+}
+
+table tbody tr.add_new_account {
+    background: #c7d3ff;
+    text-align: center;
+}
+
+td {
+    padding: 15px 10px;
+    font-family: 'Calibri', bold;
+}
+
+th {
+    font-family: 'Raleway_Medium';
+    text-align: left; /* Выравнивание по левому краю */
+    padding: 20px 10px 10px;
+}
+
+/*--------------------Text--------------------*/
+
+.account_status {
+    padding: 5px 10px;
+    width: 100%;
+    max-height: 35px;
+}
+
+.active_value {
+    color: #32cd32;
+}
+
+.inactive_value {
+    color: orangered;
+}
+
+/*--------------------Select--------------------*/
+
+select {
+    padding: 5px 10px;
+    border-radius: 55px;
+    border: 2px #D8D8D8 solid;
+    color: #3a5899;
+    font-family: 'Raleway_Medium';
+    outne: none;
+    min-width: 100px;
+}
