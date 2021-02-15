@@ -60,11 +60,6 @@ public class AccountUserDataManager {
 
     //--------------
 
-    /**.
-     * Get all account Ids.
-     * For each id, try to get account
-     * from local storage \ DataBase
-     * */
     public static List<Account> getAccounts(int page, int pageSize) {
         List<Account> accountList = new ArrayList<>();
         int accountsToGet = (page - 1) * pageSize;
@@ -170,5 +165,9 @@ public class AccountUserDataManager {
         }
 
         return String.valueOf(password);
+    }
+
+    public static void disableService(long id, int serviceId) {
+        AccountUserDAO.getInstance().disableServiceFromAccount(id, serviceId);
     }
 }

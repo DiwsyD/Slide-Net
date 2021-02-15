@@ -78,6 +78,7 @@
                 </tbody>
             </table>
         </div>
+
         <div class="pagination-control">
             <hr>
             <c:choose>
@@ -101,6 +102,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
+
     </div>
 </div>
 <!-- footer -->

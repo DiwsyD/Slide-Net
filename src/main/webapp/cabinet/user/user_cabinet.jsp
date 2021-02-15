@@ -68,41 +68,28 @@
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
                                             <c:out value="${activeServiceData.isStatus() ? 'Active' : 'Inactive'}"/>
                                         </a>
-                                        <button class="remove_button" name="disable" value="disable">
-                                            Disable
-                                        </button>
+                                        <a class="edit_button" href="user_cabinet?disable=${true}&serviceId=${service.getId()}">Disable</a>
                                     </li>
                                     <c:if test="${service.getTariffById(activeServiceData.getTariffId()) != null}">
                                         <c:set var="activeTariffId" scope="session" value="${service.getTariffById(activeServiceData.getTariffId()).getId()}" />
                                     </c:if>
-                                    <c:set var="editThisService" scope="session" value="${edit && (service.getId() == serviceId)}" />
                                     <li>
-                                        Tariff:
-                                        <a>
-                                            <select name="tariffChoice" <c:out value="${editThisService ? '' : 'disabled'}"/> >
-                                                <c:forEach var="tariff" items="${service.getTariffList()}">
-                                                    <option <c:out value="${tariff.getId() == activeTariffId ? 'selected' : ''}"/>
-                                                            value="${tariff.getId()}">
-                                                            ${tariff.getName()}
-                                                    </option>
-                                                </c:forEach>
-                                            </select>
-                                        </a>
-                                        <c:choose>
-                                            <c:when test="${editThisService}">
-                                                <a class="save_button" href="user_cabinet?editService=${service.getId()}">Save</a>
-                                                <a class="cancel_button" href="user_cabinet?edit=${false}">Cancel</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a class="edit_button" href="user_cabinet?edit=${true}&serviceId=${service.getId()}">Edit</a>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <c:forEach var="tariff" items="${service.getTariffList()}">
+                                            <c:if test="${tariff.getId() == activeTariffId}">
+                                                <p>
+                                                    Tariff: <a style="color: #646cf1">${tariff.getName()}</a>
+                                                    <a class="edit_button" href="user_cabinet?edit=${true}&serviceId=${service.getId()}">Edit</a>
+                                                </p>
+                                                <p>
+                                                    Description: <a style="color: #646cf1">${tariff.getDescription()}</a>
+                                                </p>
+                                            </c:if>
+                                        </c:forEach>
                                     </li>
-
                                     <li>
                                         <c:choose>
                                             <c:when test="${activeServiceData.isStatus()}">
-                                                Next Payment: <a>${activeServiceData.getNexPaymentDay()}</a>
+                                                Next Payment: <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
                                             </c:when>
                                             <c:otherwise>
                                                 <button class="edit_button" value="Activate" onclick="activateService('${service.getId()}')">

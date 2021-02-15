@@ -206,6 +206,17 @@ public class AccountUserDAO extends AbstractDAO{
         }
     }
 
+    public void disableServiceFromAccount(long accountId, int serviceId) {
+        try (Connection con = connectionPool.getConnection()) {
+            PreparedStatement pst = con.prepareStatement(ConstantQuery.REMOVE_SERVICE_ACCOUNT);
+            pst.setLong(1, accountId);
+            pst.setInt(2, serviceId);
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 

@@ -23,8 +23,8 @@ import java.util.List;
         "/cabinet/user/topup_balance",
         "/cabinet/user/change_password"
 })
-public class UserAccountServlet extends HttpServlet {
-    private static final Logger LOG = Logger.getLogger(UserAccountServlet.class);
+public class AccountServlet extends HttpServlet {
+    private static final Logger LOG = Logger.getLogger(AccountServlet.class);
 
     protected void redirectToCabinet(HttpServletRequest req, HttpServletResponse resp, String address) throws ServletException, IOException {
         req.getRequestDispatcher( "/cabinet/user/user_cabinet.jsp").forward(req, resp);
@@ -39,14 +39,9 @@ public class UserAccountServlet extends HttpServlet {
         Account acc = (Account) req.getSession().getAttribute("account_data");
         acc.setActiveServices(linkedServices);
 
-        editTariffChoice(req);
-
-        if (req.getParameter("edit") != null && req.getParameter("serviceId") != null) {
-            LOG.debug("edit: " + req.getParameter("edit") + "; Service: " + req.getParameter("service"));
-            req.setAttribute("edit", Boolean.parseBoolean(req.getParameter("edit")));
-            req.setAttribute("serviceId", Integer.parseInt(req.getParameter("serviceId")));
+        if (req.getParameter("disable") != null) {
+            disableService(req, resp);
         }
-
 
         req.setAttribute("activeServices", linkedServices);
         req.setAttribute("serviceList", serviceList);
@@ -62,9 +57,6 @@ public class UserAccountServlet extends HttpServlet {
         }
         if (req.getRequestURI().contains("change_password")) {
             changePassword(req, resp);
-        }
-        if (req.getParameter("save") != null) {
-
         }
 
         redirectToCabinet(req, resp, req.getRequestURI());
@@ -103,22 +95,18 @@ public class UserAccountServlet extends HttpServlet {
         }
     }
 
-    protected void editTariffChoice(HttpServletRequest req) {
-        String sId = req.getParameter("editService");
-        String taC = req.getParameter("tariffChoice");
-
+    private void disableService(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
         try {
-//            int service_id = Integer.parseInt(sId);
-//            int tariffId = Integer.parseInt(taC);
-
-
-            System.out.println("Service ID: " + sId
-                    + "; Tariff ID: " + taC);
-            req.setAttribute("edit", false);
-        } catch (NumberFormatException e) {
+            long id = (long) session.getAttribute("id");
+            int serviceId = Integer.parseInt(req.getParameter("serviceId"));
+            AccountUserDataManager.disableService(id, serviceId);
+        } catch (Exception e) {
             e.printStackTrace();
+            LogLog.warn("=Wrong Top Up Data!=");
         }
     }
+
 
 }
 /*

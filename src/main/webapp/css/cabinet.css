@@ -58,6 +58,10 @@ h1 {
     margin: 50px 0 50px;
 }
 
+.service p {
+    margin: 15px 0;
+}
+
 .service li {
     margin: 15px 0;
 }

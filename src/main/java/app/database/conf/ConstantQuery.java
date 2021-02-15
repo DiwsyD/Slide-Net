@@ -152,7 +152,9 @@ public class ConstantQuery {
     /**.
      * Account Services
      * */
-
     public static final String GET_ACCOUNT_SERVICES = "SELECT * FROM account_services_tariffs " +
             "WHERE account_id = ?";
+
+    public static final String REMOVE_SERVICE_ACCOUNT = "DELETE FROM account_services_tariffs " +
+            "WHERE account_id = ? AND service_id = ?";
 }
