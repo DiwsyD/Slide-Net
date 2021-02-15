@@ -27,7 +27,7 @@
                 </div>
                 <div class="exit_button">
                     <ul>
-                        <li><a href="/sign?signAction=in">Log In</a></li>
+                        <li><a href="/sign?signAction=in"><c:out value="${role == null ? 'Log In' : ''}"/> </a></li>
                     </ul>
                 </div>
                 <div class="header_languages">

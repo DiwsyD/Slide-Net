@@ -126,13 +126,14 @@ button.activate_button, button.deactivate_button  {
     width: 140px;
     height: 30px;
     margin: 0;
-    padding: 8px 35px;
+    padding: 7px 35px;
     max-width: 120px;
 
     border-radius: 55px;
     border: none;
     color: white;
     font-family: 'Raleway_SemiBold';
+    font-size: 13px;
     text-decoration: none;
 }
 

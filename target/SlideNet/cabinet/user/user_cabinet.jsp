@@ -68,31 +68,37 @@
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
                                             <c:out value="${activeServiceData.isStatus() ? 'Active' : 'Inactive'}"/>
                                         </a>
-                                            <%--<a class="remove_button" href="account_mng/user_cabinet?disable=${service.getId()}">Disable</a>--%>
-
                                         <button class="remove_button" name="disable" value="disable">
                                             Disable
                                         </button>
                                     </li>
+                                    <c:if test="${service.getTariffById(activeServiceData.getTariffId()) != null}">
+                                        <c:set var="activeTariffId" scope="session" value="${service.getTariffById(activeServiceData.getTariffId()).getId()}" />
+                                    </c:if>
+                                    <c:set var="editThisService" scope="session" value="${edit && (service.getId() == serviceId)}" />
                                     <li>
                                         Tariff:
-                                        <c:if test="${service.getTariffById(activeServiceData.getTariffId()) != null}">
-                                            <c:set var="activeTariffId" scope="session" value="${service.getTariffById(activeServiceData.getTariffId()).getId()}" />
-                                        </c:if>
                                         <a>
-                                            <select id="service_selection-" disabled>
+                                            <select name="tariffChoice" <c:out value="${editThisService ? '' : 'disabled'}"/> >
                                                 <c:forEach var="tariff" items="${service.getTariffList()}">
                                                     <option <c:out value="${tariff.getId() == activeTariffId ? 'selected' : ''}"/>
-                                                            value="${tariff.getName()}">
+                                                            value="${tariff.getId()}">
                                                             ${tariff.getName()}
                                                     </option>
                                                 </c:forEach>
                                             </select>
                                         </a>
-                                        <button class="edit_button" value="Activate">
-                                            Edit
-                                        </button>
+                                        <c:choose>
+                                            <c:when test="${editThisService}">
+                                                <a class="save_button" href="user_cabinet?editService=${service.getId()}">Save</a>
+                                                <a class="cancel_button" href="user_cabinet?edit=${false}">Cancel</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a class="edit_button" href="user_cabinet?edit=${true}&serviceId=${service.getId()}">Edit</a>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </li>
+
                                     <li>
                                         <c:choose>
                                             <c:when test="${activeServiceData.isStatus()}">
@@ -110,9 +116,7 @@
                             <c:otherwise>
                                 <div>Service Status:
                                     <a class="inactive_value">Inactive</a>
-                                    <button class="add_button" name="disable" value="disable">
-                                        Activate
-                                    </button>
+                                    <a class="add_button" href="user_cabinet?edit=${true}&serviceId=${service.getId()}">Activate</a>
                                 </div>
                             </c:otherwise>
                         </c:choose>
@@ -121,8 +125,7 @@
             </div>
         </div>
     </div>
-
-<!-- footer -->
-<c:import url="/cabinet/footer.html" />
+    <!-- footer -->
+    <c:import url="/cabinet/footer.html" />
 </body>
 </html>

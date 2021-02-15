@@ -36,10 +36,17 @@ public class UserAccountServlet extends HttpServlet {
         List<Service> serviceList = ServiceTariffDataManager.getAllServices();
         long accountId = (long) req.getSession().getAttribute("id");
         List<AccountService> linkedServices = ServiceTariffDataManager.getAccountServices(accountId);
-
         Account acc = (Account) req.getSession().getAttribute("account_data");
-
         acc.setActiveServices(linkedServices);
+
+        editTariffChoice(req);
+
+        if (req.getParameter("edit") != null && req.getParameter("serviceId") != null) {
+            LOG.debug("edit: " + req.getParameter("edit") + "; Service: " + req.getParameter("service"));
+            req.setAttribute("edit", Boolean.parseBoolean(req.getParameter("edit")));
+            req.setAttribute("serviceId", Integer.parseInt(req.getParameter("serviceId")));
+        }
+
 
         req.setAttribute("activeServices", linkedServices);
         req.setAttribute("serviceList", serviceList);
@@ -96,5 +103,28 @@ public class UserAccountServlet extends HttpServlet {
         }
     }
 
+    protected void editTariffChoice(HttpServletRequest req) {
+        String sId = req.getParameter("editService");
+        String taC = req.getParameter("tariffChoice");
+
+        try {
+//            int service_id = Integer.parseInt(sId);
+//            int tariffId = Integer.parseInt(taC);
+
+
+            System.out.println("Service ID: " + sId
+                    + "; Tariff ID: " + taC);
+            req.setAttribute("edit", false);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
+/*
+
+
+
+
+
+* */

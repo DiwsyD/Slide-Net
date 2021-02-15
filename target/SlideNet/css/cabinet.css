@@ -50,6 +50,10 @@ h1 {
     font-family: "Raleway_Medium";
 }
 
+.services {
+    margin-bottom: 150px;
+}
+
 .service {
     margin: 50px 0 50px;
 }
