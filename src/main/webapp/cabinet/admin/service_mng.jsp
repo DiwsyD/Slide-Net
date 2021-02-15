@@ -18,7 +18,7 @@
         <!-- Service Tabs -->
         <div class="service_tabs">
             <c:forEach var="service" items="${serviceList}">
-                <a class='tablink <c:out value="${activeService == service.getId() ? \'_active\' : \'none\'}"/>' href="service_mng?service=${service.getId()}">${service.getName()}</a>
+                <a class='tablink <c:out value="${activeService == service.getId() ? \'_active\' : \'none\'}"/>' href="service_mng?serviceId=${service.getId()}">${service.getName()}</a>
             </c:forEach>
         </div>
         <!-- Service Tables -->
@@ -91,8 +91,8 @@
                                 <a class="inactive-link"><<</a>
                             </c:when>
                             <c:otherwise>
-                                <a class="active-link" href="service_mng?service=${activeService}&page=1">|<</a>
-                                <a class="active-link-2" href="service_mng?service=${activeService}&page=${page-1}"><<</a>
+                                <a class="active-link" href="${uri}?serviceId=${activeService}&page=1">|<</a>
+                                <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page-1}"><<</a>
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
@@ -101,12 +101,13 @@
                                 <a class="inactive-link">>|</a>
                             </c:when>
                             <c:otherwise>
-                                <a class="active-link-2" href="service_mng?service=${activeService}&page=${page+1}">>></a>
-                                <a class="active-link" href="service_mng?service=${activeService}&page=${maxPage}">>|</a>
+                                <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page+1}">>></a>
+                                <a class="active-link" href="${uri}?serviceId=${activeService}&page=${maxPage}">>|</a>
                             </c:otherwise>
                         </c:choose>
                     </c:if>
                 </div>
+
             </div>
     </div>
 </div>

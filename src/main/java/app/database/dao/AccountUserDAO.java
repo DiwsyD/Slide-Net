@@ -3,6 +3,7 @@ package app.database.dao;
 import app.database.conf.ConnectionPool;
 import app.database.conf.ConstantQuery;
 import app.entity.Account;
+import app.entity.AccountService;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -206,6 +207,23 @@ public class AccountUserDAO extends AbstractDAO{
         }
     }
 
+
+    //Account Service Actions
+    public void activateServiceToAccount(AccountService accountService) {
+        try (Connection con = connectionPool.getConnection()) {
+            PreparedStatement pst = con.prepareStatement(ConstantQuery.ADD_SERVICE_ACCOUNT);
+            pst.setLong(1, accountService.getAccountId());
+            pst.setLong(2, accountService.getServiceId());
+            pst.setLong(3, accountService.getTariffId());
+            pst.setDate(4, accountService.getActivationTime());
+            pst.setBoolean(5, accountService.isStatus());
+            pst.setDate(6, accountService.getNexPaymentDay());
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void disableServiceFromAccount(long accountId, int serviceId) {
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.REMOVE_SERVICE_ACCOUNT);
@@ -216,7 +234,6 @@ public class AccountUserDAO extends AbstractDAO{
             e.printStackTrace();
         }
     }
-
 }
 
 

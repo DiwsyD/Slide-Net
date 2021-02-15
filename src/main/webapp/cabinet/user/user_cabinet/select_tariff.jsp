@@ -2,26 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page isELIgnored="false" %>
-<jsp:useBean id="accounts" class="app.entity.Account" scope="page" />
 <!DOCTYPE>
 <html lang="en">
+<html>
 <head>
-    <title>Service Management</title>
-    <c:import url="../admin_imports.html" />
+    <title>Choose a tariff</title>
+    <c:import url="../../user_imports.html" />
 </head>
 <body>
-<c:import url="../header_admin.html" />
+    <c:import url="../../header_admin.html" />
 
-<div class="content_table">
-    <div  class="body-info">
-        <div class="page_title">Service Management</div>
-        <!-- Service Tabs -->
-        <div class="service_tabs">
-            <c:forEach var="service" items="${serviceList}">
-                <a class='tablink <c:out value="${activeService == service.getId() ? \'_active\' : \'none\'}"/>' href="service_mng?serviceId=${service.getId()}">${service.getName()}</a>
-            </c:forEach>
-        </div>
-        <!-- Service Tables -->
+    <div class="content_table">
+        <div  class="body-info">
+            <div class="page_title">Choose a Tariff to Service</div>
+            <!-- Service Tabs -->
+            <div class="service_tabs">
+                <c:forEach var="service" items="${serviceList}">
+                    <a class='tablink _active'>${service.getName()}</a>
+                </c:forEach>
+            </div>
+            <!-- Service Tables -->
             <div class="service_table">
                 <table>
                     <thead>
@@ -52,33 +52,14 @@
                             <td>${tariff.getDescription()}</td>
                             <td>${tariff.getPrice()}</td>
                             <td class="button-column">
-                                <button class="cancel_button" value="cancel" style="display: none;" onclick="cancelTariff('${tariff.getName()}')">
-                                    Cancel
-                                </button>
-                            </td>
-                            <td class="button-column">
-                                <button class="edit_button" value="edit" onclick="editTariffRow('${tariff.getName()}', '${tariff.getDescription()}','${tariff.getPrice()}')">
-                                    Edit
-                                </button>
-                            </td>
-                            <td class="button-column">
-                                <button class="remove_button" value="remove" onclick="removeTariffRow('${tariff.getName()}')">
-                                    Remove
-                                </button>
+                                <form method="post">
+                                    <button id="save_changes" name="selectedTariff" class="save_button" value="${tariff.getId()}">
+                                        Select
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>
-                    <!-- HERE -->
-                    <tr class="add_new_account">
-                        <td colspan="10">
-                            <button id="account_adder" class="add_button" value="new" onclick="createFormsToAddNewTariffRow('${activeService}')">
-                                Add
-                            </button>
-                            <button id="save_changes" style="display: none;" class="save_button" value="save" onclick="saveChanges('${activeService}')">
-                                Save
-                            </button>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
 
@@ -108,11 +89,15 @@
                     </c:if>
                 </div>
 
-            </div>
-    </div>
-</div>
-<!-- footer -->
-<c:import url="/cabinet/footer.html" />
+                <div class="save-cancel-editing">
+                    <a class="cancel_button" href="/cabinet/user/user_cabinet">Cancel</a>
+                </div>
 
+            </div>
+        </div>
+    </div>
+
+
+    <c:import url="/cabinet/footer.html" />
 </body>
 </html>

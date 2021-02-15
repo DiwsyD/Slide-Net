@@ -1,7 +1,7 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Account;
-import app.model.AccountUserDataManager;
+import app.model.AccountDataManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -33,10 +33,10 @@ public class AccountEditorServlet extends HttpServlet {
             LOG.debug("Account id: " + req.getParameter("account_id"));
             if (req.getParameter("account_id") != null) {
                 int account_id = Integer.parseInt(req.getParameter("account_id"));
-                account = AccountUserDataManager.findAccountByIdOrNull(account_id);
+                account = AccountDataManager.findAccountByIdOrNull(account_id);
             }
             if (account == null) {
-                account = AccountUserDataManager.createNewAccount();
+                account = AccountDataManager.createNewAccount();
             }
 
             req.getSession().setAttribute("account", account);
@@ -95,7 +95,7 @@ public class AccountEditorServlet extends HttpServlet {
                 account.setPassword(newPassword);
             }
 
-            AccountUserDataManager.applyAccountData(account);
+            AccountDataManager.applyAccountData(account);
         } catch (Exception e) {
             e.printStackTrace();
             LOG.error("Wrong data from Input! Or Account is not exist!");
@@ -107,6 +107,6 @@ public class AccountEditorServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(AccountUserDataManager.generatePassword(9));       // Write response body.
+        resp.getWriter().write(AccountDataManager.generatePassword(9));       // Write response body.
     }
 }

@@ -155,6 +155,10 @@ public class ConstantQuery {
     public static final String GET_ACCOUNT_SERVICES = "SELECT * FROM account_services_tariffs " +
             "WHERE account_id = ?";
 
+    public static final String ADD_SERVICE_ACCOUNT = "INSERT INTO account_services_tariffs " +
+            "(account_id, service_id, tariff_id, activation_date, enable_status, next_payment_day) " +
+            "VALUES (?, ?, ?, ?, ?, ?)";
+
     public static final String REMOVE_SERVICE_ACCOUNT = "DELETE FROM account_services_tariffs " +
             "WHERE account_id = ? AND service_id = ?";
 }

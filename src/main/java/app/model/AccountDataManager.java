@@ -2,18 +2,22 @@ package app.model;
 
 import app.database.dao.AccountUserDAO;
 import app.entity.Account;
+import app.entity.AccountService;
 import app.entity.EntityManager;
 import app.entity.Role;
 import org.apache.log4j.Logger;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-public class AccountUserDataManager {
+public class AccountDataManager {
 
-    private AccountUserDataManager() {}
-    private static final Logger LOG = Logger.getLogger(AccountUserDataManager.class);
+    private AccountDataManager() {}
+    private static final Logger LOG = Logger.getLogger(AccountDataManager.class);
 
     private final static int maxAccountCount = 10_000_000;
 
@@ -112,14 +116,13 @@ public class AccountUserDataManager {
         return true;
     }
 
-    public static boolean topUpBalance(long account_id, int amount) {
+    public static void topUpBalance(long account_id, int amount) {
         if (amount < 20) {
-            return false;
+            return;
         }
         Account account = findAccountByIdOrNull(account_id);
         account.setMoneyBalance(account.getMoneyBalance()+amount);
         applyAccountData(account);
-        return true;
     }
 
     //Generators
@@ -165,6 +168,22 @@ public class AccountUserDataManager {
         }
 
         return String.valueOf(password);
+    }
+
+    public static void activateService(long id, long serviceId, long tariffId) {
+        Account account = findAccountByIdOrNull(id);
+
+        Date activationDate = Date.valueOf(LocalDate.now());
+        Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
+
+        AccountService accountService = new AccountService();
+        accountService.setAccountId(id);
+        accountService.setServiceId(serviceId);
+        accountService.setTariffId(tariffId);
+        accountService.setActivationTime(activationDate);
+        accountService.setStatus(false);
+        accountService.setNexPaymentDay(nextPaymentDay);
+        AccountUserDAO.getInstance().activateServiceToAccount(accountService);
     }
 
     public static void disableService(long id, int serviceId) {

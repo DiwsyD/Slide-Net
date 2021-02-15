@@ -1,6 +1,6 @@
 package app.servlet;
 
-import app.model.AccountUserDataManager;
+import app.model.AccountDataManager;
 import app.model.Authorization;
 import app.entity.Account;
 import app.model.ServiceTariffDataManager;
@@ -61,7 +61,7 @@ public class SignInOutServlet extends HttpServlet {
         LOG.info("Validate User...");
         if (Authorization.validateUser(login, userAuthPass)) {
             LOG.info("Valid data.");
-            Account account = AccountUserDataManager
+            Account account = AccountDataManager
                     .findAccountByLoginOrNull(Validator.validateLogin(login));
 
             session.setAttribute("login", account.getLogin());

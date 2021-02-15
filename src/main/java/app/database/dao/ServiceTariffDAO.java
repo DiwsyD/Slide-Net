@@ -80,7 +80,6 @@ public class ServiceTariffDAO extends AbstractDAO {
     }
 
     public List<AccountService> getAccountServicesByAccountId(long accountId) {
-        LOG.debug("ID: " + accountId);
         List<AccountService> accountServices = new ArrayList<>();
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ACCOUNT_SERVICES);
@@ -91,7 +90,7 @@ public class ServiceTariffDAO extends AbstractDAO {
                 accServ.setAccountId(accountId);
                 accServ.setServiceId(rs.getLong(ConstantQuery.SERVICE_ID));
                 accServ.setTariffId(rs.getLong(ConstantQuery.TARIFF_ID));
-                accServ.setActivationTime(rs.getTimestamp(ConstantQuery.ACTIVATION_DATE));
+                accServ.setActivationTime(rs.getDate(ConstantQuery.ACTIVATION_DATE));
                 accServ.setStatus(rs.getBoolean(ConstantQuery.ENABLE_STATUS));
                 accServ.setNexPaymentDay(rs.getDate(ConstantQuery.NEXT_PAYMENT_DAY));
                 accountServices.add(accServ);

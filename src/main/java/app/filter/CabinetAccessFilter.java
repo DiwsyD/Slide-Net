@@ -27,7 +27,6 @@ public class CabinetAccessFilter implements Filter {
         httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         httpResponse.setDateHeader("Expires", 0); // Proxies.
 
-
         try {
             if (req.getRequestURI().contains(session.getAttribute("role").toString())) {
                 chain.doFilter(request, response);

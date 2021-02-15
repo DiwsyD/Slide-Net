@@ -9,7 +9,7 @@ public class AccountService extends Entity {
     private Long accountId;
     private Long serviceId;
     private Long tariffId;
-    private Timestamp activationTime;
+    private Date activationTime;
     private boolean status;
     private Date nexPaymentDay;
 
@@ -26,7 +26,7 @@ public class AccountService extends Entity {
         return tariffId;
     }
 
-    public Timestamp getActivationTime() {
+    public Date getActivationTime() {
         return activationTime;
     }
 
@@ -51,7 +51,7 @@ public class AccountService extends Entity {
         this.tariffId = tariffId;
     }
 
-    public void setActivationTime(Timestamp activationTime) {
+    public void setActivationTime(Date activationTime) {
         this.activationTime = activationTime;
     }
 

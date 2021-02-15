@@ -1,16 +1,14 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Account;
-import app.model.AccountUserDataManager;
+import app.model.AccountDataManager;
 import org.apache.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class AccountManagerServlet extends HttpServlet {
 
         int page = 1;
         int pagePaginSize = 5;
-        int maxPage = (int)Math.ceil((double) AccountUserDataManager.getAccountCount() / pagePaginSize);
+        int maxPage = (int)Math.ceil((double) AccountDataManager.getAccountCount() / pagePaginSize);
 
         String pageNum = req.getParameter("page");
         if(pageNum != null) {
@@ -40,7 +38,7 @@ public class AccountManagerServlet extends HttpServlet {
         }
 
 
-        List<Account> accountList = AccountUserDataManager.getAccounts(page, pagePaginSize);
+        List<Account> accountList = AccountDataManager.getAccounts(page, pagePaginSize);
 
         req.setAttribute("accountList", accountList);
 
