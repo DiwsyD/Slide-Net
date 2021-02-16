@@ -58,14 +58,17 @@
             <div class="page_title">Services</div>
             <div class="services">
                 <c:forEach var="service" items="${serviceList}">
+
                     <c:set var="activeServiceData" scope="session" value="${account_data.isServiceLinked(service)}" />
+
                     <div id="${service.getId()}" class="service">
                         <div class="page_subtitle">${service.getName()}</div>
                         <c:choose>
-
+<%--                            If this service is activated on account --%>
                             <c:when test="${activeServiceData != null}">
-                                <ul>
 
+                                <ul>
+                                    <%-- Show service status and Disable Button --%>
                                     <li>
                                         <a>Service Status:</a>
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
@@ -74,15 +77,10 @@
                                         <a class="remove_button" href="user_cabinet?action=disable&serviceId=${service.getId()}">Disable</a>
                                     </li>
 
-
-                                    <c:if test="${service.getTariffById(activeServiceData.getTariffId()) != null}">
-                                        <c:set var="activeTariffId" scope="session" value="${service.getTariffById(activeServiceData.getTariffId()).getId()}" />
-                                    </c:if>
-
-
-                                    <li>
+                                    <%-- Check all Tariffs and find activated one --%>
+                                    <li>    <%-- If found active tariff: show it's name, description and Edit button to able to change Tariff ---%>
                                         <c:forEach var="tariff" items="${service.getTariffList()}">
-                                            <c:if test="${tariff.getId() == activeTariffId}">
+                                            <c:if test="${tariff.getId() == activeServiceData.getTariffId()}">
                                                 <p>
                                                     <a>Tariff:</a> <a style="color: #646cf1">${tariff.getName()}</a>
                                                     <a class="edit_button" href="user_cabinet?action=edit&serviceId=${service.getId()}&tariffId=${tariff.getId()}">Edit</a>
@@ -118,6 +116,8 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
+
+
                 </c:forEach>
             </div>
         </div>

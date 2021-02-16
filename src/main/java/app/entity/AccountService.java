@@ -84,6 +84,7 @@ public class AccountService extends Entity {
                 ", tariffId=" + tariffId +
                 ", activationTime=" + activationTime +
                 ", status=" + status +
+                ", nexPaymentDay=" + nexPaymentDay +
                 '}';
     }
 }

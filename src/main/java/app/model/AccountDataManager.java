@@ -199,7 +199,7 @@ public class AccountDataManager {
         accountService.setActivationTime(activationDate);
 
         int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
-        LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + " Price: " + tariffPrice);
+        LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
                                 //checkTariffPayment(accountService, tariffPrice)
         accountService.setStatus(true);
 

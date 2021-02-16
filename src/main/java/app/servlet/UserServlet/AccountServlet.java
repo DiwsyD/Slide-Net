@@ -32,6 +32,7 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        LOG.debug("Action is [" + req.getParameter("action") + "]");
         //Check if we want to activate or add service
         if (req.getParameter("action") != null) {
             serviceAction(req, resp);
@@ -43,8 +44,10 @@ public class AccountServlet extends HttpServlet {
         HttpSession session = req.getSession();
         long accountId = (long) session.getAttribute("id");
         Account account = AccountDataManager.findAccountByIdOrNull(accountId);
+        LOG.debug("AccountID: " + accountId + "\nAccount: " + account.toString());
         session.setAttribute("account_data", account);
         List<AccountService> linkedServices = account.getActiveServices();
+        LOG.debug("Account linked Services: " + linkedServices.toString());
 
 
         req.setAttribute("activeServices", linkedServices);
@@ -55,7 +58,7 @@ public class AccountServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("Hi");
+        LOG.debug("Post action!");
         if (req.getRequestURI().contains("topup_balance")) {
             topUpBalance(req);
         }

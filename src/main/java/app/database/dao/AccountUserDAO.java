@@ -211,7 +211,7 @@ public class AccountUserDAO extends AbstractDAO{
 
     //Account Service Actions
     public void activateServiceToAccount(AccountService accountService) {
-        LOG.debug("Activationg: " + accountService.toString());
+        LOG.debug("Activating: " + accountService.toString());
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.ADD_SERVICE_ACCOUNT);
             pst.setLong(1, accountService.getAccountId());
@@ -229,6 +229,7 @@ public class AccountUserDAO extends AbstractDAO{
     }
 
     public void updateServiceToAccount(AccountService accountService) {
+        LOG.debug("Updating: " + accountService.toString());
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.UPDATE_SERVICE_ACCOUNT);
             pst.setLong(1, accountService.getTariffId());
