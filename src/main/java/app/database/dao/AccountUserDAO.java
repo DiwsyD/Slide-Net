@@ -195,7 +195,6 @@ public class AccountUserDAO extends AbstractDAO{
             pst.setString(8, account.getPhoneNumber());
             pst.setString(9, account.getIpAddress());
 
-            LOG.debug("LAVE: " + account.getMoneyBalance());
             pst.setInt(10, account.getMoneyBalance());
 
             pst.setBoolean(11, account.isAccountStatus());
@@ -212,6 +211,7 @@ public class AccountUserDAO extends AbstractDAO{
 
     //Account Service Actions
     public void activateServiceToAccount(AccountService accountService) {
+        LOG.debug("Activationg: " + accountService.toString());
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.ADD_SERVICE_ACCOUNT);
             pst.setLong(1, accountService.getAccountId());
@@ -222,8 +222,10 @@ public class AccountUserDAO extends AbstractDAO{
             pst.setDate(6, accountService.getNexPaymentDay());
             pst.execute();
         } catch (SQLException e) {
+            LOG.error("Failed to activate!");
             e.printStackTrace();
         }
+        LOG.debug("Activated!");
     }
 
     public void updateServiceToAccount(AccountService accountService) {
@@ -238,8 +240,10 @@ public class AccountUserDAO extends AbstractDAO{
             pst.setLong(6, accountService.getServiceId());
             pst.execute();
         } catch (SQLException e) {
+            LOG.error("Failed to updatee!");
             e.printStackTrace();
         }
+        LOG.debug("Updated!");
     }
 
     public void disableServiceFromAccount(long accountId, int serviceId) {
@@ -249,8 +253,10 @@ public class AccountUserDAO extends AbstractDAO{
             pst.setInt(2, serviceId);
             pst.execute();
         } catch (SQLException e) {
+            LOG.error("Failed to disable!");
             e.printStackTrace();
         }
+        LOG.debug("Disabled!");
     }
 }
 

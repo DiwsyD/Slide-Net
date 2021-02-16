@@ -34,13 +34,9 @@ public class AccountServlet extends HttpServlet {
 
         //Check if we want to activate or add service
         if (req.getParameter("action") != null) {
-            activateEditService(req, resp);
+            serviceAction(req, resp);
             return;
         }
-        if (req.getParameter("disable") != null) {
-            disableService(req);
-        }
-
         List<Service> serviceList = ServiceTariffDataManager.getAllServices();
 
         //Update AccountData
@@ -100,41 +96,37 @@ public class AccountServlet extends HttpServlet {
         }
     }
 
-    private void activateEditService(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void serviceAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         LOG.info("Redirecting to Service Choice Page");
+        String action = req.getParameter("action");
+        if (action == null) {
+            LOG.info("Action is Null!");
+            return;
+        }
         StringBuilder path = new StringBuilder(req.getRequestURI());
-        if (req.getParameter("action").equals("activate")) {
-            LOG.debug("Activate!");
+        if (action.equals("activate")) {
+            LOG.debug("Activate action...");
             path.append("/select_tariff?action=activate")
                     .append("&serviceId=").append(req.getParameter("serviceId"));
         }
-        if (req.getParameter("action").equals("edit")) {
-            LOG.debug("Edit!");
+        if (action.equals("edit")) {
+            LOG.debug("Edit action...");
             path.append("/select_tariff?action=edit")
                     .append("&serviceId=").append(req.getParameter("serviceId"))
                     .append("&tariffId=").append(req.getParameter("tariffId"));
         }
+        if (action.equals("disable")) {
+            try {
+
+                long id = (long) req.getSession().getAttribute("id");
+                int serviceId = Integer.parseInt(req.getParameter("serviceId"));
+                AccountDataManager.disableService(id, serviceId);
+            } catch (Exception e) {
+                e.printStackTrace();
+                LOG.warn("=Wrong Disable Action!=");
+            }
+        }
         resp.sendRedirect(path.toString());
     }
 
-    private void disableService(HttpServletRequest req) {
-        HttpSession session = req.getSession();
-        try {
-            long id = (long) session.getAttribute("id");
-            int serviceId = Integer.parseInt(req.getParameter("serviceId"));
-            AccountDataManager.disableService(id, serviceId);
-        } catch (Exception e) {
-            e.printStackTrace();
-            LOG.warn("=Wrong Disable Action!=");
-        }
-    }
-
-
 }
-/*
-
-
-
-
-
-* */

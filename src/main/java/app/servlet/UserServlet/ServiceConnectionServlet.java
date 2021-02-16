@@ -23,38 +23,43 @@ public class ServiceConnectionServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("SELECT TARIFF");
         //services and tariffs that account has
         try {
+            LOG.debug("Load Service Table...");
             int serviceId = Integer.parseInt(req.getParameter("serviceId"));
             List<Service> serviceList = Collections.singletonList(ServiceTariffDataManager.getServiceById(serviceId));
             ServiceTable.loadServiceTable(req, resp, serviceList);
         } catch (Exception e) {
+            LOG.error("Error value of >serviceId<!");
             e.printStackTrace();
         }
 
-        if (req.getParameter("action").equals("activate")) {
+        String action = req.getParameter("action");
+        if (action == null) {
+            LOG.info("Action is Null!");
+            return;
+        }
+        if (action.equals("activate")) {
             toActivate(req, resp);
         }
-        if (req.getParameter("action").equals("edit")) {
+        if (action.equals("edit")) {
             toEdit(req);
         }
         req.getRequestDispatcher(req.getRequestURI() + ".jsp").forward(req, resp);
     }
 
     private void toEdit(HttpServletRequest req) {
-        LOG.debug("Edit ServiceID: " + req.getParameter("serviceId"));
-        LOG.debug("Edit TariffID: " + req.getParameter("tariffId"));
+        LOG.debug("Edit Service. ID: " + req.getParameter("serviceId") + "Tariff. ID: " + req.getParameter("tariffId"));
 
     }
 
     private void toActivate(HttpServletRequest req, HttpServletResponse resp) {
-        LOG.debug("Edit ServiceID: " + req.getParameter("serviceId"));
+        LOG.debug("Activate Service. ID: " + req.getParameter("serviceId"));
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("Select tariff: " + req.getParameter("selectedTariff"));
+        LOG.debug("Tariff selected: " + req.getParameter("selectedTariff"));
         HttpSession session = req.getSession();
         try {
             long id = (long) session.getAttribute("id");

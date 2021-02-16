@@ -71,7 +71,7 @@
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
                                             <c:out value="${activeServiceData.isStatus() ? 'Active' : 'Inactive'}"/>
                                         </a>
-                                        <a class="remove_button" href="user_cabinet?disable=${true}&serviceId=${service.getId()}">Disable</a>
+                                        <a class="remove_button" href="user_cabinet?action=disable&serviceId=${service.getId()}">Disable</a>
                                     </li>
 
 

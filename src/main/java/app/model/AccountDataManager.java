@@ -176,18 +176,21 @@ public class AccountDataManager {
     }
 
     public static void applyServiceToAccount(long accountId, long serviceId, long tariffId) {
+        LOG.debug("Applying Service [" + serviceId + "] with tariff [" + tariffId + "] To Account [" + accountId + "]");
         AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
         if (linkedServices != null) {
+            LOG.debug("Service already activated, updating...");
             updateAccountService(linkedServices, tariffId);
         } else {
+            LOG.debug("Service not activated yet, activating...");
             addAccountService(accountId, serviceId, tariffId);
         }
     }
 
     private static void addAccountService(long accountId, long serviceId, long tariffId) {
-        Account account = findAccountByIdOrNull(accountId);
         Date activationDate = Date.valueOf(LocalDate.now());
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
+        LOG.debug("Activation day: " + activationDate + "; NPE: " + nextPaymentDay + ";");
 
         AccountService accountService = new AccountService();
         accountService.setAccountId(accountId);
@@ -197,32 +200,39 @@ public class AccountDataManager {
 
         int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
         LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + " Price: " + tariffPrice);
-        accountService.setStatus(checkTariffPayment(accountService, tariffPrice));
+                                //checkTariffPayment(accountService, tariffPrice)
+        accountService.setStatus(true);
 
         accountService.setNexPaymentDay(nextPaymentDay);
         AccountUserDAO.getInstance().activateServiceToAccount(accountService);
     }
 
     private static void updateAccountService(AccountService linkedService, long tariffId) {
-        Date today = Date.valueOf(LocalDate.now());
+        Date activationDate = Date.valueOf(LocalDate.now());
         Date oldNextPaymentDay = linkedService.getNexPaymentDay();
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
-        int differenceDays = (int) ChronoUnit.DAYS.between(today.toLocalDate(), oldNextPaymentDay.toLocalDate());
+
+        LOG.debug("Activation day: " + activationDate + "; OldNPE: "  + oldNextPaymentDay + "; NPE: " + nextPaymentDay + ";");
+
+        int differenceDays = (int) ChronoUnit.DAYS.between(activationDate.toLocalDate(), oldNextPaymentDay.toLocalDate());
         int oldTariffPrice = ServiceTariffDataManager.getTariffById(linkedService.getTariffId()).getPrice();
         int newTariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice() ;
 
-        LOG.debug("DAYS: " + differenceDays);
+        LOG.debug("To next payment: " + differenceDays);
+        LOG.debug("Price OLD tariff: " + oldTariffPrice);
+        LOG.debug("Price NEW tariff: " + newTariffPrice);
 
         int diffPrice = newTariffPrice - (differenceDays * (oldTariffPrice / DAY_IN_MONTH));
-        LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + " Price: " + newTariffPrice);
-        LOG.debug("DIFF PRICE: " + diffPrice);
+
+        LOG.debug("Price Difference: " + diffPrice);
+
         int paymentForUpdatedTariff = Math.max(diffPrice, 0);
 
         linkedService.setTariffId(tariffId);
-        linkedService.setActivationTime(today);
+        linkedService.setActivationTime(activationDate);
         linkedService.setNexPaymentDay(nextPaymentDay);
-
-        linkedService.setStatus(checkTariffPayment(linkedService, paymentForUpdatedTariff));
+                                    //checkTariffPayment(linkedService, paymentForUpdatedTariff)
+        linkedService.setStatus(true);
 
         AccountUserDAO.getInstance().updateServiceToAccount(linkedService);
     }
@@ -242,6 +252,7 @@ public class AccountDataManager {
     }
 
     public static void disableService(long id, int serviceId) {
+        LOG.debug("Disabling...");
         AccountUserDAO.getInstance().disableServiceFromAccount(id, serviceId);
     }
 }
