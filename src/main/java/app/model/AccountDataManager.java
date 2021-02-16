@@ -21,7 +21,7 @@ public class AccountDataManager {
     private static final Logger LOG = Logger.getLogger(AccountDataManager.class);
 
     private final static int maxAccountCount = 10_000_000;
-    public static final int DAY_IN_MONTH = 31;
+    public static final int DAY_IN_MONTH = 30;
 
     /**.
      * Description to all methods.
@@ -187,26 +187,6 @@ public class AccountDataManager {
         }
     }
 
-    public static void pauseServiceOnAccount(long accountId, long serviceId) {
-        AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
-        linkedServices.setStatus(false);
-        System.out.println("isPayed?? >>" + linkedServices.isPayed());
-        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
-    }
-
-    public static void startServiceOnAccount(long accountId, long serviceId) {
-        AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
-        if (!linkedServices.isPayed()) {
-            //get money from account
-            getPayForService(accountId, linkedServices.getTariffId());
-            linkedServices.setPayed(true);
-            LOG.debug("Set payed!");
-        }
-        linkedServices.setStatus(true);
-        System.out.println("isPayed?? >>" + linkedServices.isPayed());
-        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
-    }
-
     private static void addAccountService(long accountId, long serviceId, long tariffId) {
         Date activationDate = Date.valueOf(LocalDate.now());
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
@@ -223,17 +203,59 @@ public class AccountDataManager {
         accountService.setStatus(false);
         accountService.setNexPaymentDay(nextPaymentDay);
         accountService.setPayed(false);
+        accountService.setPaymentAmount(tariffPrice);
         AccountUserDAO.getInstance().activateServiceToAccount(accountService);
     }
 
+    public static void pauseServiceOnAccount(long accountId, long serviceId) {
+        AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
+        linkedServices.setStatus(false);
+        System.out.println("isPayed?? >>" + linkedServices.isPayed());
+        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
+    }
+
+    public static void startServiceOnAccount(long accountId, long serviceId) {
+        AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
+        if (!linkedServices.isPayed()) {
+            LOG.debug("GetMoney: " + linkedServices.getPaymentAmount());
+            //get money from account
+            getPayForService(accountId, linkedServices.getPaymentAmount());
+
+            Date activationDate = Date.valueOf(LocalDate.now());
+            Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
+
+            linkedServices.setActivationTime(activationDate);
+            linkedServices.setNexPaymentDay(nextPaymentDay);
+            linkedServices.setPayed(true);
+            linkedServices.setPaymentAmount(0);
+            LOG.debug("Set payed!");
+        }
+        linkedServices.setStatus(true);
+        System.out.println("isPayed?? >>" + linkedServices.isPayed());
+        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
+    }
+
+    private static void getPayForService(long accountId, int paymentAmount) {
+        LOG.debug("I'll get + " + paymentAmount);
+        Account account = findAccountByIdOrNull(accountId);
+        account.setMoneyBalance(account.getMoneyBalance() - paymentAmount);
+        AccountDataManager.applyAccountData(account);
+    }
+
     private static void updateAccountService(AccountService linkedService, long tariffId) {
-        Date activationDate = Date.valueOf(LocalDate.now());
+        if (!linkedService.isPayed()) {
+            linkedService.setTariffId(tariffId);
+            AccountUserDAO.getInstance().updateServiceToAccount(linkedService);
+            return;
+        }
+
+        Date today = Date.valueOf(LocalDate.now());
         Date oldNextPaymentDay = linkedService.getNexPaymentDay();
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
 
-        LOG.debug("Activation day: " + activationDate + "; OldNPE: "  + oldNextPaymentDay + "; NPE: " + nextPaymentDay + ";");
+        LOG.debug("Activation day: " + today + "; OldNPE: "  + oldNextPaymentDay + "; NPE: " + nextPaymentDay + ";");
 
-        int differenceDays = (int) ChronoUnit.DAYS.between(activationDate.toLocalDate(), oldNextPaymentDay.toLocalDate());
+        int differenceDays = (int) ChronoUnit.DAYS.between(today.toLocalDate(), oldNextPaymentDay.toLocalDate());
         int oldTariffPrice = ServiceTariffDataManager.getTariffById(linkedService.getTariffId()).getPrice();
         int newTariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice() ;
 
@@ -241,39 +263,20 @@ public class AccountDataManager {
         LOG.debug("Price OLD tariff: " + oldTariffPrice);
         LOG.debug("Price NEW tariff: " + newTariffPrice);
 
-        int diffPrice = newTariffPrice - (differenceDays * (oldTariffPrice / DAY_IN_MONTH));
+        int diffPrice = (int) (newTariffPrice - (differenceDays * ((double)oldTariffPrice / DAY_IN_MONTH)));
 
-        LOG.debug("Price Difference: " + diffPrice);
+        LOG.debug("Price for new Tariff: " + diffPrice);
 
         int paymentForUpdatedTariff = Math.max(diffPrice, 0);
 
         linkedService.setTariffId(tariffId);
-        linkedService.setActivationTime(activationDate);
+        linkedService.setActivationTime(today);
         linkedService.setNexPaymentDay(nextPaymentDay);
-                                    //checkTariffPayment(linkedService, paymentForUpdatedTariff)
-        linkedService.setStatus(true);
+        linkedService.setStatus(false);
+        linkedService.setPayed(false);
+        linkedService.setPaymentAmount(paymentForUpdatedTariff);
 
         AccountUserDAO.getInstance().updateServiceToAccount(linkedService);
-    }
-
-    private static void getPayForService(long accountId, long tariffId) {
-        int price = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
-        Account account = findAccountByIdOrNull(accountId);
-        account.setMoneyBalance(account.getMoneyBalance() - price);
-        AccountDataManager.applyAccountData(account);
-    }
-
-    private static boolean checkTariffPayment(AccountService accountService, int payment) {
-        //if enough money to pay for this tariff, set status to active, else - false
-        Account account = findAccountByIdOrNull(accountService.getAccountId());
-        boolean enoughMoney = (account.getMoneyBalance() - payment) >= 0;
-        LOG.debug("Account money: " + account.getMoneyBalance() + "; Payment: " + payment);
-        LOG.debug("Money if subtract: [" + (account.getMoneyBalance() - payment) + "]; Enough: [" + enoughMoney + "]");
-        if (enoughMoney) {
-            AccountDataManager.applyAccountData(account);
-        }
-        LOG.debug("Account money after: " + account.getMoneyBalance());
-        return enoughMoney;
     }
 
     public static void disableService(long id, int serviceId) {

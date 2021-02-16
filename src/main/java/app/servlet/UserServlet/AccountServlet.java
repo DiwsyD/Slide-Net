@@ -113,8 +113,8 @@ public class AccountServlet extends HttpServlet {
             e.printStackTrace();
             LOG.warn("=Wrong Disable Action!=");
         }
-
         StringBuilder path = new StringBuilder(req.getRequestURI());
+
         if (action.equals("activate")) {
             LOG.debug("Activate action...");
             path.append("/select_tariff?action=activate")

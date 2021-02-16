@@ -220,6 +220,8 @@ public class AccountUserDAO extends AbstractDAO{
             pst.setDate(4, accountService.getActivationTime());
             pst.setBoolean(5, accountService.isStatus());
             pst.setDate(6, accountService.getNexPaymentDay());
+            pst.setBoolean(7, accountService.isPayed());
+            pst.setInt(8, accountService.getPaymentAmount());
             pst.execute();
         } catch (SQLException e) {
             LOG.error("Failed to activate!");
@@ -236,10 +238,11 @@ public class AccountUserDAO extends AbstractDAO{
             pst.setDate(2, accountService.getActivationTime());
             pst.setBoolean(3, accountService.isStatus());
             pst.setDate(4, accountService.getNexPaymentDay());
-            pst.setBoolean(5, accountService.isPayed());
+            pst.setInt(5, accountService.getPaymentAmount());
+            pst.setBoolean(6, accountService.isPayed());
 
-            pst.setLong(6, accountService.getAccountId());
-            pst.setLong(7, accountService.getServiceId());
+            pst.setLong(7, accountService.getAccountId());
+            pst.setLong(8, accountService.getServiceId());
             pst.execute();
         } catch (SQLException e) {
             LOG.error("Failed to updatee!");

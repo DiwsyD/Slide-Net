@@ -66,6 +66,7 @@ public class ConstantQuery {
     public static final String ENABLE_STATUS = "enable_status";
     public static final String NEXT_PAYMENT_DAY = "next_payment_day";
     public static final String PAYED = "payed";
+    public static final String PAYMENT_AMOUNT = "payment_amount";
 
     /**.
      * Account Queries
@@ -172,14 +173,15 @@ public class ConstantQuery {
             "WHERE account_id = ? AND service_id = ?";
 
     public static final String ADD_SERVICE_ACCOUNT = "INSERT INTO account_services_tariffs " +
-            "(account_id, service_id, tariff_id, activation_date, enable_status, next_payment_day) " +
-            "VALUES (?, ?, ?, ?, ?, ?)";
+            "(account_id, service_id, tariff_id, activation_date, enable_status, next_payment_day, payed, payment_amount) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     public static final String UPDATE_SERVICE_ACCOUNT = "UPDATE account_services_tariffs " +
             "SET tariff_id = ?, " +
             "activation_date = ?, " +
             "enable_status = ?, " +
             "next_payment_day = ?, " +
+            "payment_amount = ?, " +
             "payed = ? " +
             "WHERE account_id = ? " +
             "AND service_id = ?";
