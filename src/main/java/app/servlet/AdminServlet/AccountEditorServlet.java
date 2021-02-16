@@ -42,7 +42,7 @@ public class AccountEditorServlet extends HttpServlet {
             req.getSession().setAttribute("account", account);
 
         } catch (NumberFormatException e) {
-            LOG.error("Can't get account id!\n" +
+            LOG.debug("Can't get account id!\n" +
                     "You may be trying to get access to this page via URL or with modified html.\n" +
                     "Please, use site navigation (without modification).");
         }

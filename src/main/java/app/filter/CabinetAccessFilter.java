@@ -1,17 +1,17 @@
 package app.filter;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @WebFilter(urlPatterns = {"/cabinet/admin/*", "/cabinet/user/*"})
 public class CabinetAccessFilter implements Filter {
-
+    private static final Logger LOG = Logger.getLogger(CabinetAccessFilter.class);
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -34,6 +34,7 @@ public class CabinetAccessFilter implements Filter {
                 resp.sendRedirect("/cabinet");
             }
         } catch (NullPointerException npe) {
+            LOG.debug("Cant get role, so redirecting to SignIn page");
             resp.sendRedirect("/sign");
         }
     }

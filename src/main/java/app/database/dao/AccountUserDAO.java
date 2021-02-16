@@ -56,7 +56,7 @@ public class AccountUserDAO extends AbstractDAO{
         return null;
     }
 
-    public Account getAccountByLogin(int login) {
+    public Account getAccountByLogin(long login) {
         Account account = new Account();
         try(Connection con = connectionPool.getConnection()){
             PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ACCOUNT_BY_LOGIN);
@@ -157,7 +157,7 @@ public class AccountUserDAO extends AbstractDAO{
             PreparedStatement pst = con.prepareStatement(ConstantQuery.ADD_NEW_ACCOUNT);
             pst.setLong(1, account.getRoleId());
 
-            pst.setInt(2, account.getLogin());
+            pst.setLong(2, account.getLogin());
             pst.setString(3, account.getPassword());
 
             pst.setString(4, account.getfName());
@@ -184,7 +184,7 @@ public class AccountUserDAO extends AbstractDAO{
             PreparedStatement pst = con.prepareStatement(ConstantQuery.UPDATE_ACCOUNT_DATA);
             pst.setLong(1, account.getRoleId());
 
-            pst.setInt(2, account.getLogin());
+            pst.setLong(2, account.getLogin());
             pst.setString(3, account.getPassword());
 
             pst.setString(4, account.getfName());

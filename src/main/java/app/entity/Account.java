@@ -9,7 +9,7 @@ public class Account extends Entity {
     private Long roleId;
     private String roleName;
 
-    private Integer login;
+    private long login;
     private String password;
 
     private String fName;
@@ -41,7 +41,7 @@ public class Account extends Entity {
         return roleName;
     }
 
-    public Integer getLogin() {
+    public long getLogin() {
         return login;
     }
 
@@ -73,7 +73,7 @@ public class Account extends Entity {
         return ipAddress;
     }
 
-    public Integer getMoneyBalance() {
+    public int getMoneyBalance() {
         return moneyBalance;
     }
 
@@ -94,7 +94,7 @@ public class Account extends Entity {
         this.roleName = roleName;
     }
 
-    public void setLogin(Integer login) {
+    public void setLogin(long login) {
         this.login = login;
     }
 
@@ -143,7 +143,7 @@ public class Account extends Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return login.equals(account.login);
+        return login == account.login;
     }
 
     @Override

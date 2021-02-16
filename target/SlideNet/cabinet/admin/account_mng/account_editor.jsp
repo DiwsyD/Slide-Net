@@ -34,8 +34,6 @@
                             <li>Money Balance:</li>
 
                             <li>Account Status:</li>
-
-                            <li>Service\Tariff:</li>
                         </ul>
                     </div>
                     <div class="dynamic_info">
@@ -69,16 +67,6 @@
                                         <option class="inactive_value" value="false" selected>Inactive</option>
                                     </c:if>
                                 </select>
-                            </li>
-                            <li>
-                                <div>
-                                    <ul id="service_tariff_holder">
-                                    </ul>
-                                    <!-- Передавать в этот метод список всех услуг. Массивом. -->
-                                    <button class="add_button" onclick="addNewServiceToAccount(arr=['lol', 'bob', 'log'])">
-                                        Add
-                                    </button>
-                                </div>
                             </li>
                         </ul>
                     </div>

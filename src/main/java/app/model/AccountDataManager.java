@@ -51,7 +51,7 @@ public class AccountDataManager {
         return account;
     }
 
-    public static Account findAccountByLoginOrNull(int login) {
+    public static Account findAccountByLoginOrNull(long login) {
         Account account = EntityManager.getInstance().getAccountByLogin(login);
         /*if (account != null) {
             return account;
@@ -142,6 +142,7 @@ public class AccountDataManager {
         account.setRoleName(userRole.getName());
         account.setLogin(generateNewLogin());
         account.setPassword(generatePassword(9));
+        account.setMoneyBalance(0);
 
         return account;
     }
@@ -253,19 +254,11 @@ public class AccountDataManager {
         Date oldNextPaymentDay = linkedService.getNexPaymentDay();
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
 
-        LOG.debug("Activation day: " + today + "; OldNPE: "  + oldNextPaymentDay + "; NPE: " + nextPaymentDay + ";");
-
         int differenceDays = (int) ChronoUnit.DAYS.between(today.toLocalDate(), oldNextPaymentDay.toLocalDate());
         int oldTariffPrice = ServiceTariffDataManager.getTariffById(linkedService.getTariffId()).getPrice();
         int newTariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice() ;
 
-        LOG.debug("To next payment: " + differenceDays);
-        LOG.debug("Price OLD tariff: " + oldTariffPrice);
-        LOG.debug("Price NEW tariff: " + newTariffPrice);
-
         int diffPrice = (int) (newTariffPrice - (differenceDays * ((double)oldTariffPrice / DAY_IN_MONTH)));
-
-        LOG.debug("Price for new Tariff: " + diffPrice);
 
         int paymentForUpdatedTariff = Math.max(diffPrice, 0);
 

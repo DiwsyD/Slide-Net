@@ -1,9 +1,14 @@
 package app.model;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
+
 public class Encryption {
 
     public static String encrypt(String line) {
-        /*
         StringBuilder result = new StringBuilder(line.toLowerCase(Locale.ROOT));
         result.append(result.reverse().toString().toLowerCase(Locale.ROOT));
         byte[] bytes = null;
@@ -16,7 +21,5 @@ public class Encryption {
         }
         BigInteger bigint = new BigInteger(1, bytes);
         return bigint.toString(16).toLowerCase(Locale.ROOT);
-        */
-        return line;
     }
 }

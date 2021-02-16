@@ -82,13 +82,6 @@ h1 {
     margin-right: 20px;
 }
 
-hr {
-    color: #1e4995;
-    background: #1e4995;
-    border: none;
-    height: 2px;
-}
-
 /*----------Admin Account Editor--------------*/
 .select_account_status {
     height: 30px;

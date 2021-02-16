@@ -26,11 +26,11 @@
                     <div class="signin_form">
                         <form method="post">
                             <label>
-                                <input type="text" name="login" value="254658" placeholder="Slidenet ID">
+                                <input type="text" name="login" value="854652030" placeholder="Slidenet ID">
                             </label>
                             <br>
                             <label>
-                                <input type="password" name="pass" value="word" placeholder="Password">
+                                <input type="password" name="pass" value="eS9@ATM!t" placeholder="Password">
                             </label>
                             <br>
                             <button type="submit">Sign In</button>

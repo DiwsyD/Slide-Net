@@ -87,9 +87,9 @@ public class EntityManager {
                 .orElse(null);
     }
 
-    public Account getAccountByLogin(Integer login) {
+    public Account getAccountByLogin(long login) {
         return accountList.stream()
-                .filter(acc -> login.equals(acc.getLogin()))
+                .filter(acc -> login == acc.getLogin())
                 .findFirst()
                 .orElse(null);
     }
