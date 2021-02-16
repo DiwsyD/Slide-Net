@@ -29,16 +29,18 @@ public class ServiceTariffDAO extends AbstractDAO {
 
 
     public Service getServiceById(long id) {
-        Service service = new Service();
+        Service service = null;
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_SERVICE_BY_ID);
             pst.setLong(1, id);
             ResultSet rs = pst.executeQuery();
             if(rs.next()) {
+                service = new Service();
                 service.setId(rs.getLong(ConstantQuery.ID));
                 service.setName(rs.getString(ConstantQuery.SERVICE_NAME));
             }
         } catch (SQLException e) {
+            LOG.error("Service doesn't exist!");
             e.printStackTrace();
         }
         return service;
@@ -94,6 +96,7 @@ public class ServiceTariffDAO extends AbstractDAO {
                 accServ.setStatus(rs.getBoolean(ConstantQuery.ENABLE_STATUS));
                 accServ.setNexPaymentDay(rs.getDate(ConstantQuery.NEXT_PAYMENT_DAY));
                 accServ.setPayed(rs.getBoolean(ConstantQuery.PAYED));
+                accServ.setPaymentAmount(rs.getInt(ConstantQuery.PAYMENT_AMOUNT));
                 accountServices.add(accServ);
             }
         } catch (SQLException e) {

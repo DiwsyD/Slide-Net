@@ -246,11 +246,19 @@ button.activate_button, button.deactivate_button  {
     width: 120px;
 }
 
+.pagination-block {
+    text-align: center;
+}
+
 .pagination-control {
     margin-top: 50px;
     font-family: 'Raleway_SemiBold';
     display: inline-flex;
     text-align: center;
+    border: 2px solid #868686;
+    border-radius: 55px;
+    padding: 5px 5px;
+    background: #f3f3f3;
 }
 
 .pagination-control a {

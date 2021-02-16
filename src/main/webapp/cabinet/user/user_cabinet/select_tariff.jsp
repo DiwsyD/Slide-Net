@@ -63,30 +63,32 @@
                     </tbody>
                 </table>
 
-                <div class="pagination-control">
-                    <hr>
-                    <c:if test="${maxPage > 1}">
-                        <c:choose>
-                            <c:when test="${page == 1}">
-                                <a class="inactive-link">|<</a>
-                                <a class="inactive-link"><<</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a class="active-link" href="${uri}?serviceId=${activeService}&page=1">|<</a>
-                                <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page-1}"><<</a>
-                            </c:otherwise>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${page == maxPage}">
-                                <a class="inactive-link">>></a>
-                                <a class="inactive-link">>|</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page+1}">>></a>
-                                <a class="active-link" href="${uri}?serviceId=${activeService}&page=${maxPage}">>|</a>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:if>
+                <div class="pagination-block">
+                    <div class="pagination-control">
+                        <hr>
+                        <c:if test="${maxPage > 1}">
+                            <c:choose>
+                                <c:when test="${page == 1}">
+                                    <a class="inactive-link">|<</a>
+                                    <a class="inactive-link"><<</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="active-link" href="${uri}?serviceId=${activeService}&page=1">|<</a>
+                                    <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page-1}"><<</a>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${page == maxPage}">
+                                    <a class="inactive-link">>></a>
+                                    <a class="inactive-link">>|</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page+1}">>></a>
+                                    <a class="active-link" href="${uri}?serviceId=${activeService}&page=${maxPage}">>|</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:if>
+                    </div>
                 </div>
 
                 <div class="save-cancel-editing">

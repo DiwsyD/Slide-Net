@@ -74,13 +74,14 @@ public class AccountServlet extends HttpServlet {
             String newPassRepeat = req.getParameter("newPassRepeat");
             LOG.debug("oldPass = " + oldPass + "; newPass = " + newPass + "; newPassRepeat = " + newPassRepeat);
             if (!AccountDataManager.changePassword(id, oldPass, newPass, newPassRepeat)) {
+                LOG.warn("=Invalid password format!=");
                 session.setAttribute("changePasswordError", true);
                 this.doGet(req, resp);
             }
         } catch (Exception e) {
             e.printStackTrace();
             session.setAttribute("changePasswordError", true);
-            LogLog.warn("=Wrong Change Password Data!=");
+            LOG.warn("=Wrong Change Password Data!=");
         }
     }
 

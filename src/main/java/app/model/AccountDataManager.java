@@ -96,7 +96,6 @@ public class AccountDataManager {
 
     public static void applyAccountData(Account account) {
         if (findAccountByIdOrNull(account.getId()) != null) {
-            account.setPassword(Encryption.encrypt(account.getPassword()));
             LOG.debug("Money: " + account.getMoneyBalance());
             EntityManager.getInstance().updateAccount(account);
             AccountUserDAO.getInstance().updateAccount(account);
@@ -111,12 +110,19 @@ public class AccountDataManager {
 
     public static boolean changePassword(long account_id, String oldPass, String newPass, String newPassRepeat) {
         Account account = findAccountByIdOrNull(account_id);
-        if (!account.getPassword().equals(oldPass)
+        if (!account.getPassword().equals(Encryption.encrypt(oldPass))
                 || oldPass.equals(newPass) || oldPass.equals(newPassRepeat)
-                || !newPass.equals(newPassRepeat)) {
+                || !newPass.equals(newPassRepeat) || !Validator.validatePassword(newPass)) {
+
+            LOG.debug("1: " + (!account.getPassword().equals(Encryption.encrypt(oldPass))));
+            LOG.debug("2: " + oldPass.equals(newPass));
+            LOG.debug("3: " + oldPass.equals(newPassRepeat));
+            LOG.debug("4: " + !newPass.equals(newPassRepeat));
+            LOG.debug("5: " + !Validator.validatePassword(newPass));
+            //testUser1!
             return false;
         }
-        account.setPassword(newPass);
+        account.setPassword(Encryption.encrypt(newPass));
         applyAccountData(account);
         return true;
     }
@@ -189,22 +195,15 @@ public class AccountDataManager {
     }
 
     private static void addAccountService(long accountId, long serviceId, long tariffId) {
-        Date activationDate = Date.valueOf(LocalDate.now());
-        Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
-        LOG.debug("Activation day: " + activationDate + "; NPE: " + nextPaymentDay + ";");
-
         AccountService accountService = new AccountService();
         accountService.setAccountId(accountId);
         accountService.setServiceId(serviceId);
         accountService.setTariffId(tariffId);
-        accountService.setActivationTime(activationDate);
-
-        int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
-        LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
         accountService.setStatus(false);
-        accountService.setNexPaymentDay(nextPaymentDay);
         accountService.setPayed(false);
+        int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
         accountService.setPaymentAmount(tariffPrice);
+        LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
         AccountUserDAO.getInstance().activateServiceToAccount(accountService);
     }
 

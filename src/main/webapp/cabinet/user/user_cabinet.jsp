@@ -93,9 +93,7 @@
                                                 <p>
                                                     <c:choose>
                                                         <c:when test="${activeServiceData.isStatus()}">
-
                                                             <a class="remove_button" href="user_cabinet?action=pause&serviceId=${service.getId()}">Pause</a>
-
                                                         </c:when>
                                                         <c:otherwise>
                                                             <c:choose>

@@ -2,6 +2,7 @@ package app.servlet.AdminServlet;
 
 import app.entity.Account;
 import app.model.AccountDataManager;
+import app.model.Encryption;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -92,7 +93,7 @@ public class AccountEditorServlet extends HttpServlet {
 
             if (req.getParameter("new_password") != null && req.getParameter("new_password").trim().length() > 4) {
                 String newPassword = req.getParameter("new_password").trim();
-                account.setPassword(newPassword);
+                account.setPassword(Encryption.encrypt(newPassword));
             }
 
             AccountDataManager.applyAccountData(account);
