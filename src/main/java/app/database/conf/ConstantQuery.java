@@ -139,7 +139,7 @@ public class ConstantQuery {
             "WHERE id = ?";
     public static final String GET_ALL_TARIFF_BY_SERVICEID= "SELECT * " +
             "FROM tariff " +
-            "WHERE id = ?";
+            "WHERE service_id = ?";
 
     public static final String GET_PART_TARIFFS_BY_SERVICEID = "SELECT * FROM tariff " +
             "WHERE service_id = ? " +

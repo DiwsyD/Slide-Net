@@ -60,15 +60,14 @@
                 <c:forEach var="service" items="${serviceList}">
 
                     <c:set var="activeServiceData" scope="session" value="${account_data.isServiceLinked(service)}" />
-
                     <div id="${service.getId()}" class="service">
                         <div class="page_subtitle">${service.getName()}</div>
                         <c:choose>
-                            <!-- If this service is activated on account -->
+<%--                            If this service is activated on account --%>
                             <c:when test="${activeServiceData != null}">
 
                                 <ul>
-                                    <!-- Show service status and Disable Button -->
+                                    <%-- Show service status and Disable Button --%>
                                     <li>
                                         <a>Service Status:</a>
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
@@ -77,8 +76,8 @@
                                         <a class="remove_button" href="user_cabinet?action=disable&serviceId=${service.getId()}">Disable</a>
                                     </li>
 
-                                    <!-- Check all Tariffs and find activated one -->
-                                    <li>    <!-- If found active tariff: show it's name, description and Edit button to able to change Tariff --->
+                                    <%-- Check all Tariffs and find activated one --%>
+                                    <li>    <%-- If found active tariff: show it's name, description and Edit button to able to change Tariff ---%>
                                         <c:forEach var="tariff" items="${service.getTariffList()}">
                                             <c:if test="${tariff.getId() == activeServiceData.getTariffId()}">
                                                 <p>

@@ -60,7 +60,6 @@
                 <c:forEach var="service" items="${serviceList}">
 
                     <c:set var="activeServiceData" scope="session" value="${account_data.isServiceLinked(service)}" />
-
                     <div id="${service.getId()}" class="service">
                         <div class="page_subtitle">${service.getName()}</div>
                         <c:choose>

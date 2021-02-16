@@ -44,11 +44,8 @@ public class AccountServlet extends HttpServlet {
         HttpSession session = req.getSession();
         long accountId = (long) session.getAttribute("id");
         Account account = AccountDataManager.findAccountByIdOrNull(accountId);
-        LOG.debug("AccountID: " + accountId + "\nAccount: " + account.toString());
         session.setAttribute("account_data", account);
         List<AccountService> linkedServices = account.getActiveServices();
-        LOG.debug("Account linked Services: " + linkedServices.toString());
-
 
         req.setAttribute("activeServices", linkedServices);
         req.setAttribute("serviceList", serviceList);

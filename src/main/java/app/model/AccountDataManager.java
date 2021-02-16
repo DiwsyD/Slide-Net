@@ -200,8 +200,8 @@ public class AccountDataManager {
 
         int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
         LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
-                                //checkTariffPayment(accountService, tariffPrice)
-        accountService.setStatus(true);
+
+        accountService.setStatus(checkTariffPayment(accountService, tariffPrice));
 
         accountService.setNexPaymentDay(nextPaymentDay);
         AccountUserDAO.getInstance().activateServiceToAccount(accountService);
@@ -241,13 +241,13 @@ public class AccountDataManager {
         //if enough money to pay for this tariff, set status to active, else - false
         Account account = findAccountByIdOrNull(accountService.getAccountId());
         boolean enoughMoney = (account.getMoneyBalance() - payment) >= 0;
-        LOG.debug("Payment: " + payment);
-        LOG.debug("ACC Money Before: " + account.getMoneyBalance());
+        LOG.debug("Account money: " + account.getMoneyBalance() + "; Payment: " + payment);
+        LOG.debug("Money if subtract: [" + (account.getMoneyBalance() - payment) + "]; Enough: [" + enoughMoney + "]");
         if (enoughMoney) {
             account.setMoneyBalance(account.getMoneyBalance() - payment);
             AccountDataManager.applyAccountData(account);
         }
-        LOG.debug("ACC Money After: " + account.getMoneyBalance());
+        LOG.debug("Account money after: " + account.getMoneyBalance());
         return enoughMoney;
     }
 
