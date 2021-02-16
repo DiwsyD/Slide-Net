@@ -91,7 +91,10 @@
 
                                                     <c:choose>
                                                         <c:when test="${activeServiceData.isStatus()}">
-                                                            <a class="remove_button" href="user_cabinet?action=pause&serviceId=${service.getId()}">Pause</a>
+                                                            <a>Next Payment:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
+                                                            <p>
+                                                                <a class="remove_button" href="user_cabinet?action=pause&serviceId=${service.getId()}">Pause</a>
+                                                            </p>
                                                         </c:when>
                                                         <c:otherwise>
                                                             <c:choose>
@@ -109,13 +112,6 @@
                                                 </p>
                                             </c:if>
                                         </c:forEach>
-                                    </li>
-
-
-                                    <li>
-                                        <c:if test="${activeServiceData.isStatus()}">
-                                            <a>Next Payment:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
-                                        </c:if>
                                     </li>
 
                                 </ul>
