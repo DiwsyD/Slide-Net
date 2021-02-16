@@ -48,7 +48,7 @@ public class SignInOutServlet extends HttpServlet {
             }
 
         } catch (NullPointerException npe) {
-            System.out.println(npe);
+            npe.printStackTrace();
         }
     }
 

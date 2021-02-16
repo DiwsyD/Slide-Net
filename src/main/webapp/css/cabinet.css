@@ -63,7 +63,7 @@ h1 {
 }
 
 .service li {
-    margin: 15px 0;
+    margin: 25px 0;
 }
 
 .service li:before {
@@ -79,7 +79,7 @@ h1 {
 }
 
 .service a {
-    margin: 0 20px;
+    margin-right: 20px;
 }
 
 hr {

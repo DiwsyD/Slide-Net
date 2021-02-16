@@ -33,7 +33,7 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //Check if we want to activate or add service
-        if (req.getParameter("activate") != null || req.getParameter("edit") != null) {
+        if (req.getParameter("action") != null) {
             activateEditService(req, resp);
             return;
         }
@@ -42,10 +42,10 @@ public class AccountServlet extends HttpServlet {
         }
 
         List<Service> serviceList = ServiceTariffDataManager.getAllServices();
+
         long accountId = (long) req.getSession().getAttribute("id");
-        List<AccountService> linkedServices = ServiceTariffDataManager.getAccountServices(accountId);
-        Account acc = (Account) req.getSession().getAttribute("account_data");
-        acc.setActiveServices(linkedServices);
+        Account account = AccountDataManager.findAccountByIdOrNull(accountId);
+        List<AccountService> linkedServices = account.getActiveServices();
 
 
         req.setAttribute("activeServices", linkedServices);
@@ -56,6 +56,7 @@ public class AccountServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        LOG.debug("Hi");
         if (req.getRequestURI().contains("topup_balance")) {
             topUpBalance(req);
         }
@@ -99,19 +100,18 @@ public class AccountServlet extends HttpServlet {
     private void activateEditService(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         LOG.info("Redirecting to Service Choice Page");
         StringBuilder path = new StringBuilder(req.getRequestURI());
-        if (req.getParameter("activate") != null) {
+        if (req.getParameter("action").equals("activate")) {
             LOG.debug("Activate!");
-            path.append("/select_tariff?activate=true")
+            path.append("/select_tariff?action=activate")
                     .append("&serviceId=").append(req.getParameter("serviceId"));
         }
-        if (req.getParameter("edit") != null) {
+        if (req.getParameter("action").equals("edit")) {
             LOG.debug("Edit!");
-            path.append("/select_tariff?edit=true")
-                    .append("serviceId=").append(req.getParameter("serviceId"))
-                    .append("tariffId=").append(req.getParameter("tariffId"));
+            path.append("/select_tariff?action=edit")
+                    .append("&serviceId=").append(req.getParameter("serviceId"))
+                    .append("&tariffId=").append(req.getParameter("tariffId"));
         }
         resp.sendRedirect(path.toString());
-        return;
     }
 
     private void disableService(HttpServletRequest req) {

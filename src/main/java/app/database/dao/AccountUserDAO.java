@@ -224,6 +224,22 @@ public class AccountUserDAO extends AbstractDAO{
         }
     }
 
+    public void updateServiceToAccount(AccountService accountService) {
+        try (Connection con = connectionPool.getConnection()) {
+            PreparedStatement pst = con.prepareStatement(ConstantQuery.UPDATE_SERVICE_ACCOUNT);
+            pst.setLong(1, accountService.getTariffId());
+            pst.setDate(2, accountService.getActivationTime());
+            pst.setBoolean(3, accountService.isStatus());
+            pst.setDate(4, accountService.getNexPaymentDay());
+
+            pst.setLong(5, accountService.getAccountId());
+            pst.setLong(6, accountService.getServiceId());
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void disableServiceFromAccount(long accountId, int serviceId) {
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.REMOVE_SERVICE_ACCOUNT);

@@ -36,7 +36,11 @@ public class ServiceTariffDataManager {
         return ServiceTariffDAO.getInstance().getPartTariffsByServiceId(service_id, pageSize, tariffsToGet, orderBy, desc);
     }
 
-    public static List<AccountService> getAccountServices(long accountId) {
+    public static AccountService getAccountService(long accountId, long serviceId) {
+        return ServiceTariffDAO.getInstance().getAccountServiceByAccountId(accountId, serviceId);
+    }
+
+    public static List<AccountService> getAllAccountServices(long accountId) {
         return ServiceTariffDAO.getInstance().getAccountServicesByAccountId(accountId);
     }
 
@@ -71,4 +75,7 @@ public class ServiceTariffDataManager {
     }
 
 
+    public static Tariff getTariffById(long tariffId) {
+        return ServiceTariffDAO.getInstance().getTariffById(tariffId);
+    }
 }

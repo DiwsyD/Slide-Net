@@ -64,7 +64,8 @@
                         <c:choose>
                             <c:when test="${activeServiceData != null}">
                                 <ul>
-                                    <li>Service Status:
+                                    <li>
+                                        <a>Service Status:</a>
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
                                             <c:out value="${activeServiceData.isStatus() ? 'Active' : 'Inactive'}"/>
                                         </a>
@@ -77,11 +78,11 @@
                                         <c:forEach var="tariff" items="${service.getTariffList()}">
                                             <c:if test="${tariff.getId() == activeTariffId}">
                                                 <p>
-                                                    Tariff: <a style="color: #646cf1">${tariff.getName()}</a>
-                                                    <a class="edit_button" href="user_cabinet?edit=true&serviceId=${service.getId()}&tariffId=${tariff.getId()}">Edit</a>
+                                                    <a>Tariff:</a> <a style="color: #646cf1">${tariff.getName()}</a>
+                                                    <a class="edit_button" href="user_cabinet?action=edit&serviceId=${service.getId()}&tariffId=${tariff.getId()}">Edit</a>
                                                 </p>
                                                 <p>
-                                                    Description: <a style="color: #646cf1">${tariff.getDescription()}</a>
+                                                    <a>Description:</a> <a style="color: #646cf1">${tariff.getDescription()}</a>
                                                 </p>
                                             </c:if>
                                         </c:forEach>
@@ -89,7 +90,7 @@
                                     <li>
                                         <c:choose>
                                             <c:when test="${activeServiceData.isStatus()}">
-                                                Next Payment: <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
+                                                <a>Next Payment:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
                                             </c:when>
                                             <c:otherwise>
                                                 <a class="edit_button" href="/cabinet/user/topup_balance">Top-up</a>
@@ -101,7 +102,7 @@
                             <c:otherwise>
                                 <div>Service Status:
                                     <a class="inactive_value">Inactive</a>
-                                    <a class="add_button" href="user_cabinet?activate=true&serviceId=${service.getId()}">Activate</a>
+                                    <a class="add_button" href="user_cabinet?action=activate&serviceId=${service.getId()}">Activate</a>
                                 </div>
                             </c:otherwise>
                         </c:choose>

@@ -1,6 +1,6 @@
 package app.servlet.UserServlet;
 
-import app.entity.AccountService;
+import app.entity.Account;
 import app.entity.Service;
 import app.model.AccountDataManager;
 import app.model.ServiceTable;
@@ -21,9 +21,6 @@ import java.util.List;
 public class ServiceConnectionServlet extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(ServiceConnectionServlet.class);
 
-    protected void redirectToCabinet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher( "/cabinet/user/user_cabinet").forward(req, resp);
-    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.debug("SELECT TARIFF");
@@ -36,10 +33,10 @@ public class ServiceConnectionServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (req.getParameter("activate") != null) {
+        if (req.getParameter("action").equals("activate")) {
             toActivate(req, resp);
         }
-        if (req.getParameter("edit") != null) {
+        if (req.getParameter("action").equals("edit")) {
             toEdit(req);
         }
         req.getRequestDispatcher(req.getRequestURI() + ".jsp").forward(req, resp);
@@ -63,11 +60,18 @@ public class ServiceConnectionServlet extends HttpServlet {
             long id = (long) session.getAttribute("id");
             long serviceId = Integer.parseInt(req.getParameter("serviceId"));
             long tariffId = Integer.parseInt(req.getParameter("selectedTariff"));
-            AccountDataManager.activateService(id, serviceId, tariffId);
+            AccountDataManager.applyServiceToAccount(id, serviceId, tariffId);
+
+            //Update AccountData
+            long accountId = (long) session.getAttribute("id");
+            Account account = AccountDataManager.findAccountByIdOrNull(accountId);
+            session.setAttribute("account_data", account);
+
         } catch (Exception e) {
             e.printStackTrace();
             LOG.warn("=Wrong Disable Action!=");
         }
-        redirectToCabinet(req, resp);
+        LOG.debug("redirecting to cabinet");
+        resp.sendRedirect( "/cabinet/user/user_cabinet");
     }
 }

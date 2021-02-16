@@ -124,9 +124,12 @@ public class ConstantQuery {
     public static final String GET_SERVICE_TARIFF_COUNT = "SELECT COUNT(*) AS tariffs " +
             "FROM tariff " +
             "WHERE service_id = ?";
-    public static final String GET_ALL_TARIFF_BY_SERVICEID= "SELECT * " +
+    public static final String GET_TARIFF_BY_ID= "SELECT * " +
             "FROM tariff " +
             "WHERE service_id = ?";
+    public static final String GET_ALL_TARIFF_BY_SERVICEID= "SELECT * " +
+            "FROM tariff " +
+            "WHERE id = ?";
 
     public static final String GET_PART_TARIFFS_BY_SERVICEID = "SELECT * FROM tariff " +
             "WHERE service_id = ? " +
@@ -152,13 +155,39 @@ public class ConstantQuery {
     /**.
      * Account Services
      * */
-    public static final String GET_ACCOUNT_SERVICES = "SELECT * FROM account_services_tariffs " +
+    public static final String GET_ALL_ACCOUNT_SERVICES = "SELECT * FROM account_services_tariffs " +
             "WHERE account_id = ?";
+
+    public static final String GET_ACCOUNT_SERVICE = "SELECT * FROM account_services_tariffs " +
+            "WHERE account_id = ? AND service_id = ?";
 
     public static final String ADD_SERVICE_ACCOUNT = "INSERT INTO account_services_tariffs " +
             "(account_id, service_id, tariff_id, activation_date, enable_status, next_payment_day) " +
             "VALUES (?, ?, ?, ?, ?, ?)";
 
+    public static final String UPDATE_SERVICE_ACCOUNT = "UPDATE account_services_tariffs " +
+            "SET tariff_id = ?, " +
+            "activation_date = ?, " +
+            "enable_status = ?, " +
+            "next_payment_day = ? " +
+            "WHERE account_id = ? " +
+            "AND service_id = ?";
+
     public static final String REMOVE_SERVICE_ACCOUNT = "DELETE FROM account_services_tariffs " +
             "WHERE account_id = ? AND service_id = ?";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

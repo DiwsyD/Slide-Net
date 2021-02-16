@@ -82,7 +82,7 @@ public class ServiceTariffDAO extends AbstractDAO {
     public List<AccountService> getAccountServicesByAccountId(long accountId) {
         List<AccountService> accountServices = new ArrayList<>();
         try (Connection con = connectionPool.getConnection()) {
-            PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ACCOUNT_SERVICES);
+            PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ALL_ACCOUNT_SERVICES);
             pst.setLong(1, accountId);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -100,6 +100,29 @@ public class ServiceTariffDAO extends AbstractDAO {
             e.printStackTrace();
         }
         return accountServices;
+    }
+
+    public AccountService getAccountServiceByAccountId(long accountId, long serviceId) {
+        AccountService accountService = null;
+        try (Connection con = connectionPool.getConnection()) {
+            PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ACCOUNT_SERVICE);
+            pst.setLong(1, accountId);
+            pst.setLong(2, serviceId);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                accountService = new AccountService();
+                accountService.setAccountId(accountId);
+                accountService.setServiceId(rs.getLong(ConstantQuery.SERVICE_ID));
+                accountService.setTariffId(rs.getLong(ConstantQuery.TARIFF_ID));
+                accountService.setActivationTime(rs.getDate(ConstantQuery.ACTIVATION_DATE));
+                accountService.setStatus(rs.getBoolean(ConstantQuery.ENABLE_STATUS));
+                accountService.setNexPaymentDay(rs.getDate(ConstantQuery.NEXT_PAYMENT_DAY));
+            }
+        } catch (SQLException e) {
+            LOG.debug("ID: " + accountId);
+            e.printStackTrace();
+        }
+        return accountService;
     }
 
     public List<Tariff> getTariffsByServiceId(long id) {
@@ -173,10 +196,28 @@ public class ServiceTariffDAO extends AbstractDAO {
                 result = rs.getLong(ConstantQuery.ID);
             }
         } catch (SQLException e) {
-            LOG.debug("5");
             e.printStackTrace();
         }
         return result;
+    }
+
+    public Tariff getTariffById(long tariffId) {
+        Tariff tariff = new Tariff();
+        try (Connection con = connectionPool.getConnection()) {
+            PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_TARIFF_BY_ID);
+            pst.setLong(1, tariffId);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                tariff.setId(tariffId);
+                tariff.setServiceId(rs.getLong(ConstantQuery.SERVICE_ID));
+                tariff.setName(rs.getString(ConstantQuery.TARIFF_NAME));
+                tariff.setDescription(rs.getString(ConstantQuery.TARIFF_DESCRIPTION));
+                tariff.setPrice(rs.getInt(ConstantQuery.TARIFF_PRICE));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tariff;
     }
 
     public void addNewTariff(Tariff tariff) {
@@ -214,5 +255,4 @@ public class ServiceTariffDAO extends AbstractDAO {
             e.printStackTrace();
         }
     }
-
 }
