@@ -87,20 +87,35 @@
                                                 <p>
                                                     <a>Description:</a> <a style="color: #646cf1">${tariff.getDescription()}</a>
                                                 </p>
+                                                <p>
+
+                                                    <c:choose>
+                                                        <c:when test="${activeServiceData.isStatus()}">
+                                                            <a class="remove_button" href="user_cabinet?action=pause&serviceId=${service.getId()}">Pause</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:choose>
+                                                                <%-- enough money--%>
+                                                                <c:when test="${account_data.getMoneyBalance() >= tariff.getPrice()}">
+                                                                    <a class="add_button" href="user_cabinet?action=start&serviceId=${service.getId()}">Start</a
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <a class="edit_button" href="/cabinet/user/topup_balance">Top-up</a
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </p>
                                             </c:if>
                                         </c:forEach>
                                     </li>
 
 
                                     <li>
-                                        <c:choose>
-                                            <c:when test="${activeServiceData.isStatus()}">
-                                                <a>Next Payment:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a class="edit_button" href="/cabinet/user/topup_balance">Top-up</a>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <c:if test="${activeServiceData.isStatus()}">
+                                            <a>Next Payment:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
+                                        </c:if>
                                     </li>
 
                                 </ul>

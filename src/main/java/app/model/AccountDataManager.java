@@ -187,6 +187,18 @@ public class AccountDataManager {
         }
     }
 
+    public static void pauseServiceOnAccount(long accountId, long serviceId) {
+        AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
+        linkedServices.setStatus(false);
+        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
+    }
+
+    public static void startServiceOnAccount(long accountId, long serviceId) {
+        AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
+        linkedServices.setStatus(true);
+        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
+    }
+
     private static void addAccountService(long accountId, long serviceId, long tariffId) {
         Date activationDate = Date.valueOf(LocalDate.now());
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
@@ -200,9 +212,7 @@ public class AccountDataManager {
 
         int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
         LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
-
-        accountService.setStatus(checkTariffPayment(accountService, tariffPrice));
-
+        accountService.setStatus(false);
         accountService.setNexPaymentDay(nextPaymentDay);
         AccountUserDAO.getInstance().activateServiceToAccount(accountService);
     }

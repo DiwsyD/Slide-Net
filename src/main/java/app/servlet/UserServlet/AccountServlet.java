@@ -49,6 +49,7 @@ public class AccountServlet extends HttpServlet {
 
         req.setAttribute("activeServices", linkedServices);
         req.setAttribute("serviceList", serviceList);
+
         req.getRequestDispatcher(req.getRequestURI() + ".jsp").forward(req, resp);
     }
 
@@ -103,6 +104,16 @@ public class AccountServlet extends HttpServlet {
             LOG.info("Action is Null!");
             return;
         }
+        long id = -1;
+        int serviceId = -1;
+        try {
+            id = (long) req.getSession().getAttribute("id");
+            serviceId = Integer.parseInt(req.getParameter("serviceId"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOG.warn("=Wrong Disable Action!=");
+        }
+
         StringBuilder path = new StringBuilder(req.getRequestURI());
         if (action.equals("activate")) {
             LOG.debug("Activate action...");
@@ -116,15 +127,13 @@ public class AccountServlet extends HttpServlet {
                     .append("&tariffId=").append(req.getParameter("tariffId"));
         }
         if (action.equals("disable")) {
-            try {
-
-                long id = (long) req.getSession().getAttribute("id");
-                int serviceId = Integer.parseInt(req.getParameter("serviceId"));
-                AccountDataManager.disableService(id, serviceId);
-            } catch (Exception e) {
-                e.printStackTrace();
-                LOG.warn("=Wrong Disable Action!=");
-            }
+            AccountDataManager.disableService(id, serviceId);
+        }
+        if (action.equals("pause")) {
+            AccountDataManager.pauseServiceOnAccount(id, serviceId);
+        }
+        if (action.equals("start")) {
+            AccountDataManager.startServiceOnAccount(id, serviceId);
         }
         resp.sendRedirect(path.toString());
     }
