@@ -194,6 +194,8 @@ public class AccountUserDAO extends AbstractDAO{
             pst.setString(7, account.getAddress());
             pst.setString(8, account.getPhoneNumber());
             pst.setString(9, account.getIpAddress());
+
+            LOG.debug("LAVE: " + account.getMoneyBalance());
             pst.setInt(10, account.getMoneyBalance());
 
             pst.setBoolean(11, account.isAccountStatus());

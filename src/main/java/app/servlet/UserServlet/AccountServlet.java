@@ -26,7 +26,7 @@ public class AccountServlet extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(AccountServlet.class);
 
     protected void redirectToCabinet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher( "/cabinet/user/user_cabinet.jsp").forward(req, resp);
+        resp.sendRedirect( "/cabinet/user/user_cabinet");
     }
 
     @Override
@@ -43,8 +43,11 @@ public class AccountServlet extends HttpServlet {
 
         List<Service> serviceList = ServiceTariffDataManager.getAllServices();
 
-        long accountId = (long) req.getSession().getAttribute("id");
+        //Update AccountData
+        HttpSession session = req.getSession();
+        long accountId = (long) session.getAttribute("id");
         Account account = AccountDataManager.findAccountByIdOrNull(accountId);
+        session.setAttribute("account_data", account);
         List<AccountService> linkedServices = account.getActiveServices();
 
 

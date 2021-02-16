@@ -38,13 +38,14 @@ public class AccountDataManager {
 
     public static Account findAccountByIdOrNull(long id) {
         Account account = EntityManager.getInstance().getAccountById(id);
-        if (account != null) {
+        /*if (account != null) {
             LOG.debug("FOUND IN ==> ENTITY MANAGER ACCOUNT ID: " + account.getId() + "; Name: " + account.getfName());
             return account;
-        }
+        }*/
 
         account = AccountUserDAO.getInstance().getAccountById(id);
         if(account != null) {
+            account.setActiveServices(ServiceTariffDataManager.getAllAccountServices(account.getId()));
             addAccountToEntityManager(setAccountRoleName(account));
         }
         return account;
@@ -52,10 +53,9 @@ public class AccountDataManager {
 
     public static Account findAccountByLoginOrNull(int login) {
         Account account = EntityManager.getInstance().getAccountByLogin(login);
-        if (account != null) {
+        /*if (account != null) {
             return account;
-        }
-
+        }*/
 
         account = AccountUserDAO.getInstance().getAccountByLogin(login);
 
@@ -97,6 +97,7 @@ public class AccountDataManager {
     public static void applyAccountData(Account account) {
         if (findAccountByIdOrNull(account.getId()) != null) {
             account.setPassword(Encryption.encrypt(account.getPassword()));
+            LOG.debug("Money: " + account.getMoneyBalance());
             EntityManager.getInstance().updateAccount(account);
             AccountUserDAO.getInstance().updateAccount(account);
             return;
@@ -195,36 +196,49 @@ public class AccountDataManager {
         accountService.setActivationTime(activationDate);
 
         int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
-        accountService.setStatus((account.getMoneyBalance() - tariffPrice) > 0);
+        LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + " Price: " + tariffPrice);
+        accountService.setStatus(checkTariffPayment(accountService, tariffPrice));
 
         accountService.setNexPaymentDay(nextPaymentDay);
         AccountUserDAO.getInstance().activateServiceToAccount(accountService);
     }
 
-    private static void updateAccountService(AccountService linkedServices, long tariffId) {
-        Account account = findAccountByIdOrNull(linkedServices.getAccountId());
+    private static void updateAccountService(AccountService linkedService, long tariffId) {
         Date today = Date.valueOf(LocalDate.now());
-        Date oldNextPaymentDay = linkedServices.getNexPaymentDay();
+        Date oldNextPaymentDay = linkedService.getNexPaymentDay();
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
         int differenceDays = (int) ChronoUnit.DAYS.between(today.toLocalDate(), oldNextPaymentDay.toLocalDate());
-        int oldTariffPrice = ServiceTariffDataManager.getTariffById(linkedServices.getTariffId()).getPrice();
+        int oldTariffPrice = ServiceTariffDataManager.getTariffById(linkedService.getTariffId()).getPrice();
         int newTariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice() ;
 
+        LOG.debug("DAYS: " + differenceDays);
+
         int diffPrice = newTariffPrice - (differenceDays * (oldTariffPrice / DAY_IN_MONTH));
+        LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + " Price: " + newTariffPrice);
+        LOG.debug("DIFF PRICE: " + diffPrice);
         int paymentForUpdatedTariff = Math.max(diffPrice, 0);
 
-        linkedServices.setTariffId(tariffId);
-        linkedServices.setActivationTime(today);
-        linkedServices.setNexPaymentDay(nextPaymentDay);
+        linkedService.setTariffId(tariffId);
+        linkedService.setActivationTime(today);
+        linkedService.setNexPaymentDay(nextPaymentDay);
+
+        linkedService.setStatus(checkTariffPayment(linkedService, paymentForUpdatedTariff));
+
+        AccountUserDAO.getInstance().updateServiceToAccount(linkedService);
+    }
+
+    private static boolean checkTariffPayment(AccountService accountService, int payment) {
         //if enough money to pay for this tariff, set status to active, else - false
-        boolean enoughMoney = (account.getMoneyBalance() - paymentForUpdatedTariff) > 0;
-        linkedServices.setStatus(enoughMoney);
+        Account account = findAccountByIdOrNull(accountService.getAccountId());
+        boolean enoughMoney = (account.getMoneyBalance() - payment) >= 0;
+        LOG.debug("Payment: " + payment);
+        LOG.debug("ACC Money Before: " + account.getMoneyBalance());
         if (enoughMoney) {
-            account.setMoneyBalance(account.getMoneyBalance() - paymentForUpdatedTariff);
+            account.setMoneyBalance(account.getMoneyBalance() - payment);
             AccountDataManager.applyAccountData(account);
         }
-
-        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
+        LOG.debug("ACC Money After: " + account.getMoneyBalance());
+        return enoughMoney;
     }
 
     public static void disableService(long id, int serviceId) {

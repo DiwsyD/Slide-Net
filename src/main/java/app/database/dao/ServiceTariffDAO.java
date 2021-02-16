@@ -154,7 +154,6 @@ public class ServiceTariffDAO extends AbstractDAO {
             pst.setLong(1, service_id);
             pst.setInt(2, start);
             pst.setInt(3, end);
-            LOG.debug(pst.toString());
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Tariff tariff = new Tariff();

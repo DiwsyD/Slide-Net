@@ -92,7 +92,17 @@ public class ConstantQuery {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public static final String UPDATE_ACCOUNT_DATA = "UPDATE account " +
-            "SET role_id = ?, login = ?, password = ?, fname = ?, lname = ?, sname = ?, address = ?, phone_number = ?, ip_address = ?, balance = ?, account_status = ? " +
+            "SET role_id = ?, " +
+            "login = ?, " +
+            "password = ?, " +
+            "fname = ?, " +
+            "lname = ?, " +
+            "sname = ?, " +
+            "address = ?, " +
+            "phone_number = ?, " +
+            "ip_address = ?, " +
+            "balance = ?, " +
+            "account_status = ? " +
             "WHERE id = ?";
     public static final String GET_LAST_ACCOUNT_ID = "SELECT max(id) as maxId FROM account";
 
@@ -126,7 +136,7 @@ public class ConstantQuery {
             "WHERE service_id = ?";
     public static final String GET_TARIFF_BY_ID= "SELECT * " +
             "FROM tariff " +
-            "WHERE service_id = ?";
+            "WHERE id = ?";
     public static final String GET_ALL_TARIFF_BY_SERVICEID= "SELECT * " +
             "FROM tariff " +
             "WHERE id = ?";

@@ -61,12 +61,6 @@ public class ServiceConnectionServlet extends HttpServlet {
             long serviceId = Integer.parseInt(req.getParameter("serviceId"));
             long tariffId = Integer.parseInt(req.getParameter("selectedTariff"));
             AccountDataManager.applyServiceToAccount(id, serviceId, tariffId);
-
-            //Update AccountData
-            long accountId = (long) session.getAttribute("id");
-            Account account = AccountDataManager.findAccountByIdOrNull(accountId);
-            session.setAttribute("account_data", account);
-
         } catch (Exception e) {
             e.printStackTrace();
             LOG.warn("=Wrong Disable Action!=");

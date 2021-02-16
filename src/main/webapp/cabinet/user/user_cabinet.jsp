@@ -62,8 +62,10 @@
                     <div id="${service.getId()}" class="service">
                         <div class="page_subtitle">${service.getName()}</div>
                         <c:choose>
+
                             <c:when test="${activeServiceData != null}">
                                 <ul>
+
                                     <li>
                                         <a>Service Status:</a>
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
@@ -71,9 +73,13 @@
                                         </a>
                                         <a class="remove_button" href="user_cabinet?disable=${true}&serviceId=${service.getId()}">Disable</a>
                                     </li>
+
+
                                     <c:if test="${service.getTariffById(activeServiceData.getTariffId()) != null}">
                                         <c:set var="activeTariffId" scope="session" value="${service.getTariffById(activeServiceData.getTariffId()).getId()}" />
                                     </c:if>
+
+
                                     <li>
                                         <c:forEach var="tariff" items="${service.getTariffList()}">
                                             <c:if test="${tariff.getId() == activeTariffId}">
@@ -87,6 +93,8 @@
                                             </c:if>
                                         </c:forEach>
                                     </li>
+
+
                                     <li>
                                         <c:choose>
                                             <c:when test="${activeServiceData.isStatus()}">
@@ -97,8 +105,11 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </li>
+
                                 </ul>
                             </c:when>
+
+
                             <c:otherwise>
                                 <div>Service Status:
                                     <a class="inactive_value">Inactive</a>

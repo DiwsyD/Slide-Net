@@ -67,11 +67,8 @@ public class SignInOutServlet extends HttpServlet {
             session.setAttribute("login", account.getLogin());
             session.setAttribute("id", account.getId());
             session.setAttribute("role", account.getRoleName());
-            //set the account data for quick access to user data in their page
-            session.setAttribute("account_data", account);
+
             resp.sendRedirect("/cabinet");
-
-
         } else {
             LOG.info("Invalid data.");
             req.setAttribute("AuthorizationResultError", true);
