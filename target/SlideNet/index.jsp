@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="shortcut icon" href="media/images/icon.png" type="image/png">
-    <script src="js/service_mng.js"></script>
 </head>
 <body>
 <c:import url="header.jsp" />
@@ -52,13 +51,13 @@
     <div id="services">
         <div class="content-container">
             <div class="services_info">
-                <div class="page_title">Services & Tariffs</div>
-                <!-- Services INFO -->
-                <div class="content_table">
+                <div class="body-info">
+
+                    <div class="page_title">Services</div>
                     <!-- Service Tabs -->
                     <div class="service_tabs">
                         <c:forEach var="service" items="${serviceList}">
-                            <a class='tablink <c:out value="${activeService == service.getId() ? \'_active\' : \'none\'}"/>' href="?service=${service.getId()}">${service.getName()}</a>
+                            <a class='tablink <c:out value="${activeService == service.getId() ? \'_active\' : \'none\'}"/>' href="?serviceId=${service.getId()}#services">${service.getName()}</a>
                         </c:forEach>
                     </div>
                     <!-- Service Tables -->
@@ -66,12 +65,26 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>Tariff Name</th>
+                                <c:choose>
+                                    <c:when test="${desc != ''}">
+                                        <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name'/>#services">Tariff Name ^</a></th>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name_desc'/>#services">Tariff Name v</a></th>
+                                    </c:otherwise>
+                                </c:choose>
                                 <th>Description</th>
-                                <th>Price</th>
+                                <c:choose>
+                                    <c:when test="${desc != ''}">
+                                        <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price'/>#services">Price ^</a></th>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price_desc'/>#services">Price v</a></th>
+                                    </c:otherwise>
+                                </c:choose>
                             </tr>
                             </thead>
-                            <tbody  class="service_content_table">
+                            <tbody id="tariff-table" class="service_content_table">
                             <c:forEach var="tariff" items="${tariffList}">
                                 <tr id="${tariff.getName()}">
                                     <td>${tariff.getName()}</td>
@@ -81,6 +94,7 @@
                             </c:forEach>
                             </tbody>
                         </table>
+
                         <div class="pagination-control">
                             <hr>
                             <c:if test="${maxPage > 1}">
@@ -90,8 +104,8 @@
                                         <a class="inactive-link"><<</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="active-link" href="?service=${activeService}&page=1">|<</a>
-                                        <a class="active-link" href="?service=${activeService}&page=${page-1}"><<</a>
+                                        <a class="active-link" href="${uri}?serviceId=${activeService}&page=1#services">|<</a>
+                                        <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page-1}#services"><<</a>
                                     </c:otherwise>
                                 </c:choose>
                                 <c:choose>
@@ -100,12 +114,13 @@
                                         <a class="inactive-link">>|</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="active-link" href="?service=${activeService}&page=${page+1}">>></a>
-                                        <a class="active-link" href="?service=${activeService}&page=${maxPage}">>|</a>
+                                        <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page+1}#services">>></a>
+                                        <a class="active-link" href="${uri}?serviceId=${activeService}&page=${maxPage}#services">>|</a>
                                     </c:otherwise>
                                 </c:choose>
                             </c:if>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -153,8 +168,4 @@
     <!-- footer -->
     <c:import url="/cabinet/footer.html" />
 </body>
-<script>
-    let tabLinks = document.getElementsByClassName('tablink');
-    tabLinks[0].click();
-</script>
 </html>

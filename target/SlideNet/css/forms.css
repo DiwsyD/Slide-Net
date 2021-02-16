@@ -250,6 +250,7 @@ button.activate_button, button.deactivate_button  {
     margin-top: 50px;
     font-family: 'Raleway_SemiBold';
     display: inline-flex;
+    text-align: center;
 }
 
 .pagination-control a {

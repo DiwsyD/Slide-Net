@@ -7,6 +7,7 @@
     <title>Sign In</title>
     <link rel="stylesheet" href="css/signin.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/forms.css">
     <link rel="shortcut icon" href="media/images/icon.png" type="image/png">
 </head>
 <body>
