@@ -103,7 +103,14 @@
                                                                     <a class="add_button" href="user_cabinet?action=start&serviceId=${service.getId()}">Start</a
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <a class="edit_button" href="/cabinet/user/topup_balance">Top-up</a
+                                                                    <c:choose>
+                                                                        <c:when test="${activeServiceData.isPayed()}">
+                                                                            <a class="add_button" href="user_cabinet?action=start&serviceId=${service.getId()}">Start</a
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <a class="edit_button" href="/cabinet/user/topup_balance">Top-up</a
+                                                                        </c:otherwise>
+                                                                    </c:choose>
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </c:otherwise>

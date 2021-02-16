@@ -12,6 +12,7 @@ public class AccountService extends Entity {
     private Date activationTime;
     private boolean status;
     private Date nexPaymentDay;
+    private boolean payed;
 
     //Getters
     public Long getAccountId() {
@@ -36,6 +37,10 @@ public class AccountService extends Entity {
 
     public Date getNexPaymentDay() {
         return nexPaymentDay;
+    }
+
+    public boolean isPayed() {
+        return payed;
     }
 
     //Setters
@@ -63,6 +68,10 @@ public class AccountService extends Entity {
         this.nexPaymentDay = nexPaymentDay;
     }
 
+    public void setPayed(boolean payed) {
+        this.payed = payed;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,6 +94,7 @@ public class AccountService extends Entity {
                 ", activationTime=" + activationTime +
                 ", status=" + status +
                 ", nexPaymentDay=" + nexPaymentDay +
+                ", payed=" + payed +
                 '}';
     }
 }

@@ -65,7 +65,7 @@ public class ConstantQuery {
     public static final String ACTIVATION_DATE = "activation_date";
     public static final String ENABLE_STATUS = "enable_status";
     public static final String NEXT_PAYMENT_DAY = "next_payment_day";
-
+    public static final String PAYED = "payed";
 
     /**.
      * Account Queries
@@ -179,7 +179,8 @@ public class ConstantQuery {
             "SET tariff_id = ?, " +
             "activation_date = ?, " +
             "enable_status = ?, " +
-            "next_payment_day = ? " +
+            "next_payment_day = ?, " +
+            "payed = ? " +
             "WHERE account_id = ? " +
             "AND service_id = ?";
 

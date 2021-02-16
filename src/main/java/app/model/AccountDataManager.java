@@ -190,12 +190,20 @@ public class AccountDataManager {
     public static void pauseServiceOnAccount(long accountId, long serviceId) {
         AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
         linkedServices.setStatus(false);
+        System.out.println("isPayed?? >>" + linkedServices.isPayed());
         AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
     }
 
     public static void startServiceOnAccount(long accountId, long serviceId) {
         AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
+        if (!linkedServices.isPayed()) {
+            //get money from account
+            getPayForService(accountId, linkedServices.getTariffId());
+            linkedServices.setPayed(true);
+            LOG.debug("Set payed!");
+        }
         linkedServices.setStatus(true);
+        System.out.println("isPayed?? >>" + linkedServices.isPayed());
         AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
     }
 
@@ -214,6 +222,7 @@ public class AccountDataManager {
         LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
         accountService.setStatus(false);
         accountService.setNexPaymentDay(nextPaymentDay);
+        accountService.setPayed(false);
         AccountUserDAO.getInstance().activateServiceToAccount(accountService);
     }
 
@@ -247,6 +256,13 @@ public class AccountDataManager {
         AccountUserDAO.getInstance().updateServiceToAccount(linkedService);
     }
 
+    private static void getPayForService(long accountId, long tariffId) {
+        int price = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
+        Account account = findAccountByIdOrNull(accountId);
+        account.setMoneyBalance(account.getMoneyBalance() - price);
+        AccountDataManager.applyAccountData(account);
+    }
+
     private static boolean checkTariffPayment(AccountService accountService, int payment) {
         //if enough money to pay for this tariff, set status to active, else - false
         Account account = findAccountByIdOrNull(accountService.getAccountId());
@@ -254,7 +270,6 @@ public class AccountDataManager {
         LOG.debug("Account money: " + account.getMoneyBalance() + "; Payment: " + payment);
         LOG.debug("Money if subtract: [" + (account.getMoneyBalance() - payment) + "]; Enough: [" + enoughMoney + "]");
         if (enoughMoney) {
-            account.setMoneyBalance(account.getMoneyBalance() - payment);
             AccountDataManager.applyAccountData(account);
         }
         LOG.debug("Account money after: " + account.getMoneyBalance());

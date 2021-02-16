@@ -93,6 +93,7 @@ public class ServiceTariffDAO extends AbstractDAO {
                 accServ.setActivationTime(rs.getDate(ConstantQuery.ACTIVATION_DATE));
                 accServ.setStatus(rs.getBoolean(ConstantQuery.ENABLE_STATUS));
                 accServ.setNexPaymentDay(rs.getDate(ConstantQuery.NEXT_PAYMENT_DAY));
+                accServ.setPayed(rs.getBoolean(ConstantQuery.PAYED));
                 accountServices.add(accServ);
             }
         } catch (SQLException e) {
@@ -117,6 +118,7 @@ public class ServiceTariffDAO extends AbstractDAO {
                 accountService.setActivationTime(rs.getDate(ConstantQuery.ACTIVATION_DATE));
                 accountService.setStatus(rs.getBoolean(ConstantQuery.ENABLE_STATUS));
                 accountService.setNexPaymentDay(rs.getDate(ConstantQuery.NEXT_PAYMENT_DAY));
+                accountService.setPayed(rs.getBoolean(ConstantQuery.PAYED));
             }
         } catch (SQLException e) {
             LOG.debug("ID: " + accountId);
