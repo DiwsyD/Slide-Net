@@ -1,7 +1,7 @@
-package app.dao.DAOImpl;
+package app.dao.Impl;
 
-import app.dao.CPool.ConnectionPool;
-import app.Constants.ConstantQuery;
+import app.constants.ConstantQuery;
+import app.connectionpool.ConnectionPool;
 import app.dao.RoleDAO;
 import app.entity.Role;
 import app.model.ServiceTariffDataManager;
@@ -12,8 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RoleDAOImpl extends AbstractDAOImpl implements RoleDAO {
+public class RoleDAOImpl implements RoleDAO {
     private static final Logger LOG = Logger.getLogger(ServiceTariffDataManager.class);
+
+    ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private static RoleDAOImpl roleDAOImpl = new RoleDAOImpl();
 

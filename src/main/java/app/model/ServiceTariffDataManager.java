@@ -1,7 +1,7 @@
 package app.model;
 
-import app.dao.DAOImpl.AccountDAOImpl;
-import app.dao.DAOImpl.ServiceTariffDAOImpl;
+import app.dao.Impl.AccountDAOImpl;
+import app.dao.Impl.ServiceTariffDAOImpl;
 import app.entity.AccountService;
 import app.entity.Service;
 import app.entity.Tariff;

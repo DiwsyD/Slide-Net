@@ -1,8 +1,8 @@
-package app.dao.DAOImpl;
+package app.dao.Impl;
 
 import app.dao.AccountDAO;
-import app.dao.CPool.ConnectionPool;
-import app.Constants.ConstantQuery;
+import app.constants.ConstantQuery;
+import app.connectionpool.ConnectionPool;
 import app.entity.Account;
 import app.entity.AccountService;
 import org.apache.log4j.Logger;
@@ -11,8 +11,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountDAOImpl extends AbstractDAOImpl implements AccountDAO {
+public class AccountDAOImpl implements AccountDAO {
     private static final Logger LOG = Logger.getLogger(AccountDAOImpl.class);
+
+    ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private static AccountDAOImpl accountUserDAO = new AccountDAOImpl();
 

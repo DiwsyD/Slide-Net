@@ -1,7 +1,7 @@
-package app.dao.DAOImpl;
+package app.dao.Impl;
 
-import app.dao.CPool.ConnectionPool;
-import app.Constants.ConstantQuery;
+import app.constants.ConstantQuery;
+import app.connectionpool.ConnectionPool;
 import app.dao.ServiceTariffDAO;
 import app.entity.AccountService;
 import app.entity.Service;
@@ -12,8 +12,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceTariffDAOImpl extends AbstractDAOImpl implements ServiceTariffDAO {
+public class ServiceTariffDAOImpl implements ServiceTariffDAO {
     private static final Logger LOG = Logger.getLogger(ServiceTariffDAOImpl.class);
+
+    ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private static final ServiceTariffDAOImpl SERVICE_TARIFF_DAO_IMPL = new ServiceTariffDAOImpl();
 

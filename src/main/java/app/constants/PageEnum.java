@@ -1,4 +1,4 @@
-package app.Constants;
+package app.constants;
 
 public enum PageEnum {
     INDEX_JSP("index.jsp"),

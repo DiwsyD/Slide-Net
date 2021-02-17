@@ -1,4 +1,4 @@
-package app.dao.CPool;
+package app.connectionpool;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

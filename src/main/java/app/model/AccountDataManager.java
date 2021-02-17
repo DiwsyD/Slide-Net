@@ -1,9 +1,8 @@
 package app.model;
 
-import app.dao.DAOImpl.AccountDAOImpl;
+import app.dao.Impl.AccountDAOImpl;
 import app.entity.Account;
 import app.entity.AccountService;
-import app.entity.EntityManager;
 import app.entity.Role;
 import org.apache.log4j.Logger;
 
@@ -34,31 +33,18 @@ public class AccountDataManager {
 
 
     public static Account findAccountByIdOrNull(long id) {
-        Account account = EntityManager.getInstance().getAccountById(id);
-        /*if (account != null) {
-            LOG.debug("FOUND IN ==> ENTITY MANAGER ACCOUNT ID: " + account.getId() + "; Name: " + account.getfName());
-            return account;
-        }*/
-
-        account = AccountDAOImpl.getInstance().getAccountById(id);
+        Account account = AccountDAOImpl.getInstance().getAccountById(id);
         if(account != null) {
             account.setActiveServices(ServiceTariffDataManager.getAllAccountServices(account.getId()));
-            addAccountToEntityManager(setAccountRoleName(account));
         }
         return account;
     }
 
     public static Account findAccountByLoginOrNull(long login) {
-        Account account = EntityManager.getInstance().getAccountByLogin(login);
-        /*if (account != null) {
-            return account;
-        }*/
-
-        account = AccountDAOImpl.getInstance().getAccountByLogin(login);
+        Account account = AccountDAOImpl.getInstance().getAccountByLogin(login);
 
         if(account != null) {
             account.setActiveServices(ServiceTariffDataManager.getAllAccountServices(account.getId()));
-            addAccountToEntityManager(setAccountRoleName(account));
         }
         return account;
     }
@@ -90,20 +76,13 @@ public class AccountDataManager {
 
     //Adders
 
-    //Add Account to local storage
-    private static void addAccountToEntityManager(Account account) {
-        EntityManager.getInstance().addAccount(account);
-    }
-
     public static void applyAccountData(Account account) {
         if (findAccountByIdOrNull(account.getId()) != null) {
             LOG.debug("Money: " + account.getMoneyBalance());
-            EntityManager.getInstance().updateAccount(account);
             AccountDAOImpl.getInstance().updateAccount(account);
             return;
         }
         account.setPassword(Encryption.encrypt(account.getPassword()));
-        EntityManager.getInstance().addAccount(account);
         AccountDAOImpl.getInstance().addAccount(account);
     }
 

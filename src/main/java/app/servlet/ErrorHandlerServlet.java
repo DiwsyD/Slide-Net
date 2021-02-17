@@ -1,6 +1,6 @@
 package app.servlet;
 
-import app.Constants.PageEnum;
+import app.constants.PageEnum;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;

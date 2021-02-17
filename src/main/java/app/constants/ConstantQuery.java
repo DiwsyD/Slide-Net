@@ -1,4 +1,4 @@
-package app.Constants;
+package app.constants;
 /**.
  * DataBase Constant Queries.
  *
