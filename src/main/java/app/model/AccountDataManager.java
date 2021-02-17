@@ -1,7 +1,6 @@
 package app.model;
 
-import app.database.conf.ConstantQuery;
-import app.database.dao.AccountUserDAO;
+import app.database.dao.AccountDAO;
 import app.entity.Account;
 import app.entity.AccountService;
 import app.entity.EntityManager;
@@ -10,7 +9,6 @@ import org.apache.log4j.Logger;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,7 +19,6 @@ public class AccountDataManager {
     private static final Logger LOG = Logger.getLogger(AccountDataManager.class);
 
     private final static int maxAccountCount = 10_000_000;
-    public static final int DAY_IN_MONTH = 30;
 
     /**.
      * Description to all methods.
@@ -43,7 +40,7 @@ public class AccountDataManager {
             return account;
         }*/
 
-        account = AccountUserDAO.getInstance().getAccountById(id);
+        account = AccountDAO.getInstance().getAccountById(id);
         if(account != null) {
             account.setActiveServices(ServiceTariffDataManager.getAllAccountServices(account.getId()));
             addAccountToEntityManager(setAccountRoleName(account));
@@ -57,7 +54,7 @@ public class AccountDataManager {
             return account;
         }*/
 
-        account = AccountUserDAO.getInstance().getAccountByLogin(login);
+        account = AccountDAO.getInstance().getAccountByLogin(login);
 
         if(account != null) {
             account.setActiveServices(ServiceTariffDataManager.getAllAccountServices(account.getId()));
@@ -71,14 +68,18 @@ public class AccountDataManager {
     public static List<Account> getAccounts(int page, int pageSize) {
         List<Account> accountList = new ArrayList<>();
         int accountsToGet = (page - 1) * pageSize;
-        for (Account account : AccountUserDAO.getInstance().getAccounts(pageSize, accountsToGet)) {
+        for (Account account : AccountDAO.getInstance().getAccounts(pageSize, accountsToGet)) {
             accountList.add(setAccountRoleName(account));
         }
         return accountList;
     }
 
+    public static List<Account> getAllAccounts() {
+        return AccountDAO.getInstance().getAllAccounts();
+    }
+
     public static int getAccountCount() {
-        return AccountUserDAO.getInstance().getAccountCount();
+        return AccountDAO.getInstance().getAccountCount();
     }
 
     //Setters
@@ -98,12 +99,12 @@ public class AccountDataManager {
         if (findAccountByIdOrNull(account.getId()) != null) {
             LOG.debug("Money: " + account.getMoneyBalance());
             EntityManager.getInstance().updateAccount(account);
-            AccountUserDAO.getInstance().updateAccount(account);
+            AccountDAO.getInstance().updateAccount(account);
             return;
         }
         account.setPassword(Encryption.encrypt(account.getPassword()));
         EntityManager.getInstance().addAccount(account);
-        AccountUserDAO.getInstance().addAccount(account);
+        AccountDAO.getInstance().addAccount(account);
     }
 
     //Updaters
@@ -143,7 +144,7 @@ public class AccountDataManager {
         Account account = new Account();
         Role userRole = RoleDataManager.getRoleByName("user");
 
-        account.setId((long) (AccountUserDAO.getInstance().getLastAccountId() + 1));
+        account.setId((long) (AccountDAO.getInstance().getLastAccountId() + 1));
         account.setRoleId(userRole.getId());
         account.setRoleName(userRole.getName());
         account.setLogin(generateNewLogin());
@@ -155,7 +156,7 @@ public class AccountDataManager {
 
     //Generate New Account login
     public static int generateNewLogin() {
-        int accountCount = AccountUserDAO.getInstance().getLastAccountId();
+        int accountCount = AccountDAO.getInstance().getLastAccountId();
         int newId = maxAccountCount - (accountCount + 1);
         StringBuilder newLogin = new StringBuilder(String.valueOf(newId)).reverse();
         int nullsToAdd = String.valueOf(maxAccountCount).length() - String.valueOf(newLogin).length();
@@ -187,7 +188,7 @@ public class AccountDataManager {
         AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
         if (linkedServices != null) {
             LOG.debug("Service already activated, updating...");
-            updateAccountService(linkedServices, tariffId);
+            ServiceTariffDataManager.updateTariffAccountService(linkedServices, tariffId);
         } else {
             LOG.debug("Service not activated yet, activating...");
             addAccountService(accountId, serviceId, tariffId);
@@ -195,23 +196,25 @@ public class AccountDataManager {
     }
 
     private static void addAccountService(long accountId, long serviceId, long tariffId) {
+        Date activationDate = Date.valueOf(LocalDate.now());
         AccountService accountService = new AccountService();
         accountService.setAccountId(accountId);
         accountService.setServiceId(serviceId);
         accountService.setTariffId(tariffId);
         accountService.setStatus(false);
         accountService.setPayed(false);
+        accountService.setActivationTime(activationDate);
         int tariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice();
         accountService.setPaymentAmount(tariffPrice);
         LOG.debug("New Tariff - " + ServiceTariffDataManager.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
-        AccountUserDAO.getInstance().activateServiceToAccount(accountService);
+        AccountDAO.getInstance().activateServiceToAccount(accountService);
     }
 
     public static void pauseServiceOnAccount(long accountId, long serviceId) {
         AccountService linkedServices = ServiceTariffDataManager.getAccountService(accountId, serviceId);
         linkedServices.setStatus(false);
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
-        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
+        AccountDAO.getInstance().updateServiceToAccount(linkedServices);
     }
 
     public static void startServiceOnAccount(long accountId, long serviceId) {
@@ -221,10 +224,8 @@ public class AccountDataManager {
             //get money from account
             getPayForService(accountId, linkedServices.getPaymentAmount());
 
-            Date activationDate = Date.valueOf(LocalDate.now());
             Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
 
-            linkedServices.setActivationTime(activationDate);
             linkedServices.setNexPaymentDay(nextPaymentDay);
             linkedServices.setPayed(true);
             linkedServices.setPaymentAmount(0);
@@ -232,7 +233,7 @@ public class AccountDataManager {
         }
         linkedServices.setStatus(true);
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
-        AccountUserDAO.getInstance().updateServiceToAccount(linkedServices);
+        AccountDAO.getInstance().updateServiceToAccount(linkedServices);
     }
 
     private static void getPayForService(long accountId, int paymentAmount) {
@@ -242,38 +243,9 @@ public class AccountDataManager {
         AccountDataManager.applyAccountData(account);
     }
 
-    private static void updateAccountService(AccountService linkedService, long tariffId) {
-        if (!linkedService.isPayed()) {
-            linkedService.setTariffId(tariffId);
-            AccountUserDAO.getInstance().updateServiceToAccount(linkedService);
-            return;
-        }
-
-        Date today = Date.valueOf(LocalDate.now());
-        Date oldNextPaymentDay = linkedService.getNexPaymentDay();
-        Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
-
-        int differenceDays = (int) ChronoUnit.DAYS.between(today.toLocalDate(), oldNextPaymentDay.toLocalDate());
-        int oldTariffPrice = ServiceTariffDataManager.getTariffById(linkedService.getTariffId()).getPrice();
-        int newTariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice() ;
-
-        int diffPrice = (int) (newTariffPrice - (differenceDays * ((double)oldTariffPrice / DAY_IN_MONTH)));
-
-        int paymentForUpdatedTariff = Math.max(diffPrice, 0);
-
-        linkedService.setTariffId(tariffId);
-        linkedService.setActivationTime(today);
-        linkedService.setNexPaymentDay(nextPaymentDay);
-        linkedService.setStatus(false);
-        linkedService.setPayed(false);
-        linkedService.setPaymentAmount(paymentForUpdatedTariff);
-
-        AccountUserDAO.getInstance().updateServiceToAccount(linkedService);
-    }
-
     public static void disableService(long id, int serviceId) {
         LOG.debug("Disabling...");
-        AccountUserDAO.getInstance().disableServiceFromAccount(id, serviceId);
+        AccountDAO.getInstance().disableServiceFromAccount(id, serviceId);
     }
 }
 

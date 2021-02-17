@@ -10,18 +10,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountUserDAO extends AbstractDAO{
-    private static final Logger LOG = Logger.getLogger(AccountUserDAO.class);
+public class AccountDAO extends AbstractDAO{
+    private static final Logger LOG = Logger.getLogger(AccountDAO.class);
 
-    private static AccountUserDAO accountUserDAO = new AccountUserDAO();
+    private static AccountDAO accountUserDAO = new AccountDAO();
 
-    private AccountUserDAO() {
+    private AccountDAO() {
         if (connectionPool == null) {
             connectionPool = ConnectionPool.getInstance();
         }
     }
 
-    public static AccountUserDAO getInstance() {
+    public static AccountDAO getInstance() {
         return accountUserDAO;
     }
 
@@ -120,6 +120,10 @@ public class AccountUserDAO extends AbstractDAO{
         } finally {
             return accountList;
         }
+    }
+
+    public List<Account> getAllAccounts() {
+        return getAccounts(0, getAccountCount());
     }
 
     public int getAccountCount() {

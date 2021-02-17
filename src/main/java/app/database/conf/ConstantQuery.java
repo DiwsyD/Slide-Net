@@ -16,12 +16,18 @@ public class ConstantQuery {
     /**.
      * All Tables
      * */
+    public static final String ACCOUNT_TABLE = "account";
+    public static final String SERVICE_TABLE = "service";
+    public static final String TARIFF_TABLE = "tariff";
+
+    /**.
+     * Common values
+     * */
     public static final String ID = "id";
 
     /**.
      * Account Table columns
      * */
-    public static final String ACCOUNT_TABLE = "account";
     public static final String MAX_ACCOUNT_ID = "maxId";
 
     public static final String LOGIN = "login";
@@ -87,7 +93,6 @@ public class ConstantQuery {
 
     public static final String GET_ACCOUNT_COUNT = "SELECT COUNT(*) AS account FROM account";
 
-    //Setters
     public static final String ADD_NEW_ACCOUNT = "INSERT INTO account " +
             "(role_id, login, password, fname, lname,sname,address, phone_number, ip_address, balance, account_status) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -127,6 +132,8 @@ public class ConstantQuery {
             "FROM service " +
             "WHERE id = ?";
 
+    public static final String GET_SERVICE_COUNT = "SELECT COUNT(*) AS service FROM service";
+
 
     /**.
      * Tariff Queries
@@ -162,6 +169,8 @@ public class ConstantQuery {
             "description = ?, " +
             "price = ? " +
             "WHERE id = ?";
+
+    public static final String GET_TARIFF_COUNT = "SELECT COUNT(*) AS tariff FROM tariff";
 
     /**.
      * Account Services
