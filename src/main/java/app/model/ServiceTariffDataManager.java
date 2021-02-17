@@ -47,8 +47,8 @@ public class ServiceTariffDataManager {
         return ServiceTariffDAO.getInstance().getAccountServicesByAccountId(accountId);
     }
 
-    public static int getServiceTariffCount(long sId) {
-        return ServiceTariffDAO.getInstance().getServiceTariffCount(sId);
+    public static int getServiceTariffCount(long serviceId) {
+        return ServiceTariffDAO.getInstance().getServiceTariffCount(serviceId);
     }
 
     //Tariff actions
@@ -76,7 +76,6 @@ public class ServiceTariffDataManager {
     public static void removeTariff(String tariffName) {
         ServiceTariffDAO.getInstance().removeTariff(tariffName);
     }
-
 
     public static Tariff getTariffById(long tariffId) {
         return ServiceTariffDAO.getInstance().getTariffById(tariffId);
@@ -121,6 +120,10 @@ public class ServiceTariffDataManager {
 
     public static void updateAccountService(AccountService accountService) {
         AccountDAO.getInstance().updateServiceToAccount(accountService);
+    }
+
+    public static int getActiveAccountServiceCount(long accountId) {
+        return ServiceTariffDAO.getInstance().getActiveAccountService(accountId);
     }
 
 }

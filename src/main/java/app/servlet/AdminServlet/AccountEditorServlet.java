@@ -61,8 +61,6 @@ public class AccountEditorServlet extends HttpServlet {
 
             Account account = (Account) req.getSession().getAttribute("account");
 
-            LOG.debug("Account is = " + account);
-
             //Get account data from inputs
             String firstName = req.getParameter("first_name");
             String lastName = req.getParameter("last_name");

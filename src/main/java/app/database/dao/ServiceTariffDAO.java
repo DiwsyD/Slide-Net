@@ -131,6 +131,22 @@ public class ServiceTariffDAO extends AbstractDAO {
         return accountService;
     }
 
+    public int getActiveAccountService(long accountId) {
+        int result = 0;
+        try (Connection con = connectionPool.getConnection()) {
+            PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ACTIVE_SERVICE_COUNT);
+            pst.setLong(1, accountId);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+                result = rs.getInt(ConstantQuery.ACCOUNT_SERVICE_TARIFF_TABLE);
+                LOG.debug("Count: " + result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public List<Tariff> getTariffsByServiceId(long id) {
         List<Tariff> tariffList = new ArrayList<>();
         try (Connection con = connectionPool.getConnection()) {

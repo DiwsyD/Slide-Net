@@ -19,6 +19,7 @@ public class ConstantQuery {
     public static final String ACCOUNT_TABLE = "account";
     public static final String SERVICE_TABLE = "service";
     public static final String TARIFF_TABLE = "tariff";
+    public static final String ACCOUNT_SERVICE_TARIFF_TABLE = "account_service_tariff";
 
     /**.
      * Common values
@@ -175,17 +176,21 @@ public class ConstantQuery {
     /**.
      * Account Services
      * */
-    public static final String GET_ALL_ACCOUNT_SERVICES = "SELECT * FROM account_services_tariffs " +
+    public static final String GET_ALL_ACCOUNT_SERVICES = "SELECT * FROM account_service_tariff " +
             "WHERE account_id = ?";
 
-    public static final String GET_ACCOUNT_SERVICE = "SELECT * FROM account_services_tariffs " +
+    public static final String GET_ACCOUNT_SERVICE = "SELECT * FROM account_service_tariff " +
             "WHERE account_id = ? AND service_id = ?";
 
-    public static final String ADD_SERVICE_ACCOUNT = "INSERT INTO account_services_tariffs " +
+    public static final String GET_ACTIVE_SERVICE_COUNT = "SELECT COUNT(*) AS account_service_tariff " +
+            "FROM account_service_tariff " +
+            "WHERE account_id = ?";
+
+    public static final String ADD_SERVICE_ACCOUNT = "INSERT INTO account_service_tariff " +
             "(account_id, service_id, tariff_id, activation_date, enable_status, next_payment_day, payed, payment_amount) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public static final String UPDATE_SERVICE_ACCOUNT = "UPDATE account_services_tariffs " +
+    public static final String UPDATE_SERVICE_ACCOUNT = "UPDATE account_service_tariff " +
             "SET tariff_id = ?, " +
             "activation_date = ?, " +
             "enable_status = ?, " +
@@ -195,7 +200,7 @@ public class ConstantQuery {
             "WHERE account_id = ? " +
             "AND service_id = ?";
 
-    public static final String REMOVE_SERVICE_ACCOUNT = "DELETE FROM account_services_tariffs " +
+    public static final String REMOVE_SERVICE_ACCOUNT = "DELETE FROM account_service_tariff " +
             "WHERE account_id = ? AND service_id = ?";
 }
 

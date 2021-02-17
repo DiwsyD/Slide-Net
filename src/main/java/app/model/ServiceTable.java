@@ -14,10 +14,10 @@ public class ServiceTable {
     public static void loadServiceTable(HttpServletRequest req, HttpServletResponse resp, List<Service> serviceList) {
         String orderBy = req.getParameter("orderBy");
         String desc = "";
-        long sId = 1;
+        long serviceId = 1;
 
         if (req.getParameter("serviceId") != null) {
-            sId = Integer.parseInt(req.getParameter("serviceId"));
+            serviceId = Integer.parseInt(req.getParameter("serviceId"));
         }
 
         if (orderBy == null || !orderBy.contains("name") && !orderBy.contains("price")) {
@@ -33,7 +33,7 @@ public class ServiceTable {
         //Pagination
         int page = 1;
         int pagePaginSize = 2;
-        int maxPage = (int)Math.ceil((double) ServiceTariffDataManager.getServiceTariffCount(sId) / pagePaginSize);
+        int maxPage = (int)Math.ceil((double) ServiceTariffDataManager.getServiceTariffCount(serviceId) / pagePaginSize);
 
         String pageNum = req.getParameter("page");
         if(pageNum != null) {
@@ -53,11 +53,11 @@ public class ServiceTable {
             page = maxPage;
         }
 
-        List<Tariff> tariffList =  ServiceTariffDataManager.getCertainServiceTariffs(sId, page, pagePaginSize, orderBy, desc);
+        List<Tariff> tariffList =  ServiceTariffDataManager.getCertainServiceTariffs(serviceId, page, pagePaginSize, orderBy, desc);
 
         req.setAttribute("serviceList", serviceList);
         req.setAttribute("tariffList", tariffList);
-        req.setAttribute("activeService", sId);
+        req.setAttribute("activeService", serviceId);
 
         req.setAttribute("maxPage", maxPage);
         req.setAttribute("page", page);

@@ -114,13 +114,6 @@ public class AccountDataManager {
         if (!account.getPassword().equals(Encryption.encrypt(oldPass))
                 || oldPass.equals(newPass) || oldPass.equals(newPassRepeat)
                 || !newPass.equals(newPassRepeat) || !Validator.validatePassword(newPass)) {
-
-            LOG.debug("1: " + (!account.getPassword().equals(Encryption.encrypt(oldPass))));
-            LOG.debug("2: " + oldPass.equals(newPass));
-            LOG.debug("3: " + oldPass.equals(newPassRepeat));
-            LOG.debug("4: " + !newPass.equals(newPassRepeat));
-            LOG.debug("5: " + !Validator.validatePassword(newPass));
-            //testUser1!
             return false;
         }
         account.setPassword(Encryption.encrypt(newPass));
@@ -232,6 +225,12 @@ public class AccountDataManager {
             LOG.debug("Set payed!");
         }
         linkedServices.setStatus(true);
+
+        Account account = findAccountByIdOrNull(accountId);
+        if (!account.isAccountStatus()) {
+            account.setAccountStatus(true);
+            AccountDataManager.applyAccountData(account);
+        }
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
         AccountDAO.getInstance().updateServiceToAccount(linkedServices);
     }
@@ -243,9 +242,15 @@ public class AccountDataManager {
         AccountDataManager.applyAccountData(account);
     }
 
-    public static void disableService(long id, int serviceId) {
+    public static void disableService(long accountId, int serviceId) {
         LOG.debug("Disabling...");
-        AccountDAO.getInstance().disableServiceFromAccount(id, serviceId);
+        AccountDAO.getInstance().disableServiceFromAccount(accountId, serviceId);
+        int linkedServices = ServiceTariffDataManager.getActiveAccountServiceCount(accountId);
+        if (linkedServices <= 0) {
+            Account account = findAccountByIdOrNull(accountId);
+            account.setAccountStatus(false);
+            AccountDataManager.applyAccountData(account);
+        }
     }
 }
 

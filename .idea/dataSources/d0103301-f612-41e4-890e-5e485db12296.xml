@@ -919,7 +919,7 @@ SELECT|sys.sys_config
 </ObjectGrants>
     </user>
     <table id="287" parent="8" name="account"/>
-    <table id="288" parent="8" name="account_services_tariffs"/>
+    <table id="288" parent="8" name="account_service_tariff"/>
     <table id="289" parent="8" name="role"/>
     <table id="290" parent="8" name="service"/>
     <table id="291" parent="8" name="tariff"/>
