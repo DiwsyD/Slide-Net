@@ -117,13 +117,12 @@ public class AccountDAO extends AbstractDAO{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            return accountList;
         }
+        return accountList;
     }
 
     public List<Account> getAllAccounts() {
-        return getAccounts(0, getAccountCount());
+        return getAccounts(getAccountCount(), 0);
     }
 
     public int getAccountCount() {

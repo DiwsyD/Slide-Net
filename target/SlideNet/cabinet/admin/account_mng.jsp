@@ -79,28 +79,30 @@
             </table>
         </div>
 
-        <div class="pagination-control">
-            <hr>
-            <c:choose>
-                <c:when test="${page == 1}">
-                    <a class="inactive-link">|<</a>
-                    <a class="inactive-link"><<</a>
-                </c:when>
-                <c:otherwise>
-                    <a class="active-link" href="account_mng?page=1">|<</a>
-                    <a class="active-link-2" href="account_mng?page=${page-1}"><<</a>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${page == maxPage}">
-                    <a class="inactive-link">>></a>
-                    <a class="inactive-link">>|</a>
-                </c:when>
-                <c:otherwise>
-                    <a class="active-link-2" href="account_mng?page=${page+1}">>></a>
-                    <a class="active-link" href="account_mng?page=${maxPage}">>|</a>
-                </c:otherwise>
-            </c:choose>
+        <div class="pagination-block">
+            <div class="pagination-control">
+                <hr>
+                <c:choose>
+                    <c:when test="${page == 1}">
+                        <a class="inactive-link">|<</a>
+                        <a class="inactive-link"><<</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="active-link" href="account_mng?page=1">|<</a>
+                        <a class="active-link-2" href="account_mng?page=${page-1}"><<</a>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${page == maxPage}">
+                        <a class="inactive-link">>></a>
+                        <a class="inactive-link">>|</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="active-link-2" href="account_mng?page=${page+1}">>></a>
+                        <a class="active-link" href="account_mng?page=${maxPage}">>|</a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
 
     </div>

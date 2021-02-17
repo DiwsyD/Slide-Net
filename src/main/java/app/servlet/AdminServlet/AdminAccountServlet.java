@@ -36,15 +36,17 @@ public class AdminAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            LOG.debug("Hello wassup?");
             int monthAccelerate = Integer.parseInt(req.getParameter("month"));
             monthAccelerate = Math.max(monthAccelerate, 1);
+            LOG.debug("monthAccelerate = " + monthAccelerate);
             GetPayment.getMonthPayment(monthAccelerate);
         } catch (NumberFormatException e) {
             LOG.warn("=Invalid month accelerate number!=");
             e.printStackTrace();
         }
-
-        this.doGet(req, resp);
+        //req.getRequestDispatcher(req.getRequestURI() + ".jsp").forward(req, resp);
+        resp.sendRedirect( "/cabinet/admin/admin_cabinet");
     }
 
 

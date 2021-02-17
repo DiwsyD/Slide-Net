@@ -31,8 +31,6 @@ public class AccountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        LOG.debug("Action is [" + req.getParameter("action") + "]");
         //Check if we want to activate or add service
         if (req.getParameter("action") != null) {
             serviceAction(req, resp);
@@ -102,7 +100,6 @@ public class AccountServlet extends HttpServlet {
         LOG.info("Redirecting to Service Choice Page");
         String action = req.getParameter("action");
         if (action == null) {
-            LOG.info("Action is Null!");
             return;
         }
         long id = -1;
@@ -117,12 +114,12 @@ public class AccountServlet extends HttpServlet {
         StringBuilder path = new StringBuilder(req.getRequestURI());
 
         if (action.equals("activate")) {
-            LOG.debug("Activate action...");
+            LOG.info("Activate action...");
             path.append("/select_tariff?action=activate")
                     .append("&serviceId=").append(req.getParameter("serviceId"));
         }
         if (action.equals("edit")) {
-            LOG.debug("Edit action...");
+            LOG.info("Edit action...");
             path.append("/select_tariff?action=edit")
                     .append("&serviceId=").append(req.getParameter("serviceId"))
                     .append("&tariffId=").append(req.getParameter("tariffId"));

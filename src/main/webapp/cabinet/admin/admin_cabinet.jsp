@@ -31,7 +31,7 @@
             <div>
                 <div class="page_title">Time Accelerator:</div>
                 <form method="post">
-                    <input name="month" type="number" min="1" max="12">
+                    <input name="month" type="number" value="1" min="1" max="12">
                     <button id="remove_button" class="save_button">
                         Accelerate
                     </button>

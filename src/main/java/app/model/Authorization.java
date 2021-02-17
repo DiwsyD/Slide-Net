@@ -18,7 +18,7 @@ public class Authorization {
         }
         //Find User and add it to UsersPool
         Account account = AccountDataManager.findAccountByLoginOrNull(loginInt);
-        LOG.debug("Acc: " + account);
+
         boolean isEqualPassword = false;
         if (account != null && Validator.validatePassword(password.trim())) {
             isEqualPassword = account.getPassword().equals(Encryption.encrypt(password.trim()));
