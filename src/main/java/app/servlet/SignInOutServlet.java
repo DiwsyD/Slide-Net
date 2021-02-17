@@ -61,6 +61,7 @@ public class SignInOutServlet extends HttpServlet {
         LOG.info("Validate User...");
         if (Authorization.validateUser(login, userAuthPass)) {
             LOG.info("Valid data.");
+            LOG.info("=======Log In=======");
             Account account = AccountDataManager
                     .findAccountByLoginOrNull(Validator.validateLogin(login));
 
