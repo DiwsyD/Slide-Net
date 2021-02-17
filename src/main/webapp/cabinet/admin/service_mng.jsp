@@ -82,10 +82,10 @@
                     </tbody>
                 </table>
 
-                <div class="pagination-block">
-                    <div class="pagination-control">
-                        <hr>
-                        <c:if test="${maxPage > 1}">
+                <c:if test="${maxPage > 1}">
+                    <div class="pagination-block">
+                        <div class="pagination-control">
+                            <hr>
                             <c:choose>
                                 <c:when test="${page == 1}">
                                     <a class="inactive-link">|<</a>
@@ -106,9 +106,9 @@
                                     <a class="active-link" href="${uri}?serviceId=${activeService}&page=${maxPage}">>|</a>
                                 </c:otherwise>
                             </c:choose>
-                        </c:if>
+                        </div>
                     </div>
-                </div>
+                </c:if>
 
             </div>
     </div>

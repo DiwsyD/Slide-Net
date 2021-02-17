@@ -32,7 +32,7 @@ public class ServiceTable {
 
         //Pagination
         int page = 1;
-        int pagePaginSize = 2;
+        int pagePaginSize = 3;
         int maxPage = (int)Math.ceil((double) ServiceTariffDataManager.getServiceTariffCount(serviceId) / pagePaginSize);
 
         String pageNum = req.getParameter("page");

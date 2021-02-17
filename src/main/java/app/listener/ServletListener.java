@@ -18,10 +18,7 @@ public class ServletListener implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        ServletContext context = se.getSession().getServletContext();
-        String path = context.getContextPath();
-
-        context.setAttribute("app", path);
+        //se.getSession().invalidate();
     }
 
 
