@@ -12,20 +12,17 @@ import java.util.List;
 public class DowsnloadFile {
     private static final Logger LOG = Logger.getLogger(DowsnloadFile.class);
 
-    private static final String FILE_NAME = "Slide_Net_TariffPlans";
+    private static final String FILE_NAME = "SlideNet_TariffPlans";
     private static final String FILE_RELATIVE_PATH = "media/textFiles/";
 
     public static void downloadServices(HttpServletResponse resp, String absPath) throws IOException {
-        resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        String filename = FILE_NAME + ".txt";
-        String filepath = absPath + FILE_RELATIVE_PATH;
+
+        resp.setContentType("text/html");
         resp.setContentType("APPLICATION/OCTET-STREAM");
-        resp.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");
-        new File(filepath + "O" + filename).createNewFile();
-        FileInputStream fileInputStream = new FileInputStream(filepath + filename);
+        resp.setHeader("Content-Disposition","attachment; filename=\"" + FILE_NAME + ".txt" + "\"");
+
         out.write(generateServiceInformation());
-        fileInputStream.close();
         out.close();
     }
 
@@ -35,6 +32,8 @@ public class DowsnloadFile {
         String newLine = "\n";
         String tab = "    ";
         String lineSep = "-----------------------------";
+        sb.append("Slide-Net Service Tariffs!").append(newLine)
+                .append(lineSep).append(newLine).append(newLine);
         for (Service service : serviceList) {
             sb.append(">").append(service.getName())
                     .append(newLine).append(tab)
@@ -42,10 +41,14 @@ public class DowsnloadFile {
             for (Tariff tariff : service.getTariffList()) {
                 sb.append(newLine).append(tab).append(tab)
                 .append("[Name]: ").append(tariff.getName())
+                        .append(newLine).append(tab).append(tab)
                 .append("[Description]: ").append(tariff.getDescription())
-                .append("[Price]: ").append(tariff.getPrice());
+                        .append(newLine).append(tab).append(tab)
+                .append("[Price]: ").append(tariff.getPrice())
+                        .append(newLine).append(tab).append(tab)
+                        .append(lineSep);
             }
-            sb.append(newLine).append(lineSep).append(newLine);
+            sb.append(newLine).append(newLine);
         }
         return sb.toString();
     }
