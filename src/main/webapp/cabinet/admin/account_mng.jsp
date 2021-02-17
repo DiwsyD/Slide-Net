@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
-<jsp:useBean id="accounts" class="app.entity.Account" scope="page" />
 <html>
 <head>
     <title>Subscriber Management</title>
@@ -10,7 +8,7 @@
 </head>
 <body>
 <!-- header -->
-<c:import url="../header_admin.html" />
+<c:import url="../cabinet_header.jsp" />
 <c:if test="${account != null}">
     <c:remove var="account" />
 </c:if>

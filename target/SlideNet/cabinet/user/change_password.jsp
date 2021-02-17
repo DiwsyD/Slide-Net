@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- header -->
-    <c:import url="../header_user.html" />
+    <c:import url="../cabinet_header.jsp" />
     <div class="content-container">
         <div class="body-info">
             <div class="page_title">Change Password</div>

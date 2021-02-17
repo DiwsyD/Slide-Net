@@ -1,7 +1,5 @@
 package app.servlet;
 
-import app.constants.PageEnum;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +21,7 @@ public class ErrorHandlerServlet extends HttpServlet {
 
         session.setAttribute("ErrorCause", errorMessage);
 
-        resp.sendRedirect(PageEnum.ERROR_PAGE.getValue());
+        resp.sendRedirect("error.jsp");
 
     }
 }

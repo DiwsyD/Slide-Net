@@ -10,7 +10,7 @@
     <c:import url="../../user_imports.html" />
 </head>
 <body>
-    <c:import url="../../header_admin.html" />
+    <c:import url="../../cabinet_header.jsp" />
 
     <div class="content_table">
         <div  class="body-info">

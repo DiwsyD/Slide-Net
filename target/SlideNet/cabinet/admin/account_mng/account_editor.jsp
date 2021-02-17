@@ -8,7 +8,7 @@
     <c:import url="../../admin_imports.html" />
 </head>
 <body onload="init()">
-<c:import url="../../header_admin.html" />
+<c:import url="../../cabinet_header.jsp" />
 
 <!-- Account Information Block -->
     <div class="content-container">

@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- header -->
-    <c:import url="../header_user.html" />
+    <c:import url="../cabinet_header.jsp" />
     <!-- Account Information Block -->
     <div class="content-container">
         <div class="body-info">

@@ -44,6 +44,8 @@ public class AccountDataManager {
         Account account = AccountDAOImpl.getInstance().getAccountByLogin(login);
 
         if(account != null) {
+            Role role = RoleDataManager.getRoleById(account.getRoleId());
+            account.setRoleName(role.getName());
             account.setActiveServices(ServiceTariffDataManager.getAllAccountServices(account.getId()));
         }
         return account;

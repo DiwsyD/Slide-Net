@@ -27,14 +27,14 @@ public class DistributeServlet extends HttpServlet {
             LOG.info("Get account role: <" + role + ">");
             switch (role) {
                 case "user":
-                    redirectTo.append(req.getRequestURI() + "/user/user_cabinet");
+                    redirectTo.append(req.getRequestURI()).append("/user/user_cabinet");
                     break;
                 case "admin":
-                    redirectTo.append(req.getRequestURI() + "/admin/admin_cabinet");
+                    redirectTo.append(req.getRequestURI()).append("/admin/admin_cabinet");
                     break;
             }
         } catch (NullPointerException npe) {
-            LOG.error("Error: Can't find account role!");
+            LOG.debug("Error: Can't find account role!");
             redirectTo.append("/sign");
         } finally {
             LOG.info("redirecting to " + redirectTo.toString());
