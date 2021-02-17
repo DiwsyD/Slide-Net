@@ -34,7 +34,7 @@ public class DistributeServlet extends HttpServlet {
                     break;
             }
         } catch (NullPointerException npe) {
-            LOG.debug("Error: Can't find account role!");
+            LOG.error("Error: Can't find account role!");
             redirectTo.append("/sign");
         } finally {
             LOG.info("redirecting to " + redirectTo.toString());

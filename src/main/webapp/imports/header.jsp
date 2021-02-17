@@ -6,7 +6,7 @@
     <div class="content-container">
         <div class="head_holder">
             <div class="header_logo">
-                <a href="/"><img src="media/images/logo.png" alt="logo-SlideNet" /></a>
+                <a href="/"><img src="../media/images/logo.png" alt="logo-SlideNet" /></a>
             </div>
             <div class="header_menu">
                 <ul>
@@ -17,7 +17,7 @@
             </div>
             <div class="exit_button">
                 <ul>
-                    <li><a href="view/sign?signAction=in"><c:out value="${role == null ? 'Log In' : ''}"/> </a></li>
+                    <li><a href="/sign?signAction=in"><c:out value="${role == null ? 'Log In' : ''}"/> </a></li>
                 </ul>
             </div>
             <div class="header_languages">

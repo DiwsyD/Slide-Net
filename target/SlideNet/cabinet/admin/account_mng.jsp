@@ -4,11 +4,11 @@
 <html>
 <head>
     <title>Subscriber Management</title>
-    <c:import url="../admin_imports.html" />
+    <c:import url="../../imports/admin_imports.html" />
 </head>
 <body>
 <!-- header -->
-<c:import url="../cabinet_header.jsp" />
+<c:import url="../../imports/cabinet_header.jsp" />
 <c:if test="${account != null}">
     <c:remove var="account" />
 </c:if>
@@ -106,6 +106,6 @@
     </div>
 </div>
 <!-- footer -->
-<c:import url="/cabinet/footer.html" />
+<c:import url="/imports/footer.jsp" />
 </body>
 </html>

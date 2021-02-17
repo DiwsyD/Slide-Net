@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="media/images/icon.png" type="image/png">
 </head>
 <body>
-<c:import url="header.jsp" />
+<c:import url="imports/header.jsp" />
     <!-- bodyBlock -->
     <div class="content-container">
         <div class="body-info">

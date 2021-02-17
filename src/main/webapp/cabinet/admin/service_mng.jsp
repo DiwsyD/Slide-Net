@@ -1,16 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="pgn" tagdir="/WEB-INF/tags" %>
 <%@ page isELIgnored="false" %>
 <jsp:useBean id="accounts" class="app.entity.Account" scope="page" />
 <!DOCTYPE>
 <html lang="en">
 <head>
     <title>Service Management</title>
-    <c:import url="../admin_imports.html" />
+    <c:import url="../../imports/admin_imports.html" />
 </head>
 <body>
-<c:import url="../cabinet_header.jsp" />
+<c:import url="../../imports/cabinet_header.jsp" />
 
 <div class="content_table">
     <div  class="body-info">
@@ -82,39 +82,13 @@
                     </tbody>
                 </table>
 
-                <c:if test="${maxPage > 1}">
-                    <div class="pagination-block">
-                        <div class="pagination-control">
-                            <hr>
-                            <c:choose>
-                                <c:when test="${page == 1}">
-                                    <a class="inactive-link">|<</a>
-                                    <a class="inactive-link"><<</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a class="active-link" href="${uri}?serviceId=${activeService}&page=1">|<</a>
-                                    <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page-1}"><<</a>
-                                </c:otherwise>
-                            </c:choose>
-                            <c:choose>
-                                <c:when test="${page == maxPage}">
-                                    <a class="inactive-link">>></a>
-                                    <a class="inactive-link">>|</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page+1}">>></a>
-                                    <a class="active-link" href="${uri}?serviceId=${activeService}&page=${maxPage}">>|</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
-                </c:if>
+                <pgn:pagination path="${uri}" activeService="${activeService}" maxPage="${maxPage}" page="${page}"/>
 
             </div>
     </div>
 </div>
 <!-- footer -->
-<c:import url="/cabinet/footer.html" />
+<c:import url="/imports/footer.jsp" />
 
 </body>
 </html>

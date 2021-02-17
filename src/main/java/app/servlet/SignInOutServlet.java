@@ -68,7 +68,7 @@ public class SignInOutServlet extends HttpServlet {
             session.setAttribute("login", account.getLogin());
             session.setAttribute("id", account.getId());
             session.setAttribute("role", account.getRoleName());
-            LOG.debug("Account: " + account);
+
             resp.sendRedirect("/cabinet");
         } else {
             LOG.info("Invalid data.");

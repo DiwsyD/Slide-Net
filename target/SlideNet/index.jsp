@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="pgn" tagdir="/WEB-INF/tags" %>
 <%@ page isELIgnored="false" %>
 
 <fmt:setBundle basename="localization/interface_ru"/>
@@ -13,7 +14,7 @@
     <link rel="shortcut icon" href="media/images/icon.png" type="image/png">
 </head>
 <body>
-<c:import url="header.jsp" />
+<c:import url="imports/header.jsp" />
     <!-- body -->
     <div class="welcome_screen">
         <div class="welcome_info">
@@ -101,33 +102,7 @@
                                 <a href="/?download=true#services"><fmt:message key="label.Download"/> <fmt:message key="label.Services"/></a>
                             </div>
 
-                            <c:if test="${maxPage > 1}">
-                                <div class="pagination-block">
-                                    <div class="pagination-control">
-                                        <hr>
-                                        <c:choose>
-                                            <c:when test="${page == 1}">
-                                                <a class="inactive-link">|<</a>
-                                                <a class="inactive-link"><<</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a class="active-link" href="${uri}?serviceId=${activeService}&page=1#services">|<</a>
-                                                <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page-1}#services"><<</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <c:choose>
-                                            <c:when test="${page == maxPage}">
-                                                <a class="inactive-link">>></a>
-                                                <a class="inactive-link">>|</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a class="active-link-2" href="${uri}?serviceId=${activeService}&page=${page+1}#services">>></a>
-                                                <a class="active-link" href="${uri}?serviceId=${activeService}&page=${maxPage}#services">>|</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                </div>
-                            </c:if>
+                            <pgn:pagination path="${uri}" activeService="${activeService}" maxPage="${maxPage}" page="${page}"/>
 
                         </div>
                     </div>
@@ -175,6 +150,6 @@
         </div>
     </div>
     <!-- footer -->
-    <c:import url="/cabinet/footer.html" />
+    <c:import url="/imports/footer.jsp" />
 </body>
 </html>

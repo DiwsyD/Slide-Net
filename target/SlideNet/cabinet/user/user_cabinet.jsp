@@ -4,11 +4,11 @@
 <html>
 <head>
     <title>User Cabinet</title>
-    <c:import url="../user_imports.html" />
+    <c:import url="../../imports/user_imports.html" />
 </head>
 <body>
     <!-- header -->
-    <c:import url="../cabinet_header.jsp" />
+    <c:import url="../../imports/cabinet_header.jsp" />
     <!-- Account Information Block -->
     <div class="content-container">
         <div class="body-info">
@@ -131,6 +131,6 @@
         </div>
     </div>
     <!-- footer -->
-    <c:import url="/cabinet/footer.html" />
+    <c:import url="/imports/footer.jsp" />
 </body>
 </html>

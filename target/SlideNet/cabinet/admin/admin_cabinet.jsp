@@ -4,11 +4,11 @@
 <html>
 <head>
     <title>Admin Cabinet</title>
-    <c:import url="../admin_imports.html" />
+    <c:import url="../../imports/admin_imports.html" />
 </head>
 <body>
     <!-- header -->
-    <c:import url="../cabinet_header.jsp" />
+    <c:import url="../../imports/cabinet_header.jsp" />
     <div class="content-container">
         <div class="body-info">
             <div class="page_title">Admin Control Panel</div>
@@ -40,6 +40,6 @@
         </div>
     </div>
     <!-- footer -->
-    <c:import url="/cabinet/footer.html" />
+    <c:import url="/imports/footer.jsp" />
 </body>
 </html>

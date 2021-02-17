@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+<!-- footer -->
 <div class="footer">
     <div class="content-container">
         <div class="footer_menu">
@@ -16,7 +20,14 @@
         <hr>
         <div class="log_button">
             <ul>
-                <li><a href="/signin">Log In</a></li>
+                <c:choose>
+                    <c:when test="${role == null}">
+                        <li><a href="/sign?signAction=in">Log In</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="/sign?signAction=out">Log Out</a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>
