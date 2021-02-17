@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="pgn" tagdir="/WEB-INF/tags" %>
-<%--<%@ taglib prefix="logo" uri="/WEB-INF/tags/myCustomTag.tld"%>--%>
+<%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
 
 <fmt:setBundle basename="localization/interface"/>
@@ -22,7 +22,7 @@
             <div class="intro_text">
                 <h1>
                     <fmt:message key="label.Internet"/> <fmt:message key="label.provider"/><br>
-<%--                    <logo:SlideNet/>--%>
+                    <ctf:SlideNet/>
                 </h1>
             </div>
             <div class="tagline">
@@ -40,7 +40,7 @@
             <div class="about_info">
                 <div class="page_title"><fmt:message key="label.AboutUs"/></div>
                 <div class="about_text">
-                    <strong>Slide-NET</strong> - is a high-speed Internet provider, we provide access to the network
+                    <strong><ctf:SlideNet/></strong> - is a high-speed Internet provider, we provide access to the network
                     wherever there is a need and where it benefits. We also provide cable, Analog, Digital and IP TV.
                     We deliver tv signal in a most comfortable way for the customer.
                     We use the most up-to-date digital technologies, high-quality network equipment and software.

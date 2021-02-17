@@ -5,6 +5,7 @@
 <web-app>
   <display-name>SlideNet Web Application</display-name>
 
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -29,6 +30,11 @@
     <exception-type>java.lang.Exception</exception-type>
     <location>/error</location>
   </error-page>
+
+  <taglib>
+    <taglib-uri>/customtf</taglib-uri>
+    <taglib-location>/WEB-INF/tags/myCustomTag.tld</taglib-location>
+  </taglib>
 
   <resource-ref>
     <res-ref-name>jdbc/slidenetdb</res-ref-name>
