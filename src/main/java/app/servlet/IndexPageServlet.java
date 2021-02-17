@@ -1,6 +1,7 @@
 package app.servlet;
 
 import app.entity.Service;
+import app.model.DowsnloadFile;
 import app.model.ServiceTable;
 import app.model.ServiceTariffDataManager;
 import org.apache.log4j.Logger;
@@ -23,14 +24,12 @@ public class IndexPageServlet extends HttpServlet {
         List<Service> serviceList = ServiceTariffDataManager.getAllServicesWithoutTariffs();
         ServiceTable.loadServiceTable(req, resp, serviceList);
         LOG.info("Service list has been load.");
-        downloadService(req);
-        req.getRequestDispatcher( "/index.jsp").forward(req, resp);
-    }
 
-    private void downloadService(HttpServletRequest req) {
         if (req.getParameter("download") != null) {
-
+            DowsnloadFile.downloadServices(resp, getServletContext().getRealPath(""));
         }
+
+        req.getRequestDispatcher( "/index.jsp").forward(req, resp);
     }
 
 }
