@@ -1,7 +1,8 @@
-package app.database.dao;
+package app.dao.DAOImpl;
 
-import app.database.conf.ConnectionPool;
-import app.database.conf.ConstantQuery;
+import app.dao.AccountDAO;
+import app.dao.CPool.ConnectionPool;
+import app.Constants.ConstantQuery;
 import app.entity.Account;
 import app.entity.AccountService;
 import org.apache.log4j.Logger;
@@ -10,20 +11,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountDAO extends AbstractDAO{
-    private static final Logger LOG = Logger.getLogger(AccountDAO.class);
+public class AccountDAOImpl extends AbstractDAOImpl implements AccountDAO {
+    private static final Logger LOG = Logger.getLogger(AccountDAOImpl.class);
 
-    private static AccountDAO accountUserDAO = new AccountDAO();
+    private static AccountDAOImpl accountUserDAO = new AccountDAOImpl();
 
-    private AccountDAO() {
+    private AccountDAOImpl() {
         if (connectionPool == null) {
             connectionPool = ConnectionPool.getInstance();
         }
     }
 
-    public static AccountDAO getInstance() {
+    public static AccountDAOImpl getInstance() {
         return accountUserDAO;
     }
+
 
     public Account getAccountById(long id) {
         Account account = new Account();

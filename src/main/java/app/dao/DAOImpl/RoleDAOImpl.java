@@ -1,7 +1,8 @@
-package app.database.dao;
+package app.dao.DAOImpl;
 
-import app.database.conf.ConnectionPool;
-import app.database.conf.ConstantQuery;
+import app.dao.CPool.ConnectionPool;
+import app.Constants.ConstantQuery;
+import app.dao.RoleDAO;
 import app.entity.Role;
 import app.model.ServiceTariffDataManager;
 import org.apache.log4j.Logger;
@@ -11,19 +12,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RoleDAO extends AbstractDAO{
+public class RoleDAOImpl extends AbstractDAOImpl implements RoleDAO {
     private static final Logger LOG = Logger.getLogger(ServiceTariffDataManager.class);
 
-    private static RoleDAO roleDAO = new RoleDAO();
+    private static RoleDAOImpl roleDAOImpl = new RoleDAOImpl();
 
-    private RoleDAO() {
+    private RoleDAOImpl() {
         if (connectionPool == null) {
             connectionPool = ConnectionPool.getInstance();
         }
     }
 
-    public static RoleDAO getInstance() {
-        return roleDAO;
+    public static RoleDAOImpl getInstance() {
+        return roleDAOImpl;
     }
 
     public Role getRoleById(long id) {

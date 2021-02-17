@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setBundle basename="localization/interface_ru"/>
 <!DOCTYPE>
 <html lang="en">
 <head>
@@ -16,16 +19,16 @@
         <div class="welcome_info">
             <div class="intro_text">
                 <h1>
-                    Internet provider<br>
+                    <fmt:message key="label.Internet"/> <fmt:message key="label.provider"/><br>
                     Slide-NET
                 </h1>
             </div>
             <div class="tagline">
-                Slide on the Net with Slide-NET
+                <fmt:message key="label.slogan"/>
             </div>
 
             <div>
-                <a class="index-private-cabinet" href="/sign?signAction=in">Private Cabinet</a>
+                <a class="index-private-cabinet" href="/sign?signAction=in"><fmt:message key="label.Private"/> <fmt:message key="label.Cabinet"/></a>
             </div>
         </div>
     </div>
@@ -33,7 +36,7 @@
     <div id="about">
         <div class="content-container">
             <div class="about_info">
-                <div class="page_title">About Us</div>
+                <div class="page_title"><fmt:message key="label.AboutUs"/></div>
                 <div class="about_text">
                     <strong>Slide-NET</strong> - is a high-speed Internet provider, we provide access to the network
                     wherever there is a need and where it benefits. We also provide cable, Analog, Digital and IP TV.
@@ -53,11 +56,11 @@
             <div class="services_info">
                 <div class="body-info">
                     <div class="service_table">
-                        <div class="page_title">Services</div>
+                        <div class="page_title"><fmt:message key="label.Services"/></div>
                         <!-- Service Tabs -->
                         <div class="service_tabs">
                             <c:forEach var="service" items="${serviceList}">
-                                <a class='tablink <c:out value="${activeService == service.getId() ? \'_active\' : \'none\'}"/>' href="?serviceId=${service.getId()}#services">${service.getName()}</a>
+                                <a class='tablink <c:out value="${activeService == service.getId() ? \'_active\' : \'none\'}"/>' href="?serviceId=${service.getId()}#services"><fmt:message key="label.${service.getName()}"/></a>
                             </c:forEach>
                         </div>
                         <!-- Service Tables -->
@@ -67,19 +70,19 @@
                                 <tr>
                                     <c:choose>
                                         <c:when test="${desc != ''}">
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name'/>#services">Tariff Name ^</a></th>
+                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name'/>#services"><fmt:message key="label.TariffName"/> ^</a></th>
                                         </c:when>
                                         <c:otherwise>
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name_desc'/>#services">Tariff Name v</a></th>
+                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name_desc'/>#services"><fmt:message key="label.TariffName"/> v</a></th>
                                         </c:otherwise>
                                     </c:choose>
                                     <th>Description</th>
                                     <c:choose>
                                         <c:when test="${desc != ''}">
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price'/>#services">Price ^</a></th>
+                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price'/>#services"><fmt:message key="label.Price"/> ^</a></th>
                                         </c:when>
                                         <c:otherwise>
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price_desc'/>#services">Price v</a></th>
+                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price_desc'/>#services"><fmt:message key="label.Price"/> v</a></th>
                                         </c:otherwise>
                                     </c:choose>
                                 </tr>
@@ -95,7 +98,7 @@
                                 </tbody>
                             </table>
                             <div class="download-services">
-                                <a href="/?download=true#services">Download Services</a>
+                                <a href="/?download=true#services"><fmt:message key="label.Download"/> <fmt:message key="label.Services"/></a>
                             </div>
 
                             <c:if test="${maxPage > 1}">
@@ -134,10 +137,10 @@
     </div>
     <div id="contacts">
         <div class="content-container">
-            <div class="page_title">Contacts</div>
+            <div class="page_title"><fmt:message key="label.Contacts"/></div>
             <div class="over-map-contacts">
                 <div>
-                    <strong>Contact Phone:</strong>
+                    <strong><fmt:message key="label.ContactPhone"/>:</strong>
                     <p>+380123456789</p>
                 </div>
                 <div>
@@ -145,7 +148,7 @@
                     <p>someemail@some.com</p>
                 </div>
                 <div>
-                    <strong>Address:</strong>
+                    <strong><fmt:message key="label.Address"/>:</strong>
                     <p>Kharkiv city, Gosprom str.</p>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 package app.model;
 
-import app.database.dao.RoleDAO;
+import app.dao.DAOImpl.RoleDAOImpl;
 import app.entity.EntityManager;
 import app.entity.Role;
 import org.apache.log4j.Logger;
@@ -16,7 +16,7 @@ public class RoleDataManager {
             return role;
         }
 
-        role = RoleDAO.getInstance().getRoleById(id);
+        role = RoleDAOImpl.getInstance().getRoleById(id);
         if (role != null) {
             addRoleToEntityManager(role);
         }
@@ -29,7 +29,7 @@ public class RoleDataManager {
             return role;
         }
 
-        role = RoleDAO.getInstance().getRoleByName(name);
+        role = RoleDAOImpl.getInstance().getRoleByName(name);
         if (role != null) {
             addRoleToEntityManager(role);
         }

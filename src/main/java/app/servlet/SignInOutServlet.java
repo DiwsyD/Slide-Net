@@ -31,7 +31,7 @@ public class SignInOutServlet extends HttpServlet {
                     && session.getAttribute("role") != null;
             
             if(!signed) {
-                req.getRequestDispatcher("/signin.jsp").forward(req, resp);
+                req.getRequestDispatcher("/sign.jsp").forward(req, resp);
                 return;
             }
 

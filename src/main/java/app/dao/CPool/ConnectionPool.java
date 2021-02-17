@@ -1,4 +1,4 @@
-package app.database.conf;
+package app.dao.CPool;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

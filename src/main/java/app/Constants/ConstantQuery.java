@@ -1,4 +1,4 @@
-package app.database.conf;
+package app.Constants;
 /**.
  * DataBase Constant Queries.
  *
@@ -7,8 +7,6 @@ package app.database.conf;
  *
  * Queries divided into blocks by
  * parts of application.
- *
- * (logging/get data/put data/update data)
  *
  * */
 public class ConstantQuery {

@@ -1,5 +1,6 @@
 package app.servlet;
 
+import app.Constants.PageEnum;
 import app.entity.Service;
 import app.model.DowsnloadFile;
 import app.model.ServiceTable;
@@ -29,7 +30,7 @@ public class IndexPageServlet extends HttpServlet {
             DowsnloadFile.downloadServices(resp, getServletContext().getRealPath(""));
         }
 
-        req.getRequestDispatcher( "/index.jsp").forward(req, resp);
+        req.getRequestDispatcher(PageEnum.INDEX_JSP.getValue()).forward(req, resp);
     }
 
 }
