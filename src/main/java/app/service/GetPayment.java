@@ -1,4 +1,4 @@
-package app.model;
+package app.service;
 
 import app.entity.Account;
 import app.entity.AccountService;

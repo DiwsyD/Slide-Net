@@ -1,10 +1,9 @@
 package app.servlet.UserServlet;
 
-import app.entity.Account;
 import app.entity.Service;
-import app.model.AccountDataManager;
-import app.model.ServiceTable;
-import app.model.ServiceTariffDataManager;
+import app.service.AccountDataManager;
+import app.service.ServiceTable;
+import app.service.ServiceTariffDataManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

@@ -2,9 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="pgn" tagdir="/WEB-INF/tags" %>
+<%--<%@ taglib prefix="logo" uri="/WEB-INF/tags/myCustomTag.tld"%>--%>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/interface_ru"/>
+<fmt:setBundle basename="localization/interface"/>
 <!DOCTYPE>
 <html lang="en">
 <head>
@@ -21,7 +22,7 @@
             <div class="intro_text">
                 <h1>
                     <fmt:message key="label.Internet"/> <fmt:message key="label.provider"/><br>
-                    Slide-NET
+<%--                    <logo:SlideNet/>--%>
                 </h1>
             </div>
             <div class="tagline">

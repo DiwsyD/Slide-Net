@@ -3,8 +3,8 @@ package app.servlet.UserServlet;
 import app.entity.Account;
 import app.entity.AccountService;
 import app.entity.Service;
-import app.model.AccountDataManager;
-import app.model.ServiceTariffDataManager;
+import app.service.AccountDataManager;
+import app.service.ServiceTariffDataManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.helpers.LogLog;
 

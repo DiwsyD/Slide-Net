@@ -1,8 +1,8 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Account;
-import app.model.AccountDataManager;
-import app.model.Encryption;
+import app.service.AccountDataManager;
+import app.service.Encryption;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;

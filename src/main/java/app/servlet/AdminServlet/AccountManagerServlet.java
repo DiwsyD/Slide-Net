@@ -1,7 +1,7 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Account;
-import app.model.AccountDataManager;
+import app.service.AccountDataManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

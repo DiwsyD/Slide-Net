@@ -1,10 +1,9 @@
-package app.model;
+package app.service;
 
 import app.entity.Service;
 import app.entity.Tariff;
 import org.apache.log4j.Logger;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;

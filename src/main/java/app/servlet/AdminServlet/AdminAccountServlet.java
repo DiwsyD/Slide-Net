@@ -1,12 +1,10 @@
 package app.servlet.AdminServlet;
 
-import app.entity.Service;
-import app.model.AccountDataManager;
-import app.model.GetPayment;
-import app.model.ServiceTariffDataManager;
+import app.service.AccountDataManager;
+import app.service.GetPayment;
+import app.service.ServiceTariffDataManager;
 import org.apache.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -1,10 +1,10 @@
 package app.servlet;
 
-import app.model.AccountDataManager;
-import app.model.Authorization;
+import app.service.AccountDataManager;
+import app.service.Authorization;
 import app.entity.Account;
-import app.model.ServiceTariffDataManager;
-import app.model.Validator;
+import app.service.ServiceTariffDataManager;
+import app.service.Validator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

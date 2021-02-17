@@ -1,6 +1,6 @@
 package app.listener;
 
-import app.model.AutomaticPaymentsThread;
+import app.service.AutomaticPaymentsThread;
 import app.servlet.AdminServlet.AdminAccountServlet;
 import org.apache.log4j.Logger;
 

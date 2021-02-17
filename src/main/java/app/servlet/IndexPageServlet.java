@@ -1,9 +1,9 @@
 package app.servlet;
 
 import app.entity.Service;
-import app.model.DowsnloadFile;
-import app.model.ServiceTable;
-import app.model.ServiceTariffDataManager;
+import app.service.DowsnloadFile;
+import app.service.ServiceTable;
+import app.service.ServiceTariffDataManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

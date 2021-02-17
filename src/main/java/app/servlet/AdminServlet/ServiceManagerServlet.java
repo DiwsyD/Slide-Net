@@ -1,9 +1,8 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Service;
-import app.entity.Tariff;
-import app.model.ServiceTable;
-import app.model.ServiceTariffDataManager;
+import app.service.ServiceTable;
+import app.service.ServiceTariffDataManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
