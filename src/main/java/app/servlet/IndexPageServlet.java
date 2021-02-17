@@ -23,6 +23,14 @@ public class IndexPageServlet extends HttpServlet {
         List<Service> serviceList = ServiceTariffDataManager.getAllServicesWithoutTariffs();
         ServiceTable.loadServiceTable(req, resp, serviceList);
         LOG.info("Service list has been load.");
+        downloadService(req);
         req.getRequestDispatcher( "/index.jsp").forward(req, resp);
     }
+
+    private void downloadService(HttpServletRequest req) {
+        if (req.getParameter("download") != null) {
+
+        }
+    }
+
 }

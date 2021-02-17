@@ -192,6 +192,20 @@ button.activate_button, button.deactivate_button  {
      color: #294781;
  }
 
+.download-services {
+    font-family: 'Raleway_Medium';
+    text-align: right;
+}
+
+.download-services a{
+    color: #4068c1;
+    text-decoration: none;
+    border-bottom: 1px solid #4068c1;
+}
+
+.download-services a:hover {
+    color: #242424;
+}
 /*--------------tab-buttons--------------*/
 
 .service_tabs {

@@ -94,7 +94,9 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-
+                            <div class="download-services">
+                                <a href="#services">Download Services</a>
+                            </div>
                             <div class="pagination-block">
                                 <div class="pagination-control">
                                     <hr>
