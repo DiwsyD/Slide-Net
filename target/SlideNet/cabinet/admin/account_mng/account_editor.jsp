@@ -20,7 +20,7 @@
                     <div class="static_info">
                         <ul>
                             <li>ID:</li>
-                            <li>Role</li>
+                            <li><fmt:message key="label.role"/>:</li>
                             <li>Login:</li>
                             <li>Password:</li>
 
