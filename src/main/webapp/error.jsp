@@ -16,7 +16,7 @@
 
     <div class="ErrorMassage">
         <h1><fmt:message key="label.sorry"/>!</h1>
-        <h2><fmt:message key="label.smthWrong"/> :(</h2>
+        <h2><fmt:message key="label.errorsmth"/> :(</h2>
 
         <c:if test="${ErrorCause != null}">
             <h2><c:out value="${ErrorCause}"/></h2>
