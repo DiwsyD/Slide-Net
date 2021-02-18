@@ -50,9 +50,9 @@
                     <tbody id="tariff-table" class="service_content_table">
                     <c:forEach var="tariff" items="${tariffList}">
                         <tr id="${tariff.getName()}">
-                            <td><fmt:message key="label.${tariff.getName()}"/></td>
-                            <td><fmt:message key="label.${tariff.getDescription()}"/></td>
-                            <td><fmt:message key="label.${tariff.getPrice()}"/></td>
+                            <td>${tariff.getName()}</td>
+                            <td>${tariff.getDescription()}</td>
+                            <td>${tariff.getPrice()}</td>
                             <td class="button-column">
                                 <button class="cancel_button" value="cancel" style="display: none;" onclick="cancelTariff('${tariff.getName()}')">
                                     <fmt:message key="label.cancel"/>

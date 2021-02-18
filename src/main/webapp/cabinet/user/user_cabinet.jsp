@@ -22,7 +22,7 @@
                     <ul>
                         <li><fmt:message key="label.accountid"/>:</li>
                         <li><fmt:message key="label.fullname"/>:</li>
-                        <li><fmt:message key="label.address"/>:</li>
+                        <li><fmt:message key="label.Address"/>:</li>
                         <li><fmt:message key="label.phone"/>:</li>
                     </ul>
                 </div>

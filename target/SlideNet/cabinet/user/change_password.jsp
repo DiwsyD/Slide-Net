@@ -23,18 +23,18 @@
                 </div>
                 <form method="post" onsubmit="checkPasswordChange()">
                     <label>
-                        <p><fmt:message key="label.oldpass"/>:</p>
-                        <input data-rule="text" type="password" name="oldPass" value="" placeholder="Current Password">
+                        <p><fmt:message key="label.currpass"/>:</p>
+                        <input data-rule="text" type="password" name="oldPass" value="" placeholder='<fmt:message key="label.currpass"/>'>
                     </label>
                     <br>
                     <label>
                         <p><fmt:message key="label.newpass"/>:</p>
-                        <input data-rule="text" type="password" name="newPass" value="" placeholder="New Password">
+                        <input data-rule="text" type="password" name="newPass" value="" placeholder='<fmt:message key="label.newpass"/>'>
                     </label>
                     <br>
                     <label>
                         <p><fmt:message key="label.repnewpass"/>:</p>
-                        <input data-rule="text" type="password" name="newPassRepeat" value="" placeholder="Repeat New Password">
+                        <input data-rule="text" type="password" name="newPassRepeat" value="" placeholder='<fmt:message key="label.repnewpass"/>'>
                     </label>
                     <br>
                     <button class="save_button" id="change_password_form" type="submit"><fmt:message key="label.save"/></button>

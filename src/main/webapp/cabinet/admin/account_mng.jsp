@@ -33,7 +33,7 @@
                     <th><fmt:message key="label.login"/></th>
                     <th><fmt:message key="label.fullname"/></th>
                     <th><fmt:message key="label.phone"/></th>
-                    <th><fmt:message key="label.address"/></th>
+                    <th><fmt:message key="label.Address"/></th>
                     <th><fmt:message key="label.ipaddress"/></th>
                     <th><fmt:message key="label.moneybalance"/></th>
                     <th><fmt:message key="label.accountstatus"/></th>

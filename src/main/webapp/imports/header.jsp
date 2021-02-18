@@ -24,9 +24,9 @@
                         <li><a href="/cabinet/user/topup_balance"><fmt:message key="label.topupbalance"/></a></li>
                     </c:if>
                     <c:if test="${role == null}">
-                        <li><a href="/#about">About</a></li>
-                        <li><a href="/#services">Services</a></li>
-                        <li><a href="/#contacts">Contacts</a></li>
+                        <li><a href="/#about"><fmt:message key="label.AboutUs"/></a></li>
+                        <li><a href="/#services"><fmt:message key="label.Services"/></a></li>
+                        <li><a href="/#contacts"><fmt:message key="label.Contacts"/></a></li>
                     </c:if>
                 </ul>
             </div>

@@ -8,7 +8,7 @@
 <!DOCTYPE>
 <html lang="en">
 <head>
-    <title><<fmt:message key="label.signIn"/>></title>
+    <title><<fmt:message key="label.logIn"/>></title>
     <link rel="stylesheet" href="css/signin.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/forms.css">
@@ -22,7 +22,7 @@
             <div class="body_block">
                 <!-- input block -->
                 <div class="signin_block">
-                    <div class="page_title"><fmt:message key="label.enter"/></div>
+                    <div class="page_title"><fmt:message key="label.entertoCabinet"/></div>
                     <div class="auth_result">
                         <c:if test="${AuthorizationResultError}">
                             <fmt:message key="label.wrongLP"/>
@@ -39,7 +39,7 @@
                             </label>
                             <br>
                             <button type="submit">
-                                <fmt:message key="label.signIn"/>
+                                <fmt:message key="label.enter"/>
                             </button>
                         </form>
                         <div class="disclaimer">

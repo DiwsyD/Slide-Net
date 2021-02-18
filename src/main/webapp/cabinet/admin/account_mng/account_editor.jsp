@@ -31,7 +31,7 @@
                             <li><fmt:message key="label.secondname"/>:</li>
 
                             <li><fmt:message key="label.phone"/>:</li>
-                            <li><fmt:message key="label.address"/>:</li>
+                            <li><fmt:message key="label.Address"/>:</li>
                             <li><fmt:message key="label.ipaddress"/>:</li>
                             <li><fmt:message key="label.moneybalance"/>:</li>
 
