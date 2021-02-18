@@ -84,7 +84,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </a>
-                                        <a class="remove_button" href="user_cabinet?action=disable&serviceId=${service.getId()}">Disable</a>
+                                        <a class="remove_button" href="user_cabinet?action=disable&serviceId=${service.getId()}"><fmt:message key='label.disable'/></a>
                                     </li>
 
                                     <%-- Check all Tariffs and find activated one --%>
@@ -92,28 +92,28 @@
                                         <c:forEach var="tariff" items="${service.getTariffList()}">
                                             <c:if test="${tariff.getId() == activeServiceData.getTariffId()}">
                                                 <p>
-                                                    <a>Tariff:</a> <a style="color: #646cf1">${tariff.getName()}</a>
-                                                    <a class="edit_button" href="user_cabinet?action=edit&serviceId=${service.getId()}&tariffId=${tariff.getId()}">Edit</a>
+                                                    <a><fmt:message key='label.tariff'/>:</a> <a style="color: #646cf1"><fmt:message key="label.${tariff.getName()}"/></a>
+                                                    <a class="edit_button" href="user_cabinet?action=edit&serviceId=${service.getId()}&tariffId=${tariff.getId()}"><fmt:message key='label.edit'/></a>
                                                 </p>
                                                 <p>
-                                                    <a>Description:</a> <a style="color: #646cf1">${tariff.getDescription()}</a>
+                                                    <a><fmt:message key="label.Description"/>:</a> <a style="color: #646cf1"><fmt:message key="label.${tariff.getDescription()}"/></a>
                                                 </p>
                                                 <p>
-                                                    <a>Next Payment:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
+                                                    <a><fmt:message key="label.nextpayment"/>:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
                                                 </p>
                                                 <p>
                                                     <c:choose>
                                                         <c:when test="${activeServiceData.isStatus()}">
-                                                            <a class="remove_button" href="user_cabinet?action=pause&serviceId=${service.getId()}">Pause</a>
+                                                            <a class="remove_button" href="user_cabinet?action=pause&serviceId=${service.getId()}"><fmt:message key="label.pause"/></a>
                                                         </c:when>
                                                         <c:otherwise>
                                                             <c:choose>
                                                                 <%-- enough money--%>
                                                                 <c:when test="${(account_data.getMoneyBalance() >= activeServiceData.getPaymentAmount()) || activeServiceData.isPayed()}">
-                                                                    <a class="add_button" href="user_cabinet?action=start&serviceId=${service.getId()}">Start</a
+                                                                    <a class="add_button" href="user_cabinet?action=start&serviceId=${service.getId()}"><fmt:message key="label.start"/></a
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <a class="edit_button" href="/cabinet/user/topup_balance">Top-up</a
+                                                                    <a class="edit_button" href="/cabinet/user/topup_balance"><fmt:message key="label.topup"/></a
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </c:otherwise>
@@ -128,9 +128,9 @@
 
 
                             <c:otherwise>
-                                <div>Service Status:
-                                    <a class="inactive_value">Inactive</a>
-                                    <a class="add_button" href="user_cabinet?action=activate&serviceId=${service.getId()}">Activate</a>
+                                <div><fmt:message key="label.servicestatus"/>:
+                                    <a class="inactive_value"><fmt:message key="label.inactive"/></a>
+                                    <a class="add_button" href="user_cabinet?action=activate&serviceId=${service.getId()}"><fmt:message key="label.activate"/></a>
                                 </div>
                             </c:otherwise>
                         </c:choose>

@@ -189,6 +189,7 @@ public class AccountDataManager {
         linkedServices.setStatus(false);
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
         AccountDAOImpl.getInstance().updateServiceToAccount(linkedServices);
+        checAccountStatus(accountId);
     }
 
     public static void startServiceOnAccount(long accountId, long serviceId) {
@@ -226,6 +227,10 @@ public class AccountDataManager {
     public static void disableService(long accountId, int serviceId) {
         LOG.debug("Disabling...");
         AccountDAOImpl.getInstance().disableServiceFromAccount(accountId, serviceId);
+        checAccountStatus(accountId);
+    }
+
+    private static void checAccountStatus(long accountId) {
         int linkedServices = ServiceTariffDataManager.getActiveAccountServiceCount(accountId);
         if (linkedServices <= 0) {
             Account account = findAccountByIdOrNull(accountId);

@@ -77,7 +77,7 @@ public class GetPayment {
         }
         Date now = Date.valueOf(LocalDate.now());
         for (AccountService acs : linkedServices) {
-            if (!acs.isStatus() || !acs.isPayed() || acs.getNexPaymentDay() != now) {
+            if (!acs.isStatus() || !acs.isPayed()) {
                 continue;
             }
             int tariffPrice = ServiceTariffDataManager.getTariffById(acs.getTariffId()).getPrice();
