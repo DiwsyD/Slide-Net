@@ -48,8 +48,8 @@
             </div>
             <div class="header_languages">
                 <ul>
-                    <li><a href="?language=rus"><fmt:message key="label.rus"/></a></li>
-                    <li class="active"><a href="?language=eng"><fmt:message key="label.eng"/></a></li>
+                    <li><a href="?language=ru"><fmt:message key="label.rus"/></a></li>
+                    <li class="active"><a href="?language=en"><fmt:message key="label.eng"/></a></li>
                 </ul>
             </div>
         </div>

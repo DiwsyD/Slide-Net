@@ -20,8 +20,43 @@ public class language {
     public static final String[] supportedLanguages = {"en", "ru", "ua"};
 
     public static void checkLanguage(HttpServletRequest req, HttpServletResponse resp) {
+        //if we want to change lang -> change and return
+        String lang = req.getParameter(LANGUAGE);
+        if (language.checkLanguageParam(lang)) {
+            LOG.debug("checked: " + lang);
+            setLangueage(req, resp, lang);
+            return;
+        }
+        LOG.debug("param is null");
+
+        //Here we don't want to change lang, so, we check if session is not new
+        if (req.getSession().getAttribute(LANGUAGE) != null) {
+            return;
+        }
+
+        //now, we know, session was destroyed or never exist, so get lang from cookie
+        LOG.debug("new session: " + lang);
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals(language.LANGUAGE)) {
+                    lang = c.getValue();
+                    break;
+                }
+            }
+        }
+        //if lang value is not supporting by site set to default (en)
+        if (!language.checkLanguageParam(lang)) {
+            lang = supportedLanguages[0];
+        }
+        setLangueage(req, resp, lang);
+    }
+
+
+    public static void checkLanguage(HttpServletRequest req, HttpServletResponse resp, String oo) {
         LOG.debug("enter to change Language");
-        String lang = req.getParameter(language.LANGUAGE);
+        //if we want to change lang -> change and return
+        String lang = req.getParameter(LANGUAGE);
         if (language.checkLanguageParam(lang)) {
             setLangueage(req, resp, lang);
             return;
@@ -55,7 +90,17 @@ public class language {
     private static void setLangueage(HttpServletRequest req, HttpServletResponse resp, String lang) {
         LOG.debug("Setting Language");
         req.getSession().setAttribute("language", language.LOCALIZATION_FILE + "_" + lang);
+        LOG.debug("Setting cookie");
         resp.addCookie(new Cookie(language.LANGUAGE, lang));
+        resp.addCookie(new Cookie(language.LANGUAGE, lang));
+
+        Cookie[] cookies = req.getCookies();
+        for (Cookie c : cookies) {
+            if (c.getName().equals(language.LANGUAGE)) {
+                LOG.debug("COOKIE: " + c.getValue());
+                break;
+            }
+        }
         LOG.info("Language Changed to: [" + lang + "]");
     }
 
