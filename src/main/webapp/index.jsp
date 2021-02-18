@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="pgn" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="own" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
 
@@ -9,7 +9,7 @@
 <!DOCTYPE>
 <html lang="en">
 <head>
-    <title><Slide Net></title>
+    <title><<ctf:SlideNet/>></title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="shortcut icon" href="media/images/icon.png" type="image/png">
@@ -21,7 +21,7 @@
         <div class="welcome_info">
             <div class="intro_text">
                 <h1>
-                    <fmt:message key="label.Internet"/> <fmt:message key="label.provider"/><br>
+                    <fmt:message key="label.Internet"/><fmt:message key="label.provider"/><br>
                     <ctf:SlideNet/>
                 </h1>
             </div>
@@ -40,12 +40,7 @@
             <div class="about_info">
                 <div class="page_title"><fmt:message key="label.AboutUs"/></div>
                 <div class="about_text">
-                    <strong><ctf:SlideNet/></strong> - is a high-speed Internet provider, we provide access to the network
-                    wherever there is a need and where it benefits. We also provide cable, Analog, Digital and IP TV.
-                    We deliver tv signal in a most comfortable way for the customer.
-                    We use the most up-to-date digital technologies, high-quality network equipment and software.
-                    Also we conduct upgrading works constantly to keep the high performance of our optical network.
-                    We believe that it is the most important to provide a stable and reliable service to customers.
+                    <strong><ctf:SlideNet/></strong> - <fmt:message key="label.aboutText"/>
                 </div>
             </div>
 
@@ -72,19 +67,19 @@
                                 <tr>
                                     <c:choose>
                                         <c:when test="${desc != ''}">
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name'/>#services"><fmt:message key="label.TariffName"/> ^</a></th>
+                                            <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='name'/>#services"><fmt:message key="label.TariffName"/> ^</a></th>
                                         </c:when>
                                         <c:otherwise>
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='name_desc'/>#services"><fmt:message key="label.TariffName"/> v</a></th>
+                                            <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='name_desc'/>#services"><fmt:message key="label.TariffName"/> v</a></th>
                                         </c:otherwise>
                                     </c:choose>
-                                    <th>Description</th>
+                                    <th><fmt:message key="label.Description"/></th>
                                     <c:choose>
                                         <c:when test="${desc != ''}">
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price'/>#services"><fmt:message key="label.Price"/> ^</a></th>
+                                            <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='price'/>#services"><fmt:message key="label.Price"/> ^</a></th>
                                         </c:when>
                                         <c:otherwise>
-                                            <th><a class="sort-link" href="<my:modifyURL name='orderBy' value='price_desc'/>#services"><fmt:message key="label.Price"/> v</a></th>
+                                            <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='price_desc'/>#services"><fmt:message key="label.Price"/> v</a></th>
                                         </c:otherwise>
                                     </c:choose>
                                 </tr>
@@ -92,9 +87,9 @@
                                 <tbody id="tariff-table" class="service_content_table">
                                 <c:forEach var="tariff" items="${tariffList}">
                                     <tr id="${tariff.getName()}">
-                                        <td>${tariff.getName()}</td>
-                                        <td>${tariff.getDescription()}</td>
-                                        <td>${tariff.getPrice()}</td>
+                                        <td><fmt:message key="label.${tariff.getName()}"/></td>
+                                        <td><fmt:message key="label.${tariff.getDescription()}"/></td>
+                                        <td><fmt:message key="label.${tariff.getPrice()}"/></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -103,7 +98,7 @@
                                 <a href="/?download=true#services"><fmt:message key="label.Download"/> <fmt:message key="label.Services"/></a>
                             </div>
 
-                            <pgn:pagination path="${uri}" activeService="${activeService}" maxPage="${maxPage}" page="${page}"/>
+                            <own:pagination path="${uri}" activeService="${activeService}" maxPage="${maxPage}" page="${page}"/>
 
                         </div>
                     </div>

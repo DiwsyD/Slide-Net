@@ -1,10 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setBundle basename="localization/interface"/>
 <!DOCTYPE>
 <html lang="en">
 <head>
-    <title>Sign In</title>
+    <title><<ctf:SlideNet/>></title>
     <link rel="stylesheet" href="css/signin.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/forms.css">
@@ -18,10 +22,10 @@
             <div class="body_block">
                 <!-- input block -->
                 <div class="signin_block">
-                    <div class="page_title">Enter to private cabinet</div>
+                    <div class="page_title"><fmt:message key="label.enter"/></div>
                     <div class="auth_result">
                         <c:if test="${AuthorizationResultError}">
-                            Wrong Login or Password!
+                            <fmt:message key="label.wrongLP"/>
                         </c:if>
                     </div>
                     <div class="signin_form">
@@ -34,27 +38,26 @@
                                 <input type="password" name="pass" value="" placeholder="Password">
                             </label>
                             <br>
-                            <button type="submit">Sign In</button>
+                            <button type="submit">
+                                <fmt:message key="label.signIn"/>
+                            </button>
                         </form>
                         <div class="disclaimer">
-                            To enter your personal account,<br> you should be a Slide-NET subscriber
+                            <fmt:message key="label.disclaimer"/>
                         </div>
                     </div>
                 </div>
                 <!-- Information block -->
                 <div class="info_block">
-                    <div class="page_title">Have a questions?</div>
+                    <div class="page_title"><fmt:message key="label.haveaquestion"/></div>
                     <div class="info_text">
                         <ul>
-                            <li>-Service-information center: 0800-31-0800 (24/7)</li>
-                            <li>-Information-Сonsultation: abonontdel@slidenet.ua</li>
-                            <li>-Technical consultation: support@slidenet.ua</li>
-                            <li>-Customer service center: Ukraine, Kharkiv, Nauki Ave 43B</li>
+                            <li>-<fmt:message key="label.infocenter"/>: 0800-31-0800 (24/7)</li>
+                            <li>-<fmt:message key="label.infocunsult"/>: abonontdel@slidenet.ua</li>
+                            <li>-<fmt:message key="label.techconsult"/>: support@slidenet.ua</li>
+                            <li>-<fmt:message key="label.customercenter"/>: Ukraine, Kharkiv, Nauki Ave 43B</li>
                         </ul>
-                        <div class="disclaimer">
-                            Working hours:
-                            Mon-Fri from 9 am to 6 pm
-                        </div>
+                        <div class="disclaimer"><fmt:message key="label.workinghours"/></div>
                     </div>
                 </div>
             </div>

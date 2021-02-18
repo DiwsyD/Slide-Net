@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="pgn" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="own" tagdir="/WEB-INF/tags" %>
 <%@ page isELIgnored="false" %>
 <jsp:useBean id="accounts" class="app.entity.Account" scope="page" />
 <!DOCTYPE>
@@ -28,10 +28,10 @@
                     <tr>
                         <c:choose>
                             <c:when test="${desc != ''}">
-                                <th><a class="sort-link" href="<my:modifyURL name="orderBy" value="name"/>">Tariff Name ^</a></th>
+                                <th><a class="sort-link" href="<own:modifyURL name="orderBy" value="name"/>">Tariff Name ^</a></th>
                             </c:when>
                             <c:otherwise>
-                                <th><a class="sort-link" href="<my:modifyURL name="orderBy" value="name_desc"/>">Tariff Name v</a></th>
+                                <th><a class="sort-link" href="<own:modifyURL name="orderBy" value="name_desc"/>">Tariff Name v</a></th>
                             </c:otherwise>
                         </c:choose>
                         <th>Description</th>
@@ -82,7 +82,7 @@
                     </tbody>
                 </table>
 
-                <pgn:pagination path="${uri}" activeService="${activeService}" maxPage="${maxPage}" page="${page}"/>
+                <own:pagination path="${uri}" activeService="${activeService}" maxPage="${maxPage}" page="${page}"/>
 
             </div>
     </div>
