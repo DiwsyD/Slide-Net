@@ -5,7 +5,7 @@
 <%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/${language}"/>
+<fmt:setBundle basename="localization/${localization_file}${language}"/>
 <!DOCTYPE>
 <html lang="en">
 <head>

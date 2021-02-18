@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/${language}"/>
+<fmt:setBundle basename="localization/localization_${language}"/>
 <!-- footer -->
 <div class="footer">
     <div class="content-container">
@@ -16,8 +16,8 @@
         </div>
         <div class="footer_languages">
             <ul>
-                <li><a href="?language=ru"><fmt:message key="label.rus"/></a></li>
-                <li><a href="?language=en"><fmt:message key="label.eng"/></a></li>
+                <li><a href="?language=ru"><fmt:message key="label.ru"/></a></li>
+                <li><a href="?language=en"><fmt:message key="label.en"/></a></li>
             </ul>
         </div>
         <hr>

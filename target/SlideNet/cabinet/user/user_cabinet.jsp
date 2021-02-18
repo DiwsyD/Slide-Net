@@ -4,7 +4,7 @@
 <%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/${language}"/>
+<fmt:setBundle basename="localization/localization_${language}"/>
 <html>
 <head>
     <title><<fmt:message key="label.usercabinet"/>></title>

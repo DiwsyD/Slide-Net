@@ -4,7 +4,7 @@
 <%@ taglib prefix="own" tagdir="/WEB-INF/tags" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/${language}"/>
+<fmt:setBundle basename="localization/localization_${language}"/>
 <!DOCTYPE>
 <html lang="en">
 <html>

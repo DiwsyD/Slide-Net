@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/${language}"/>
+<fmt:setBundle basename="localization/${localization_file}${language}"/>
 <!-- header -->
 <div class="header">
     <div class="content-container">
@@ -47,10 +47,16 @@
                 </ul>
             </div>
             <div class="header_languages">
-                <ul>
-                    <li><a href="?language=ru"><fmt:message key="label.rus"/></a></li>
-                    <li class="active"><a href="?language=en"><fmt:message key="label.eng"/></a></li>
-                </ul>
+                <select onchange="window.location.href=this.value;">
+                    <c:forEach var="lang" items="${languages}">
+                        <option <c:out value="${lang == language ? 'selected' : ''}" /> value="?language=${lang}"><a href="?language=${lang}"><fmt:message key="label.${lang}"/></a></option>
+                    </c:forEach>
+                </select>
+
+<%--                <ul>--%>
+<%--                    <li><a href="?language=ru"><fmt:message key="label.ru"/></a></li>--%>
+<%--                    <li class="active"><a href="?language=en"><fmt:message key="label.en"/></a></li>--%>
+<%--                </ul>--%>
             </div>
         </div>
     </div>

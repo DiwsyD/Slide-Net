@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 public class language {
     private static final Logger LOG = Logger.getLogger(language.class);
 
-    /**
-     * I tried to use enum, but cause of it i get recursion :\
-     *
-     * I didn't find the reason, so, that's why i use this switch :(
-     *
-     * */
     public static final String LANGUAGE = "language";
     public static final String LOCALIZATION_FILE = "localization";
     public static final String[] supportedLanguages = {"en", "ru", "ua"};
@@ -23,11 +17,9 @@ public class language {
         //if we want to change lang -> change and return
         String lang = req.getParameter(LANGUAGE);
         if (language.checkLanguageParam(lang)) {
-            LOG.debug("checked: " + lang);
-            setLangueage(req, resp, lang);
+            setLanguage(req, resp, lang);
             return;
         }
-        LOG.debug("param is null");
 
         //Here we don't want to change lang, so, we check if session is not new
         if (req.getSession().getAttribute(LANGUAGE) != null) {
@@ -35,7 +27,6 @@ public class language {
         }
 
         //now, we know, session was destroyed or never exist, so get lang from cookie
-        LOG.debug("new session: " + lang);
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie c : cookies) {
@@ -49,63 +40,18 @@ public class language {
         if (!language.checkLanguageParam(lang)) {
             lang = supportedLanguages[0];
         }
-        setLangueage(req, resp, lang);
+        setLanguage(req, resp, lang);
     }
 
-
-    public static void checkLanguage(HttpServletRequest req, HttpServletResponse resp, String oo) {
-        LOG.debug("enter to change Language");
-        //if we want to change lang -> change and return
-        String lang = req.getParameter(LANGUAGE);
-        if (language.checkLanguageParam(lang)) {
-            setLangueage(req, resp, lang);
-            return;
-        }
-        LOG.debug("param is null");
-
-        LOG.debug("getLocale");
-        lang = req.getLocale().getLanguage();
-
-        LOG.debug("Locale is " + lang);
-
-
-        LOG.debug("getCookie");
-        Cookie[] cookies = req.getCookies();
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals(language.LANGUAGE)) {
-                    lang = c.getValue();
-                    break;
-                }
-            }
-        }
-        LOG.debug("Cookie is " + lang);
-        if (!language.checkLanguageParam(lang)) {
-            lang = "en";
-        }
-
-        setLangueage(req, resp, lang);
-    }
-
-    private static void setLangueage(HttpServletRequest req, HttpServletResponse resp, String lang) {
-        LOG.debug("Setting Language");
-        req.getSession().setAttribute("language", language.LOCALIZATION_FILE + "_" + lang);
-        LOG.debug("Setting cookie");
+    private static void setLanguage(HttpServletRequest req, HttpServletResponse resp, String lang) {
+        req.getSession().setAttribute("language", lang);
+        req.getSession().setAttribute("localization_file", LOCALIZATION_FILE);
         resp.addCookie(new Cookie(language.LANGUAGE, lang));
         resp.addCookie(new Cookie(language.LANGUAGE, lang));
-
-        Cookie[] cookies = req.getCookies();
-        for (Cookie c : cookies) {
-            if (c.getName().equals(language.LANGUAGE)) {
-                LOG.debug("COOKIE: " + c.getValue());
-                break;
-            }
-        }
         LOG.info("Language Changed to: [" + lang + "]");
     }
 
     private static boolean checkLanguageParam(String lang) {
-        LOG.debug("Checking Language: " + lang );
         if (lang == null) {
             return false;
         }

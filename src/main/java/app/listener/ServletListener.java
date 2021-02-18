@@ -1,6 +1,7 @@
 package app.listener;
 
 import app.service.AutomaticPaymentsThread;
+import app.service.language;
 import app.servlet.AdminServlet.AdminAccountServlet;
 import org.apache.log4j.Logger;
 
@@ -17,6 +18,7 @@ public class ServletListener implements ServletContextListener {
         LOG.info("===>Slide-Net App started!<===");
         Thread automaticPayments = new AutomaticPaymentsThread();
         automaticPayments.start();
+        sce.getServletContext().setAttribute("languages", language.supportedLanguages);
         LOG.info("===>Automatic Payment Thread started!<===");
     }
 
