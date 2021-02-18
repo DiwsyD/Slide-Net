@@ -18,11 +18,6 @@ public class ServletListener implements ServletContextListener {
         Thread automaticPayments = new AutomaticPaymentsThread();
         automaticPayments.start();
         LOG.info("===>Automatic Payment Thread started!<===");
-        LOG.info("===>Checking cookie for language settings<===");
-    }
-
-    private void checkLanguage() {
-
     }
 
     @Override

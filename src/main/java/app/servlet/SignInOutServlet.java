@@ -1,10 +1,7 @@
 package app.servlet;
 
-import app.service.AccountDataManager;
-import app.service.Authorization;
+import app.service.*;
 import app.entity.Account;
-import app.service.ServiceTariffDataManager;
-import app.service.Validator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -24,6 +21,8 @@ public class SignInOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.info("Enter to SignIn Page");
+
+        language.checkLanguage(req, resp);
         HttpSession session = req.getSession();
         try {
             boolean signed = session != null

@@ -4,6 +4,7 @@ import app.entity.Service;
 import app.service.DowsnloadFile;
 import app.service.ServiceTable;
 import app.service.ServiceTariffDataManager;
+import app.service.language;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ public class IndexPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.debug("Main page");
+        language.checkLanguage(req, resp);
         List<Service> serviceList = ServiceTariffDataManager.getAllServicesWithoutTariffs();
         ServiceTable.loadServiceTable(req, resp, serviceList);
         LOG.info("Service list has been load.");
