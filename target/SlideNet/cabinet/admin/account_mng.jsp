@@ -1,9 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="own" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setBundle basename="localization/interface"/>
 <html>
 <head>
-    <title>Subscriber Management</title>
+    <title><<fmt:message key="label.accountmng"/>></title>
     <c:import url="../../imports/admin_imports.html" />
 </head>
 <body>
@@ -18,21 +23,21 @@
 <!-- User Table -->
 <div class="content_table">
     <div  class="body-info">
-        <div class="page_title">Slide-Net Subscribers</div>
+        <div class="page_title"><fmt:message key="label.slidenetsubscribers"/></div>
         <div class="table">
             <table>
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Role</th>
-                    <th>Login</th>
-                    <th>Full Name</th>
-                    <th>Mobile Number</th>
-                    <th>Address</th>
-                    <th>IP Address</th>
-                    <th>Money Balance</th>
-                    <th>Account Status</th>
-                    <th>Control</th>
+                    <th><fmt:message key="label.role"/></th>
+                    <th><fmt:message key="label.login"/></th>
+                    <th><fmt:message key="label.fullname"/></th>
+                    <th><fmt:message key="label.phone"/></th>
+                    <th><fmt:message key="label.address"/></th>
+                    <th><fmt:message key="label.ipaddress"/></th>
+                    <th><fmt:message key="label.moneybalance"/></th>
+                    <th><fmt:message key="label.accountstatus"/></th>
+                    <th><fmt:message key="label.control"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,15 +59,15 @@
                         <td>${account.getMoneyBalance()}</td>
                         <td>
                             <c:if test="${account.isAccountStatus() == true}">
-                                <p class="active_value">Active</p>
+                                <p class="active_value"><fmt:message key="label.active"/></p>
                             </c:if>
                             <c:if test="${account.isAccountStatus() == false}">
-                                <p class="inactive_value">Inactive</p>
+                                <p class="inactive_value"><fmt:message key="label.inactive"/></p>
                             </c:if>
 
                         </td>
                         <td class="button-column">
-                            <a class="edit_button" href="account_mng/account_editor?account_id=${account.getId()}">Edit</a>
+                            <a class="edit_button" href="account_mng/account_editor?account_id=${account.getId()}"><fmt:message key="label.edit"/></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -70,7 +75,7 @@
 
                 <tr class="add_new_account" id="account_adder">
                     <td colspan="12">
-                        <a class="add_button" href="account_mng/account_editor?account_id=-1">Add</a>
+                        <a class="add_button" href="account_mng/account_editor?account_id=-1"><fmt:message key="label.add"/></a>
                     </td>
                 </tr>
                 </tbody>
@@ -86,8 +91,8 @@
                         <a class="inactive-link"><<</a>
                     </c:when>
                     <c:otherwise>
-                        <a class="active-link" href="account_mng?page=1">|<</a>
-                        <a class="active-link-2" href="account_mng?page=${page-1}"><<</a>
+                        <a class="active-link" href="${uri}?page=1">|<</a>
+                        <a class="active-link-2" href="${uri}?page=${page-1}"><<</a>
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
@@ -96,8 +101,8 @@
                         <a class="inactive-link">>|</a>
                     </c:when>
                     <c:otherwise>
-                        <a class="active-link-2" href="account_mng?page=${page+1}">>></a>
-                        <a class="active-link" href="account_mng?page=${maxPage}">>|</a>
+                        <a class="active-link-2" href="${uri}?page=${page+1}">>></a>
+                        <a class="active-link" href="${uri}?page=${maxPage}">>|</a>
                     </c:otherwise>
                 </c:choose>
             </div>

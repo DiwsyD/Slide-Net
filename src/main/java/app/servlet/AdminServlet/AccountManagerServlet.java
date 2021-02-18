@@ -44,6 +44,7 @@ public class AccountManagerServlet extends HttpServlet {
 
         req.setAttribute("maxPage", maxPage);
         req.setAttribute("page", page);
+        req.setAttribute("uri", req.getRequestURI());
 
         req.getRequestDispatcher(req.getRequestURI() + ".jsp").forward(req, resp);
     }

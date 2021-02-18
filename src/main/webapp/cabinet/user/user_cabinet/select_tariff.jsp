@@ -51,13 +51,13 @@
                     <tbody id="tariff-table" class="service_content_table">
                     <c:forEach var="tariff" items="${tariffList}">
                         <tr id="${tariff.getName()}">
-                            <td>${tariff.getName()}</td>
-                            <td>${tariff.getDescription()}</td>
-                            <td>${tariff.getPrice()}</td>
+                            <td><fmt:message key="label.${tariff.getName()}"/></td>
+                            <td><fmt:message key="label.${tariff.getDescription()}"/></td>
+                            <td><fmt:message key="label.${tariff.getPrice()}"/></td>
                             <td class="button-column">
                                 <form method="post">
                                     <button id="save_changes" name="selectedTariff" class="save_button" value="${tariff.getId()}">
-                                        Select
+                                        <fmt:message key="label.select"/>
                                     </button>
                                 </form>
                             </td>
@@ -69,7 +69,7 @@
                 <own:pagination path="${uri}" activeService="${activeService}" maxPage="${maxPage}" page="${page}"/>
 
                 <div class="save-cancel-editing">
-                    <a class="cancel_button" href="/cabinet/user/user_cabinet">Cancel</a>
+                    <a class="cancel_button" href="/cabinet/user/user_cabinet"><fmt:message key="label.cancel"/></a>
                 </div>
 
             </div>
