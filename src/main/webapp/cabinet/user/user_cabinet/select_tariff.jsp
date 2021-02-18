@@ -1,12 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="own" tagdir="/WEB-INF/tags" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setBundle basename="localization/interface"/>
 <!DOCTYPE>
 <html lang="en">
 <html>
 <head>
-    <title>Choose a tariff</title>
+    <title><<fmt:message key="label.chooseatariff"/>></title>
     <c:import url="../../../imports/user_imports.html" />
 </head>
 <body>
@@ -14,11 +17,11 @@
 
     <div class="content_table">
         <div  class="body-info">
-            <div class="page_title">Choose a Tariff to Service</div>
+            <div class="page_title"><fmt:message key="label.chooseatariff"/></div>
             <!-- Service Tabs -->
             <div class="service_tabs">
                 <c:forEach var="service" items="${serviceList}">
-                    <a class='tablink _active'>${service.getName()}</a>
+                    <a class='tablink _active'><fmt:message key="label.${service.getName()}"/></a>
                 </c:forEach>
             </div>
             <!-- Service Tables -->
@@ -28,19 +31,19 @@
                     <tr>
                         <c:choose>
                             <c:when test="${desc != ''}">
-                                <th><a class="sort-link" href="<own:modifyURL name="orderBy" value="name"/>">Tariff Name ^</a></th>
+                                <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='name'/>#services"><fmt:message key="label.TariffName"/> ^</a></th>
                             </c:when>
                             <c:otherwise>
-                                <th><a class="sort-link" href="<own:modifyURL name="orderBy" value="name_desc"/>">Tariff Name v</a></th>
+                                <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='name_desc'/>#services"><fmt:message key="label.TariffName"/> v</a></th>
                             </c:otherwise>
                         </c:choose>
-                        <th>Description</th>
+                        <th><fmt:message key="label.Description"/></th>
                         <c:choose>
                             <c:when test="${desc != ''}">
-                                <th><a class="sort-link" href="<my:modifyURL name="orderBy" value="price"/>">Price ^</a></th>
+                                <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='price'/>#services"><fmt:message key="label.Price"/> ^</a></th>
                             </c:when>
                             <c:otherwise>
-                                <th><a class="sort-link" href="<my:modifyURL name="orderBy" value="price_desc"/>">Price v</a></th>
+                                <th><a class="sort-link" href="<own:modifyURL name='orderBy' value='price_desc'/>#services"><fmt:message key="label.Price"/> v</a></th>
                             </c:otherwise>
                         </c:choose>
                     </tr>

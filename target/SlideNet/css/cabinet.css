@@ -24,7 +24,6 @@ h1 {
 /*-------User cabinet----------*/
 .member_info li {
     height: 40px;
-    margin: 5px 0;
 }
 .member_info li:before {
     content: none;
@@ -98,7 +97,7 @@ h1 {
 
 .save-cancel-editing{
     text-align: right;
-    margin-bottom: 13px;
+    margin: 75px 0 15px;
 }
 
 .save-cancel-editing button{
