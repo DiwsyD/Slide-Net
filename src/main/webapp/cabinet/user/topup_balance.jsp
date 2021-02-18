@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- header -->
-    <c:import url="../../imports/cabinet_header.jsp" />
+    <c:import url="../../imports/header.jsp" />
     <div class="content-container">
         <div class="body-info">
             <div class="page_title"><fmt:message key="label.topupbalance"/></div>

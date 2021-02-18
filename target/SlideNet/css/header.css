@@ -71,10 +71,6 @@ li:before {
     flex: 0.1;
 }
 
-.exit_button li {
-    display: inline;
-}
-
 .exit_button a:hover {
     border-bottom: 2px white solid;
     padding-bottom: 3px;

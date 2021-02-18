@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- header -->
-<c:import url="../../imports/cabinet_header.jsp" />
+<c:import url="../../imports/header.jsp" />
 <c:if test="${account != null}">
     <c:remove var="account" />
 </c:if>

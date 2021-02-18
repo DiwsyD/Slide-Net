@@ -1,19 +1,21 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
-<jsp:useBean id="accounts" class="app.entity.Account" scope="page" />
+
+<fmt:setBundle basename="localization/interface"/>
 <html>
 <head>
-    <title>Account Editor</title>
+    <title><<fmt:message key="label.acceditor"/>></title>
     <c:import url="../../../imports/admin_imports.html" />
 </head>
 <body onload="init()">
-<c:import url="../../../imports/cabinet_header.jsp" />
+<c:import url="../../../imports/header.jsp" />
 
 <!-- Account Information Block -->
     <div class="content-container">
         <div class="body-info">
-            <div class="page_title">Edit Account</div>
+            <div class="page_title"><fmt:message key="label.editaccount"/></div>
 
             <form method="post">
                 <div class="member_info">
@@ -21,19 +23,19 @@
                         <ul>
                             <li>ID:</li>
                             <li><fmt:message key="label.role"/>:</li>
-                            <li>Login:</li>
-                            <li>Password:</li>
+                            <li><fmt:message key="label.login"/>:</li>
+                            <li><fmt:message key="label.password"/>:</li>
 
-                            <li>First Name:</li>
-                            <li>Last Name:</li>
-                            <li>Second Name:</li>
+                            <li><fmt:message key="label.name"/>:</li>
+                            <li><fmt:message key="label.lastname"/>:</li>
+                            <li><fmt:message key="label.secondname"/>:</li>
 
-                            <li>Mobile Number:</li>
-                            <li>Address:</li>
-                            <li>IP Address:</li>
-                            <li>Money Balance:</li>
+                            <li><fmt:message key="label.phone"/>:</li>
+                            <li><fmt:message key="label.address"/>:</li>
+                            <li><fmt:message key="label.ipaddress"/>:</li>
+                            <li><fmt:message key="label.moneybalance"/>:</li>
 
-                            <li>Account Status:</li>
+                            <li><fmt:message key="label.accountstatus"/>:</li>
                         </ul>
                     </div>
                     <div class="dynamic_info">
@@ -44,7 +46,7 @@
                             <!--  -->
                             <li>
                                 <input id="new_password" type="text" name="new_password" placeholder="New Password"readonly class="input-account-data" value="">
-                                <button class="add_button" onclick="generatePasswordRequest()">Generate</button>
+                                <button class="add_button" onclick="generatePasswordRequest()"><fmt:message key="label.generate"/></button>
                             </li>
                             <!--  -->
                             <li><input data-rule="text" type="text" name="first_name" placeholder="Name" class="input-account-data" value="${account.getfName()}"></li>
@@ -59,12 +61,12 @@
                             <li>
                                 <select name="account_status" class="select_account_status">
                                     <c:if test="${account.isAccountStatus()}">
-                                        <option class="active_value" value="true" selected>Active</option>
-                                        <option class="inactive_value" value="false">Inactive</option>
+                                        <option class="active_value" value="true" selected><fmt:message key="label.active"/></option>
+                                        <option class="inactive_value" value="false"><fmt:message key="label.inactive"/></option>
                                     </c:if>
                                     <c:if test="${!account.isAccountStatus()}">
-                                        <option class="active_value" value="true">Active</option>
-                                        <option class="inactive_value" value="false" selected>Inactive</option>
+                                        <option class="active_value" value="true" ><fmt:message key="label.active"/></option>
+                                        <option class="inactive_value" value="false" selected><fmt:message key="label.inactive"/></option>
                                     </c:if>
                                 </select>
                             </li>
@@ -73,10 +75,10 @@
                 </div>
                 <div class="save-cancel-editing">
                     <button type="submit" class="cancel_button" name="account_result" value="cancel">
-                        Cancel
+                        <fmt:message key="label.cancel"/>
                     </button>
                     <button id="submit_button" type="submit" class="save_button" name="account_result" value="save">
-                        Save
+                        <fmt:message key="label.save"/>
                     </button>
                 </div>
             </form>

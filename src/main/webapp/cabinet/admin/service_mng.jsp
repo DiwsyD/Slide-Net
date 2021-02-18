@@ -12,7 +12,7 @@
     <c:import url="../../imports/admin_imports.html" />
 </head>
 <body>
-<c:import url="../../imports/cabinet_header.jsp" />
+<c:import url="../../imports/header.jsp" />
 
 <div class="content_table">
     <div  class="body-info">

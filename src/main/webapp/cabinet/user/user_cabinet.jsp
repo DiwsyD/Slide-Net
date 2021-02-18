@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- header -->
-    <c:import url="../../imports/cabinet_header.jsp" />
+    <c:import url="../../imports/header.jsp" />
     <!-- Account Information Block -->
     <div class="content-container">
         <div class="body-info">

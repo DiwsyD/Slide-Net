@@ -6,15 +6,15 @@
 <fmt:setBundle basename="localization/interface"/>
 <html>
 <head>
-    <title><<fmt:message key="label.admincabinet"/>></title>
+    <title><<fmt:message key="label.admincontrolpanel"/>></title>
     <c:import url="../../imports/admin_imports.html" />
 </head>
 <body>
     <!-- header -->
-    <c:import url="../../imports/cabinet_header.jsp" />
+    <c:import url="../../imports/header.jsp" />
     <div class="content-container">
         <div class="body-info">
-            <div class="page_title"><fmt:message key="label.admincontrpanel"/></div>
+            <div class="page_title"><fmt:message key="label.admincontrolpanel"/></div>
             <div class="member_info">
                 <div class="static_info">
                     <ul>
