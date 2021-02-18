@@ -74,10 +74,10 @@
                     <tr class="add_new_account">
                         <td colspan="10">
                             <button id="account_adder" class="add_button" value="new" onclick="createFormsToAddNewTariffRow('${activeService}')">
-                                <fmt:message key="label.remove"/>
+                                <fmt:message key="label.add"/>
                             </button>
                             <button id="save_changes" style="display: none;" class="save_button" value="save" onclick="saveChanges('${activeService}')">
-                                <fmt:message key="label.add"/>
+                                <fmt:message key="label.save"/>
                             </button>
                         </td>
                     </tr>

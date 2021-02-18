@@ -92,11 +92,11 @@
                                         <c:forEach var="tariff" items="${service.getTariffList()}">
                                             <c:if test="${tariff.getId() == activeServiceData.getTariffId()}">
                                                 <p>
-                                                    <a><fmt:message key='label.tariff'/>:</a> <a style="color: #646cf1"><fmt:message key="label.${tariff.getName()}"/></a>
+                                                    <a><fmt:message key='label.tariff'/>:</a> <a style="color: #646cf1">${tariff.getName()}</a>
                                                     <a class="edit_button" href="user_cabinet?action=edit&serviceId=${service.getId()}&tariffId=${tariff.getId()}"><fmt:message key='label.edit'/></a>
                                                 </p>
                                                 <p>
-                                                    <a><fmt:message key="label.Description"/>:</a> <a style="color: #646cf1"><fmt:message key="label.${tariff.getDescription()}"/></a>
+                                                    <a><fmt:message key="label.Description"/>:</a> <a style="color: #646cf1">${tariff.getDescription()}</a>
                                                 </p>
                                                 <p>
                                                     <a><fmt:message key="label.nextpayment"/>:</a> <a style="color: #f1a164">${activeServiceData.getNexPaymentDay()}</a>
@@ -128,7 +128,8 @@
 
 
                             <c:otherwise>
-                                <div><fmt:message key="label.servicestatus"/>:
+                                <div>
+                                    <a><fmt:message key="label.servicestatus"/>:</a>
                                     <a class="inactive_value"><fmt:message key="label.inactive"/></a>
                                     <a class="add_button" href="user_cabinet?action=activate&serviceId=${service.getId()}"><fmt:message key="label.activate"/></a>
                                 </div>
