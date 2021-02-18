@@ -3,6 +3,7 @@ package app.servlet.AdminServlet;
 import app.service.AccountDataManager;
 import app.service.GetPayment;
 import app.service.ServiceTariffDataManager;
+import app.service.language;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,7 @@ public class AdminAccountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        language.checkLanguage(req, resp);
         LOG.debug("doGet: " + req.getRequestURI());
         int serviceCount = ServiceTariffDataManager.getServiceCount();
         int tariffCount = ServiceTariffDataManager.getTariffCount();

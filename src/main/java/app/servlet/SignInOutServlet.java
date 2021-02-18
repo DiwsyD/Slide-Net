@@ -21,7 +21,6 @@ public class SignInOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.info("Enter to SignIn Page");
-
         language.checkLanguage(req, resp);
         HttpSession session = req.getSession();
         try {

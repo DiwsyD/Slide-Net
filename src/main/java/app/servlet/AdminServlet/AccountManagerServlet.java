@@ -2,6 +2,7 @@ package app.servlet.AdminServlet;
 
 import app.entity.Account;
 import app.service.AccountDataManager;
+import app.service.language;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ public class AccountManagerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        language.checkLanguage(req, resp);
         int page = 1;
         int pagePaginSize = 5;
         int maxPage = (int)Math.ceil((double) AccountDataManager.getAccountCount() / pagePaginSize);

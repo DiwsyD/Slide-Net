@@ -3,6 +3,7 @@ package app.servlet.AdminServlet;
 import app.entity.Account;
 import app.service.AccountDataManager;
 import app.service.Encryption;
+import app.service.language;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -29,6 +30,7 @@ public class AccountEditorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        language.checkLanguage(req, resp);
         try {
             Account account = null;
             LOG.debug("Account id: " + req.getParameter("account_id"));

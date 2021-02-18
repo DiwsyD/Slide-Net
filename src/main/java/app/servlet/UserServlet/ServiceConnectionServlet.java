@@ -4,6 +4,7 @@ import app.entity.Service;
 import app.service.AccountDataManager;
 import app.service.ServiceTable;
 import app.service.ServiceTariffDataManager;
+import app.service.language;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -26,9 +27,10 @@ public class ServiceConnectionServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        language.checkLanguage(req, resp);
         //services and tariffs that account has
         try {
-            LOG.debug("Load Service Table...");
+            LOG.info("Load Service Table...");
             int serviceId = Integer.parseInt(req.getParameter("serviceId"));
             Service service = ServiceTariffDataManager.getServiceById(serviceId);
             if (service == null) {

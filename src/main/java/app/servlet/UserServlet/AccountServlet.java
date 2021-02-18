@@ -5,6 +5,7 @@ import app.entity.AccountService;
 import app.entity.Service;
 import app.service.AccountDataManager;
 import app.service.ServiceTariffDataManager;
+import app.service.language;
 import org.apache.log4j.Logger;
 import org.apache.log4j.helpers.LogLog;
 
@@ -31,6 +32,7 @@ public class AccountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        language.checkLanguage(req, resp);
         //Check if we want to activate or add service
         if (req.getParameter("action") != null) {
             serviceAction(req, resp);
