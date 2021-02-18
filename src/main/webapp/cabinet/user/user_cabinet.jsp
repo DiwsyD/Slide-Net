@@ -1,9 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setBundle basename="localization/interface"/>
 <html>
 <head>
-    <title>User Cabinet</title>
+    <title><<fmt:message key="label.usercabinet"/>></title>
     <c:import url="../../imports/user_imports.html" />
 </head>
 <body>
@@ -12,14 +16,14 @@
     <!-- Account Information Block -->
     <div class="content-container">
         <div class="body-info">
-            <div class="page_title">Personal Info</div>
+            <div class="page_title"><fmt:message key="label.perosnalinfo"/></div>
             <div class="member_info">
                 <div class="static_info">
                     <ul>
-                        <li>Account ID:</li>
-                        <li>Full Name:</li>
-                        <li>Address:</li>
-                        <li>Phone:</li>
+                        <li><fmt:message key="label.accountid"/>:</li>
+                        <li><fmt:message key="label.fullname"/>:</li>
+                        <li><fmt:message key="label.address"/>:</li>
+                        <li><fmt:message key="label.phone"/>:</li>
                     </ul>
                 </div>
                 <div class="dynamic_info">
@@ -33,13 +37,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="page_title">Account Info</div>
+            <div class="page_title"><fmt:message key="label.accountinfo"/></div>
             <div class="tech_info">
                 <div class="static_info">
                     <ul>
-                        <li>Money Balance:</li>
-                        <li>IP Address:</li>
-                        <li>Account Status:</li>
+                        <li><fmt:message key="label.moneybalance"/>:</li>
+                        <li><fmt:message key="label.ipaddress"/>:</li>
+                        <li><fmt:message key="label.accountstatus"/>:</li>
                     </ul>
                 </div>
                 <div class="dynamic_info">
@@ -47,21 +51,21 @@
                         <li>${account_data.getMoneyBalance()}</li>
                         <li>${account_data.getIpAddress()}</li>
                         <c:if test="${account_data.isAccountStatus() == true}">
-                            <li style="color: limegreen">Active</li>
+                            <li style="color: limegreen"><fmt:message key="label.active"/></li>
                         </c:if>
                         <c:if test="${account_data.isAccountStatus() == false}">
-                            <li style="color: orangered">Inactive</li>
+                            <li style="color: orangered"><fmt:message key="label.inactive"/></li>
                         </c:if>
                     </ul>
                 </div>
             </div>
-            <div class="page_title">Services</div>
+            <div class="page_title"><fmt:message key="label.services"/></div>
             <div class="services">
                 <c:forEach var="service" items="${serviceList}">
 
                     <c:set var="activeServiceData" scope="session" value="${account_data.isServiceLinked(service)}" />
                     <div id="${service.getId()}" class="service">
-                        <div class="page_subtitle">${service.getName()}</div>
+                        <div class="page_subtitle"><fmt:message key="label.${service.getName()}"/></div>
                         <c:choose>
 <%--                            If this service is activated on account --%>
                             <c:when test="${activeServiceData != null}">
@@ -69,9 +73,16 @@
                                 <ul>
                                     <%-- Show service status and Disable Button --%>
                                     <li>
-                                        <a>Service Status:</a>
+                                        <a><fmt:message key="label.servicestatus"/>:</a>
                                         <a class="<c:out value="${activeServiceData.isStatus() ? 'active_value' : 'inactive_value'}"/>">
-                                            <c:out value="${activeServiceData.isStatus() ? 'Active' : 'Inactive'}"/>
+                                            <c:choose>
+                                                <c:when test="${activeServiceData.isStatus()}">
+                                                    <fmt:message key='label.active'/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <fmt:message key='label.inactive'/>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </a>
                                         <a class="remove_button" href="user_cabinet?action=disable&serviceId=${service.getId()}">Disable</a>
                                     </li>

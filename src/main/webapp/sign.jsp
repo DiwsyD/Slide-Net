@@ -8,7 +8,7 @@
 <!DOCTYPE>
 <html lang="en">
 <head>
-    <title><<ctf:SlideNet/>></title>
+    <title><<fmt:message key="label.signIn"/>></title>
     <link rel="stylesheet" href="css/signin.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/forms.css">

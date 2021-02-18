@@ -7,7 +7,7 @@
 <fmt:setBundle basename="localization/interface"/>
 <html>
 <head>
-    <title>Not Found</title>
+    <title><<fmt:message key="label.notfound"/>></title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/error.css">
     <link rel="shortcut icon" href="media/images/error_icon.png" type="image/png">
@@ -15,13 +15,13 @@
 <body>
 
     <div class="ErrorMassage">
-        <h1>Sorry!</h1>
-        <h2>Something went Wrong :(</h2>
+        <h1><fmt:message key="label.sorry"/>!</h1>
+        <h2><fmt:message key="label.smthWrong"/> :(</h2>
 
         <c:if test="${ErrorCause != null}">
             <h2><c:out value="${ErrorCause}"/></h2>
         </c:if>
-        <a href="/">Back to Main Page</a>
+        <a href="/"><fmt:message key="label.back"/></a>
     </div>
 </body>
 </html>
