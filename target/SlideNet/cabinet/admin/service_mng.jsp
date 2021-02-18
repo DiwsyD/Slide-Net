@@ -4,7 +4,7 @@
 <%@ taglib prefix="own" tagdir="/WEB-INF/tags" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/interface"/>
+<fmt:setBundle basename="localization/${language}"/>
 <!DOCTYPE>
 <html lang="en">
 <head>
@@ -52,7 +52,7 @@
                         <tr id="${tariff.getName()}">
                             <td>${tariff.getName()}</td>
                             <td>${tariff.getDescription()}</td>
-                            <td>${tariff.getPrice()}</td>
+                            <td>${tariff.getPrice()} <fmt:message key="label.currency"/></td>
                             <td class="button-column">
                                 <button class="cancel_button" value="cancel" style="display: none;" onclick="cancelTariff('${tariff.getName()}')">
                                     <fmt:message key="label.cancel"/>

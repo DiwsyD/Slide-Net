@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/interface"/>
+<fmt:setBundle basename="localization/${language}"/>
 <html>
 <head>
     <title><<fmt:message key="label.acceditor"/>></title>

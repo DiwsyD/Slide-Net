@@ -5,7 +5,7 @@
 <%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/interface"/>
+<fmt:setBundle basename="localization/${language}"/>
 <!DOCTYPE>
 <html lang="en">
 <head>
@@ -89,7 +89,7 @@
                                     <tr id="${tariff.getName()}">
                                         <td>${tariff.getName()}</td>
                                         <td>${tariff.getDescription()}</td>
-                                        <td>${tariff.getPrice()}</td>
+                                        <td>${tariff.getPrice()} <fmt:message key="label.currency"/></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

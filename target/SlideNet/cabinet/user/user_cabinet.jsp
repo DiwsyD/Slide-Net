@@ -4,7 +4,7 @@
 <%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/interface"/>
+<fmt:setBundle basename="localization/${language}"/>
 <html>
 <head>
     <title><<fmt:message key="label.usercabinet"/>></title>
@@ -59,7 +59,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="page_title"><fmt:message key="label.services"/></div>
+            <div class="page_title"><fmt:message key="label.Services"/></div>
             <div class="services">
                 <c:forEach var="service" items="${serviceList}">
 
@@ -129,7 +129,7 @@
 
                             <c:otherwise>
                                 <div>
-                                    <a><fmt:message key="label.servicestatus"/></a>:
+                                    <a><fmt:message key="label.servicestatus"/>:</a>
                                     <a class="inactive_value"><fmt:message key="label.inactive"/></a>
                                     <a class="add_button" href="user_cabinet?action=activate&serviceId=${service.getId()}"><fmt:message key="label.activate"/></a>
                                 </div>

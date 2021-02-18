@@ -14,10 +14,15 @@ public class ServletListener implements ServletContextListener {
     private Thread automaticPayments = null;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        LOG.debug("===>Slide-Net App started!<===");
+        LOG.info("===>Slide-Net App started!<===");
         Thread automaticPayments = new AutomaticPaymentsThread();
         automaticPayments.start();
-        LOG.debug("===>Automatic Payment Thread started!<===");
+        LOG.info("===>Automatic Payment Thread started!<===");
+        LOG.info("===>Checking cookie for language settings<===");
+    }
+
+    private void checkLanguage() {
+
     }
 
     @Override

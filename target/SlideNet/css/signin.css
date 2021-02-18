@@ -43,6 +43,7 @@ body {
     font-family: 'Raleway_Bold';
     padding-left: 100px;
     text-align: left;
+    width: 600px;
 }
 
 .info_block li {

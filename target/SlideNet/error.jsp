@@ -4,7 +4,7 @@
 <%@ taglib uri="/customtf" prefix="ctf" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/interface"/>
+<fmt:setBundle basename="localization/${language}"/>
 <html>
 <head>
     <title><<fmt:message key="label.notfound"/>></title>
