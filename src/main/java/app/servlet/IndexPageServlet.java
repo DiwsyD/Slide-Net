@@ -1,7 +1,7 @@
 package app.servlet;
 
 import app.entity.Service;
-import app.service.DowsnloadFile;
+import app.service.DownloadFile;
 import app.service.ServiceTable;
 import app.service.ServiceTariffDataManager;
 import app.service.language;
@@ -28,7 +28,7 @@ public class IndexPageServlet extends HttpServlet {
         LOG.info("Service list has been load.");
 
         if (req.getParameter("download") != null) {
-            DowsnloadFile.downloadServices(resp, getServletContext().getRealPath(""));
+            DownloadFile.downloadServices(resp);
         }
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }

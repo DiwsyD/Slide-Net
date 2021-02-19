@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
 
-public class DowsnloadFile {
-    private static final Logger LOG = Logger.getLogger(DowsnloadFile.class);
+public class DownloadFile {
+    private static final Logger LOG = Logger.getLogger(DownloadFile.class);
 
     private static final String FILE_NAME = "SlideNet_TariffPlans";
-    private static final String FILE_RELATIVE_PATH = "media/textFiles/";
 
-    public static void downloadServices(HttpServletResponse resp, String absPath) throws IOException {
+    public static void downloadServices(HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
 
         resp.setContentType("text/html");
