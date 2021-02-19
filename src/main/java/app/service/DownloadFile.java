@@ -26,11 +26,14 @@ public class DownloadFile {
 
     private static String generateServiceInformation() {
         List<Service> serviceList = ServiceTariffDataManager.getAllServices();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("Slide-Net Service Tariffs!");
+        if (serviceList == null || serviceList.size() < 1) {
+            return sb.toString();
+        }
         String newLine = "\n";
         String tab = "    ";
         String lineSep = "-----------------------------";
-        sb.append("Slide-Net Service Tariffs!").append(newLine)
+        sb.append(newLine)
                 .append(lineSep).append(newLine).append(newLine);
         for (Service service : serviceList) {
             sb.append(">").append(service.getName())
