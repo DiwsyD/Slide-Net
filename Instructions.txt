@@ -1,0 +1,32 @@
+********************************************
+
+Инструкция по запуску приложения Slide-NET
+
+********************************************
+
+1. Запустить сервер MySQL.
+
+2. Зайти в административную консоль и выполнить команду
+
+	SOURCE ABSOLUTE_PATH_TO_SCRIPT;
+
+где ABSOLUTE_PATH_TO_SCRIPT - абсолютный путь к файлу:
+
+	sql/slidenet-db-create.sql;
+
+3. Создать нового пользователя
+	с именем 'testuser' и паролем 'testpass':
+
+ CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'testpass';	
+
+4. Выдаеть ему права на работу с базой:
+
+GRANT ALL PRIVILEGES ON * . * TO 'testuser'@'localhost';
+
+FLUSH PRIVILEGES;
+
+(выполнить в административной консоли MySQL)
+
+4. Открыть проект в Intellij Idea.
+
+5. Сконфигурировать Apache Tomcat 9.0.*
