@@ -21,7 +21,7 @@
         <div class="welcome_info">
             <div class="intro_text">
                 <h1>
-                    <fmt:message key="label.Internet"/><fmt:message key="label.provider"/><br>
+                    <fmt:message key="label.Internet"/>     <fmt:message key="label.provider"/><br>
                     <ctf:SlideNet/>
                 </h1>
             </div>

@@ -1011,6 +1011,7 @@ SELECT|sys.sys_config
     <column id="310" parent="288" name="activation_date">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
     <column id="311" parent="288" name="enable_status">
       <Position>5</Position>

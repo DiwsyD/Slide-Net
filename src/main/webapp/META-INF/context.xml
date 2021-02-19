@@ -4,10 +4,10 @@
               auth="Container"
               type="javax.sql.DataSource"
               maxActive="50"
-              username="Artem"
-              password="BSE-Jus-6fV-qRm"
+              username="testuser"
+              password="testpass"
               driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://aa14pps9vjw98eo.c5c12hg49w66.eu-central-1.rds.amazonaws.com:3306/slidenet"
+              url="jdbc:mysql://localhost:3306/slidenetdb?autoReconnect=true"
               validationQuery="select 1"
               maxIdle="5"
               removeAbandoned="true"
@@ -16,7 +16,3 @@
     />
 
 </Context>
-
-        <!--        url="jdbc:mysql://localhost:3306/slidenetdb?autoReconnect=true"     -->
-        <!--        username="root"                                                     -->
-        <!--        password="myDBroot854!"                                             -->
