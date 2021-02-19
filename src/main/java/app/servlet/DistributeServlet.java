@@ -1,5 +1,6 @@
 package app.servlet;
 
+import app.constants.Role;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -23,13 +24,13 @@ public class DistributeServlet extends HttpServlet {
         StringBuilder redirectTo = new StringBuilder();
         try {
             HttpSession session = req.getSession();
-            String role = session.getAttribute("role").toString();
+            String role = session.getAttribute(Role.ROLE).toString();
             LOG.info("Get account role: <" + role + ">");
             switch (role) {
-                case "user":
+                case Role.USER:
                     redirectTo.append(req.getRequestURI()).append("/user/user_cabinet");
                     break;
-                case "admin":
+                case Role.ADMIN:
                     redirectTo.append(req.getRequestURI()).append("/admin/admin_cabinet");
                     break;
             }

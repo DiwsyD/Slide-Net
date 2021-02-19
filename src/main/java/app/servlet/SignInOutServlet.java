@@ -1,5 +1,6 @@
 package app.servlet;
 
+import app.constants.Role;
 import app.service.*;
 import app.entity.Account;
 import org.apache.log4j.Logger;
@@ -26,7 +27,7 @@ public class SignInOutServlet extends HttpServlet {
         try {
             boolean signed = session != null
                     && session.getAttribute("login") != null
-                    && session.getAttribute("role") != null;
+                    && session.getAttribute(Role.ROLE) != null;
             
             if(!signed) {
                 req.getRequestDispatcher("/sign.jsp").forward(req, resp);
@@ -38,7 +39,7 @@ public class SignInOutServlet extends HttpServlet {
             if (signAction.equals("out")) {
                 LOG.info("=======Log Out=======");
                 session.removeAttribute("login");
-                session.removeAttribute("role");
+                session.removeAttribute(Role.ROLE);
                 resp.sendRedirect("/sign");
             } else if (signAction.equals("in")) {
                 LOG.info("Redirecting to private cabinet...");
