@@ -52,11 +52,6 @@
                         <option <c:out value="${lang == language ? 'selected' : ''}" /> value="?language=${lang}"><a href="?language=${lang}"><fmt:message key="label.${lang}"/></a></option>
                     </c:forEach>
                 </select>
-
-<%--                <ul>--%>
-<%--                    <li><a href="?language=ru"><fmt:message key="label.ru"/></a></li>--%>
-<%--                    <li class="active"><a href="?language=en"><fmt:message key="label.en"/></a></li>--%>
-<%--                </ul>--%>
             </div>
         </div>
     </div>

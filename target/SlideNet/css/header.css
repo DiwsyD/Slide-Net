@@ -80,30 +80,7 @@ li:before {
 /*============================================*/
 .header_languages {
     flex: 0.2;
-}
-.header_languages li {
-    display: inline;
-    margin: 0 10px;
-    font-family: 'Raleway_SemiBold';
-    padding: 5px 10px;
-    border: 1px rgba(255, 255, 255, 0) solid;
-    border-radius: 13px;
-}
-
-.header_languages li:hover {
-    padding: 5px 10px;
-    border: 1px white solid;
-    border-radius: 13px;
-}
-
-.header_languages li.active{
-    background: white;
-    color: #5178D1;
-    color: brown;
-}
-
-.header_languages li.active a {
-    color: #20417f;
+    font-family: 'Raleway_Bold';
 }
 
 /*============================================*/

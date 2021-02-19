@@ -16,8 +16,10 @@
         </div>
         <div class="footer_languages">
             <ul>
-                <li><a href="?language=ru"><fmt:message key="label.ru"/></a></li>
-                <li><a href="?language=en"><fmt:message key="label.en"/></a></li>
+
+                <c:forEach var="lang" items="${languages}">
+                    <li><a href="?language=${lang}"><fmt:message key="label.${lang}"/></a></li>
+                </c:forEach>
             </ul>
         </div>
         <hr>
