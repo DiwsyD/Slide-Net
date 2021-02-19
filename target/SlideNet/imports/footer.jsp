@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 
-<fmt:setBundle basename="localization/localization_${language}"/>
+<fmt:setBundle basename="localization/${localization_file}${language}"/>
 <!-- footer -->
 <div class="footer">
     <div class="content-container">

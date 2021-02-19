@@ -10,7 +10,7 @@ public class language {
     private static final Logger LOG = Logger.getLogger(language.class);
 
     public static final String LANGUAGE = "language";
-    public static final String LOCALIZATION_FILE = "localization";
+    public static final String LOCALIZATION_FILE = "localization_";
     public static final String[] supportedLanguages = {"en", "ru", "ua"};
 
     public static void checkLanguage(HttpServletRequest req, HttpServletResponse resp) {
