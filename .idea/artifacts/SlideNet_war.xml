@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SlideNet:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SlideNet</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SlideNet.war">
+      <element id="artifact" artifact-name="SlideNet:war exploded" />
+    </root>
+  </artifact>
+</component>

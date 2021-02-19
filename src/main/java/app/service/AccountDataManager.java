@@ -33,16 +33,14 @@ public class AccountDataManager {
 
 
     public static Account findAccountByIdOrNull(long id) {
-        Account account = AccountDAOImpl.getInstance().getAccountById(id);
-        if(account != null) {
-            account.setActiveServices(ServiceTariffDataManager.getAllAccountServices(account.getId()));
-        }
-        return account;
+        return finalizeAccount(AccountDAOImpl.getInstance().getAccountById(id));
     }
 
     public static Account findAccountByLoginOrNull(long login) {
-        Account account = AccountDAOImpl.getInstance().getAccountByLogin(login);
+        return finalizeAccount(AccountDAOImpl.getInstance().getAccountByLogin(login));
+    }
 
+    private static Account finalizeAccount(Account account) {
         if(account != null) {
             Role role = RoleDataManager.getRoleById(account.getRoleId());
             account.setRoleName(role.getName());
@@ -50,7 +48,6 @@ public class AccountDataManager {
         }
         return account;
     }
-
     //--------------
 
     public static List<Account> getAccounts(int page, int pageSize) {

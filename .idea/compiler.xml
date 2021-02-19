@@ -9,5 +9,8 @@
         <module name="SlideNet" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SlideNet" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
