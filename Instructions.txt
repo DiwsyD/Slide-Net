@@ -30,3 +30,26 @@ FLUSH PRIVILEGES;
 4. Открыть проект в Intellij Idea.
 
 5. Сконфигурировать Apache Tomcat 9.0.*
+
+
+
+********************************************
+
+Данные аккаунтов для работы с сайтом
+
+********************************************
+
+Admin Account:
+Ben
+Login: 854652030
+Password: testAdmin1!
+
+User Account1:
+Энтони
+Login: 123456789
+Password: testUser1!
+
+User Account2:
+Bob
+Login: 77999990
+Password: Another!753#
