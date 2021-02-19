@@ -8,21 +8,21 @@ import java.util.regex.Pattern;
 public class Validator {
     private static final Logger LOG = Logger.getLogger(Validator.class);
 
-    private static Integer maxLogin = 12;
-    private static Integer minLogin = 4;
+    private static final Integer maxLogin = 12;
+    private static final Integer minLogin = 4;
 
-    private static Integer maxPass = 16;
-    private static Integer minPass = 4;
+    private static final Integer maxPass = 16;
+    private static final Integer minPass = 4;
 
     public static long validateLogin(String login) {
-        if (login.length() > maxLogin || login.length() < minLogin) {
-            return -1;
-        }
         long result = -1;
+        if (login.length() > maxLogin || login.length() < minLogin) {
+            return result;
+        }
         try {
             result = Integer.parseInt(login);
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            LOG.warn("Invalid Login format. Access denied!");
         } finally {
             return result;
         }
