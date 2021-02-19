@@ -29,6 +29,7 @@ public class language {
         //now, we know, session was destroyed or never exist, so get lang from cookie
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
+            LOG.debug("cookies langth: " + cookies.length);
             for (Cookie c : cookies) {
                 if (c.getName().equals(language.LANGUAGE)) {
                     lang = c.getValue();
