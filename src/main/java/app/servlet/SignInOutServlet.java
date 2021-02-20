@@ -1,7 +1,7 @@
 package app.servlet;
 
 import app.constants.Role;
-import app.entityDataManager.Impl.DMFactoryImpl;
+import app.factory.Impl.DMFactoryImpl;
 import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import app.service.*;
 import app.entity.Account;

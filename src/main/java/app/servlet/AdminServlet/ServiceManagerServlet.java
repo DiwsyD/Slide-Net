@@ -1,7 +1,7 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Service;
-import app.entityDataManager.Impl.DMFactoryImpl;
+import app.factory.Impl.DMFactoryImpl;
 import app.service.ServiceTable;
 import app.service.language;
 import org.apache.log4j.Logger;

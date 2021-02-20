@@ -2,7 +2,7 @@ package app.service;
 
 import app.entity.Account;
 import app.entity.AccountService;
-import app.entityDataManager.Impl.DMFactoryImpl;
+import app.factory.Impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;

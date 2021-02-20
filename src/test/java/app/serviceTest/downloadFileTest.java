@@ -2,7 +2,7 @@ package app.serviceTest;
 
 import app.entity.Service;
 import app.entity.Tariff;
-import app.entityDataManager.Impl.DMFactoryImpl;
+import app.factory.Impl.DMFactoryImpl;
 import app.service.DownloadFile;
 import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import org.junit.Test;

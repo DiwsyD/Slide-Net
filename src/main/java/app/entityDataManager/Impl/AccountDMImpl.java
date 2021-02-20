@@ -4,6 +4,7 @@ import app.dao.Impl.AccountDAOImpl;
 import app.entity.Account;
 import app.entity.AccountService;
 import app.entity.Role;
+import app.factory.Impl.DMFactoryImpl;
 import app.service.Encryption;
 import app.service.Validator;
 import org.apache.log4j.Logger;

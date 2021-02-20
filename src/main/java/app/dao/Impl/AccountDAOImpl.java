@@ -16,7 +16,7 @@ public class AccountDAOImpl implements AccountDAO {
 
     ConnectionPool connectionPool = ConnectionPool.getInstance();
 
-    private static AccountDAOImpl accountUserDAO = new AccountDAOImpl();
+    private static final AccountDAOImpl accountUserDAO = new AccountDAOImpl();
 
     private AccountDAOImpl() {
         if (connectionPool == null) {

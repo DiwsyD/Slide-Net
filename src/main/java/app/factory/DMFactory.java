@@ -1,4 +1,4 @@
-package app.entityDataManager;
+package app.factory;
 
 import app.entityDataManager.Impl.AccountDMImpl;
 import app.entityDataManager.Impl.RoleDMImpl;

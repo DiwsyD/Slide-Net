@@ -17,7 +17,7 @@ public class ServiceTariffDAOImpl implements ServiceTariffDAO {
 
     ConnectionPool connectionPool = ConnectionPool.getInstance();
 
-    private static final ServiceTariffDAOImpl SERVICE_TARIFF_DAO_IMPL = new ServiceTariffDAOImpl();
+    private static final ServiceTariffDAOImpl serviceTariffDAO = new ServiceTariffDAOImpl();
 
     private ServiceTariffDAOImpl() {
         if (connectionPool == null) {
@@ -26,7 +26,7 @@ public class ServiceTariffDAOImpl implements ServiceTariffDAO {
     }
 
     public static ServiceTariffDAOImpl getInstance() {
-        return SERVICE_TARIFF_DAO_IMPL;
+        return serviceTariffDAO;
     }
 
     public Service getServiceById(long id) {

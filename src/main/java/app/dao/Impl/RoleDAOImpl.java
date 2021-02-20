@@ -17,7 +17,7 @@ public class RoleDAOImpl implements RoleDAO {
 
     ConnectionPool connectionPool = ConnectionPool.getInstance();
 
-    private static RoleDAOImpl roleDAOImpl = new RoleDAOImpl();
+    private static final RoleDAOImpl roleDAOImpl = new RoleDAOImpl();
 
     private RoleDAOImpl() {
         if (connectionPool == null) {

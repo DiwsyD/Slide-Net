@@ -1,7 +1,7 @@
 package app.service;
 
 import app.entity.Account;
-import app.entityDataManager.Impl.DMFactoryImpl;
+import app.factory.Impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 public class Authorization {

@@ -3,7 +3,7 @@ package app.servlet.UserServlet;
 import app.entity.Account;
 import app.entity.AccountService;
 import app.entity.Service;
-import app.entityDataManager.Impl.DMFactoryImpl;
+import app.factory.Impl.DMFactoryImpl;
 import app.service.language;
 import org.apache.log4j.Logger;
 import org.apache.log4j.helpers.LogLog;
