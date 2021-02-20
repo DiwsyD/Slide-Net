@@ -56,7 +56,7 @@ public class GetPayment {
      * THIS BLOCK OF CODE WAS COPIED JUST FOR DEMONSTRATING FUNCTIONALITY OF
      * MONTH PAYMENT BY CLICKING ON BUTTON IN ADMIN PANEL
      *
-     * DELETE THIS AFTER DEMONSTRATING!
+     * DELETE THIS AFTER DEMONSTRATION!
      * */
 
     public static void getMonthPayment(int monthCount) {

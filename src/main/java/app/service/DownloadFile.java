@@ -20,12 +20,12 @@ public class DownloadFile {
         resp.setContentType("APPLICATION/OCTET-STREAM");
         resp.setHeader("Content-Disposition","attachment; filename=\"" + FILE_NAME + ".txt" + "\"");
 
-        out.write(generateServiceInformation());
+        List<Service> serviceList = ServiceTariffDataManager.getAllServices();
+        out.write(generateServiceInformation(serviceList));
         out.close();
     }
 
-    private static String generateServiceInformation() {
-        List<Service> serviceList = ServiceTariffDataManager.getAllServices();
+    public static String generateServiceInformation(List<Service> serviceList) {
         StringBuilder sb = new StringBuilder("Slide-Net Service Tariffs!");
         if (serviceList == null || serviceList.size() < 1) {
             return sb.toString();
@@ -36,10 +36,19 @@ public class DownloadFile {
         sb.append(newLine)
                 .append(lineSep).append(newLine).append(newLine);
         for (Service service : serviceList) {
+            if (service == null) {
+                sb.append(">Empty Service;").append(newLine);
+                continue;
+            }
             sb.append(">").append(service.getName())
                     .append(newLine).append(tab)
-                    .append("Tariffs:");
-            for (Tariff tariff : service.getTariffList()) {
+                    .append("Tariffs: ");
+            List<Tariff> tariffList = service.getTariffList();
+            if (tariffList.size() < 1) {
+                sb.append("There is no tariffs yet :(");
+                continue;
+            }
+            for (Tariff tariff : tariffList) {
                 sb.append(newLine).append(tab).append(tab)
                 .append("[Name]: ").append(tariff.getName())
                         .append(newLine).append(tab).append(tab)
