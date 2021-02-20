@@ -6,6 +6,7 @@ import app.entity.AccountService;
 import app.entity.Service;
 import app.entity.Tariff;
 import app.entityDataManager.ServiceTariffDM;
+import app.factory.Impl.DAOFactoryImpl;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
@@ -19,32 +20,32 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
     public static final int DAY_IN_MONTH = 30;
 
     public Service getServiceById(long id) {
-        return ServiceTariffDAOImpl.getInstance().getServiceById(id);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getServiceById(id);
     }
 
     public List<Service> getAllServices() {
-        return ServiceTariffDAOImpl.getInstance().getAllServices();
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAllServices();
     }
 
     public List<Service> getAllServicesWithoutTariffs() {
-        return ServiceTariffDAOImpl.getInstance().getAllServicesWithoutTariffs();
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAllServicesWithoutTariffs();
     }
 
     public List<Tariff> getCertainServiceTariffs(long service_id, int page, int pageSize, String orderBy, String desc) {
         int tariffsToGet = (page - 1) * pageSize;
-        return ServiceTariffDAOImpl.getInstance().getPartTariffsByServiceId(service_id, pageSize, tariffsToGet, orderBy, desc);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getPartTariffsByServiceId(service_id, pageSize, tariffsToGet, orderBy, desc);
     }
 
     public AccountService getAccountService(long accountId, long serviceId) {
-        return ServiceTariffDAOImpl.getInstance().getAccountServiceByAccountId(accountId, serviceId);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAccountServiceByAccountId(accountId, serviceId);
     }
 
     public List<AccountService> getAllAccountServices(long accountId) {
-        return ServiceTariffDAOImpl.getInstance().getAccountServicesByAccountId(accountId);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAccountServicesByAccountId(accountId);
     }
 
     public int getServiceTariffCount(long serviceId) {
-        return ServiceTariffDAOImpl.getInstance().getServiceTariffCount(serviceId);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getServiceTariffCount(serviceId);
     }
 
     //Tariff actions
@@ -58,37 +59,37 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
 
         LOG.debug(tariff.toString());
 
-        long id = ServiceTariffDAOImpl.getInstance().checkTariffIsExist(tariff);
+        long id = DAOFactoryImpl.getInstance().getServiceTariffDAO().checkTariffIsExist(tariff);
         if (id > 0) {
             tariff.setId(id);
-            ServiceTariffDAOImpl.getInstance().editTariff(tariff);
+            DAOFactoryImpl.getInstance().getServiceTariffDAO().editTariff(tariff);
         } else {
             LOG.debug("ADD");
-            ServiceTariffDAOImpl.getInstance().addNewTariff(tariff);
+            DAOFactoryImpl.getInstance().getServiceTariffDAO().addNewTariff(tariff);
         }
 
     }
 
     public void removeTariff(String tariffName) {
-        ServiceTariffDAOImpl.getInstance().removeTariff(tariffName);
+        DAOFactoryImpl.getInstance().getServiceTariffDAO().removeTariff(tariffName);
     }
 
     public Tariff getTariffById(long tariffId) {
-        return ServiceTariffDAOImpl.getInstance().getTariffById(tariffId);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getTariffById(tariffId);
     }
 
     public int getServiceCount() {
-        return ServiceTariffDAOImpl.getInstance().getServiceCount();
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getServiceCount();
     }
 
     public int getTariffCount() {
-        return ServiceTariffDAOImpl.getInstance().getTariffCount();
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getTariffCount();
     }
 
     public void updateTariffAccountService(AccountService linkedService, long tariffId) {
         if (!linkedService.isPayed()) {
             linkedService.setTariffId(tariffId);
-            AccountDAOImpl.getInstance().updateServiceToAccount(linkedService);
+            DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedService);
             return;
         }
 
@@ -111,15 +112,15 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
         linkedService.setPayed(false);
         linkedService.setPaymentAmount(paymentForUpdatedTariff);
 
-        AccountDAOImpl.getInstance().updateServiceToAccount(linkedService);
+        DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedService);
     }
 
     public void updateAccountService(AccountService accountService) {
-        AccountDAOImpl.getInstance().updateServiceToAccount(accountService);
+        DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(accountService);
     }
 
     public int getActiveAccountServiceCount(long accountId) {
-        return ServiceTariffDAOImpl.getInstance().getActiveAccountService(accountId);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getActiveAccountService(accountId);
     }
 
 }

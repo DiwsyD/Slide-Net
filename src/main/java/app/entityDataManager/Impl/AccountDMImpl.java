@@ -4,6 +4,7 @@ import app.dao.Impl.AccountDAOImpl;
 import app.entity.Account;
 import app.entity.AccountService;
 import app.entity.Role;
+import app.factory.Impl.DAOFactoryImpl;
 import app.factory.Impl.DMFactoryImpl;
 import app.service.Encryption;
 import app.service.Validator;
@@ -22,11 +23,11 @@ public class AccountDMImpl {
     private final static int maxAccountCount = 10_000_000;
 
     public Account findAccountByIdOrNull(long id) {
-        return finalizeAccount(AccountDAOImpl.getInstance().getAccountById(id));
+        return finalizeAccount(DAOFactoryImpl.getInstance().getAccountDAO().getAccountById(id));
     }
 
     public Account findAccountByLoginOrNull(long login) {
-        return finalizeAccount(AccountDAOImpl.getInstance().getAccountByLogin(login));
+        return finalizeAccount(DAOFactoryImpl.getInstance().getAccountDAO().getAccountByLogin(login));
     }
 
     private Account finalizeAccount(Account account) {
@@ -42,18 +43,18 @@ public class AccountDMImpl {
     public List<Account> getAccounts(int page, int pageSize) {
         List<Account> accountList = new ArrayList<>();
         int accountsToGet = (page - 1) * pageSize;
-        for (Account account : AccountDAOImpl.getInstance().getAccounts(pageSize, accountsToGet)) {
+        for (Account account : DAOFactoryImpl.getInstance().getAccountDAO().getAccounts(pageSize, accountsToGet)) {
             accountList.add(setAccountRoleName(account));
         }
         return accountList;
     }
 
     public List<Account> getAllAccounts() {
-        return AccountDAOImpl.getInstance().getAllAccounts();
+        return DAOFactoryImpl.getInstance().getAccountDAO().getAllAccounts();
     }
 
     public int getAccountCount() {
-        return AccountDAOImpl.getInstance().getAccountCount();
+        return DAOFactoryImpl.getInstance().getAccountDAO().getAccountCount();
     }
 
     //Setters
@@ -67,11 +68,11 @@ public class AccountDMImpl {
     public void applyAccountData(Account account) {
         if (findAccountByIdOrNull(account.getId()) != null) {
             LOG.debug("Money: " + account.getMoneyBalance());
-            AccountDAOImpl.getInstance().updateAccount(account);
+            DAOFactoryImpl.getInstance().getAccountDAO().updateAccount(account);
             return;
         }
         account.setPassword(Encryption.encrypt(account.getPassword()));
-        AccountDAOImpl.getInstance().addAccount(account);
+        DAOFactoryImpl.getInstance().getAccountDAO().addAccount(account);
     }
 
     //Updaters
@@ -104,7 +105,7 @@ public class AccountDMImpl {
         Account account = new Account();
         Role userRole = DMFactoryImpl.getInstance().getRoleDM().getRoleByName("user");
 
-        account.setId((long) (AccountDAOImpl.getInstance().getLastAccountId() + 1));
+        account.setId((long) (DAOFactoryImpl.getInstance().getAccountDAO().getLastAccountId() + 1));
         account.setRoleId(userRole.getId());
         account.setRoleName(userRole.getName());
         account.setLogin(generateNewLogin());
@@ -116,7 +117,7 @@ public class AccountDMImpl {
 
     //Generate New Account login
     public int generateNewLogin() {
-        int accountCount = AccountDAOImpl.getInstance().getLastAccountId();
+        int accountCount = DAOFactoryImpl.getInstance().getAccountDAO().getLastAccountId();
         int newId = maxAccountCount - (accountCount + 1);
         StringBuilder newLogin = new StringBuilder(String.valueOf(newId)).reverse();
         int nullsToAdd = String.valueOf(maxAccountCount).length() - String.valueOf(newLogin).length();
@@ -167,14 +168,14 @@ public class AccountDMImpl {
         int tariffPrice = DMFactoryImpl.getInstance().getServiceTariffDM().getTariffById(tariffId).getPrice();
         accountService.setPaymentAmount(tariffPrice);
         LOG.debug("New Tariff - " + DMFactoryImpl.getInstance().getServiceTariffDM().getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
-        AccountDAOImpl.getInstance().activateServiceToAccount(accountService);
+        DAOFactoryImpl.getInstance().getAccountDAO().activateServiceToAccount(accountService);
     }
 
     public void pauseServiceOnAccount(long accountId, long serviceId) {
         AccountService linkedServices = DMFactoryImpl.getInstance().getServiceTariffDM().getAccountService(accountId, serviceId);
         linkedServices.setStatus(false);
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
-        AccountDAOImpl.getInstance().updateServiceToAccount(linkedServices);
+        DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedServices);
         checAccountStatus(accountId);
     }
 
@@ -200,7 +201,7 @@ public class AccountDMImpl {
             applyAccountData(account);
         }
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
-        AccountDAOImpl.getInstance().updateServiceToAccount(linkedServices);
+        DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedServices);
     }
 
     private void getPayForService(long accountId, int paymentAmount) {
@@ -212,7 +213,7 @@ public class AccountDMImpl {
 
     public void disableService(long accountId, int serviceId) {
         LOG.debug("Disabling...");
-        AccountDAOImpl.getInstance().disableServiceFromAccount(accountId, serviceId);
+        DAOFactoryImpl.getInstance().getAccountDAO().disableServiceFromAccount(accountId, serviceId);
         checAccountStatus(accountId);
     }
 
