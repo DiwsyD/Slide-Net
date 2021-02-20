@@ -1,6 +1,7 @@
 package app.servlet;
 
 import app.constants.Role;
+import app.entityDataManager.Impl.AccountDMImpl;
 import app.factory.Impl.DMFactoryImpl;
 import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import app.service.*;
@@ -59,12 +60,13 @@ public class SignInOutServlet extends HttpServlet {
         String userAuthPass = req.getParameter("pass");
         HttpSession session = req.getSession();
 
+        AccountDMImpl accountDM = DMFactoryImpl.getInstance().getAccountDM();
+        Account account = accountDM.findAccountByLoginOrNull(Validator.validateLogin(login));
+
         LOG.info("Validate User...");
-        if (Authorization.validateUser(login, userAuthPass)) {
+        if (Validator.validateAccount(account, login, userAuthPass)) {
             LOG.info("Valid data.");
             LOG.info("=======Log In=======");
-            Account account = DMFactoryImpl.getInstance().getAccountDM()
-                    .findAccountByLoginOrNull(Validator.validateLogin(login));
 
             session.setAttribute("login", account.getLogin());
             session.setAttribute("id", account.getId());
@@ -77,4 +79,5 @@ public class SignInOutServlet extends HttpServlet {
             this.doGet(req, resp);
         }
     }
+
 }

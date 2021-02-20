@@ -14,15 +14,11 @@ import java.util.List;
 public class AccountDAOImpl implements AccountDAO {
     private static final Logger LOG = Logger.getLogger(AccountDAOImpl.class);
 
-    ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private static final AccountDAOImpl accountUserDAO = new AccountDAOImpl();
 
-    private AccountDAOImpl() {
-        if (connectionPool == null) {
-            connectionPool = ConnectionPool.getInstance();
-        }
-    }
+    private AccountDAOImpl() {}
 
     public static AccountDAOImpl getInstance() {
         return accountUserDAO;

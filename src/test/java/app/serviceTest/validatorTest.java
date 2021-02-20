@@ -1,9 +1,13 @@
 package app.serviceTest;
 
+import app.entity.Account;
+import app.service.Encryption;
 import app.service.Validator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class validatorTest {
 
@@ -37,8 +41,38 @@ public class validatorTest {
         assertFalse(result2);
         assertTrue(result3);
         assertFalse(result4);
+    }
 
+    @Test
+    public void validateAccountWithIncorrectDataTest() {
+        Account account = mock(Account.class);
 
+        String login = "123456789";
+        String password = "incorrectp";
+
+        when(account.getPassword()).thenReturn(password);
+
+        boolean result = Validator.validateAccount(account, login, password);
+
+        assertFalse(result);
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

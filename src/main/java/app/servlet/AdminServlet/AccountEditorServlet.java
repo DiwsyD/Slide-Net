@@ -93,7 +93,8 @@ public class AccountEditorServlet extends HttpServlet {
 
             if (req.getParameter("new_password") != null && req.getParameter("new_password").trim().length() > 4) {
                 String newPassword = req.getParameter("new_password").trim();
-                account.setPassword(Encryption.encrypt(newPassword));
+                Encryption encryption = new Encryption();
+                account.setPassword(encryption.encrypt(newPassword));
             }
 
             DMFactoryImpl.getInstance().getAccountDM().applyAccountData(account);

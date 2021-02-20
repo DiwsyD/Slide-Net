@@ -1,5 +1,6 @@
 package app.service;
 
+import app.entity.Account;
 import org.apache.log4j.Logger;
 
 import java.util.regex.Matcher;
@@ -36,5 +37,24 @@ public class Validator {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.find();
+    }
+
+    /**.
+     * Get User object with data from DB and
+     * if its not null, add it to pool of users and return true - that means
+     * user is valid, received data is valid.
+     * */
+    public static boolean validateAccount(Account account, String login, String password) {
+        long loginInt = Validator.validateLogin(login.trim());
+        if (loginInt == -1 || account == null) {
+            return false;
+        }
+
+        boolean isEqualPassword = false;
+        if (validatePassword(password.trim())) {
+            String encryptedPass = Encryption.encrypt(password.trim());
+            isEqualPassword = account.getPassword().equals(encryptedPass);
+        }
+        return isEqualPassword;
     }
 }

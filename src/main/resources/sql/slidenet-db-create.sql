@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`role` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
-ENGINE = InnoDB;
+    DEFAULT CHARSET = utf8;
 
 
 -- -----------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`service` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB;
+    DEFAULT CHARSET = utf8;
 
 
 -- -----------------------------------------------------
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`tariff` (
     REFERENCES `slideNetDB`.`service` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    DEFAULT CHARSET = utf8;
 
 
 -- -----------------------------------------------------
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`account` (
     REFERENCES `slideNetDB`.`role` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    DEFAULT CHARSET = utf8;
 
 
 -- -----------------------------------------------------
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`account_service_tariff` (
     REFERENCES `slideNetDB`.`account` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    DEFAULT CHARSET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

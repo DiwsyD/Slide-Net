@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class language {
     private static final Logger LOG = Logger.getLogger(language.class);
@@ -20,16 +21,15 @@ public class language {
             setLanguage(req, resp, lang);
             return;
         }
-
+        HttpSession session = req.getSession();
         //Here we don't want to change lang, so, we check if session is not new
-        if (req.getSession().getAttribute(LANGUAGE) != null) {
+        if (session.getAttribute(LANGUAGE) != null) {
             return;
         }
 
         //now, we know, session was destroyed or never exist, so get lang from cookie
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
-            LOG.debug("cookies langth: " + cookies.length);
             for (Cookie c : cookies) {
                 if (c.getName().equals(language.LANGUAGE)) {
                     lang = c.getValue();
@@ -45,7 +45,7 @@ public class language {
     }
 
     private static void setLanguage(HttpServletRequest req, HttpServletResponse resp, String lang) {
-        req.getSession().setAttribute("language", lang);
+        req.getSession().setAttribute(language.LANGUAGE, lang);
         req.getSession().setAttribute("localization_file", LOCALIZATION_FILE);
         resp.addCookie(new Cookie(language.LANGUAGE, lang));
         resp.addCookie(new Cookie(language.LANGUAGE, lang));

@@ -72,7 +72,7 @@ public class downloadFileTest {
     }
 
     @Test
-    public void deosnloadServicesMethodTest() throws IOException {
+    public void downloadServicesMethodTest() throws IOException {
         HttpServletResponse resp = mock(HttpServletResponse.class);
         PrintWriter prwr = mock(PrintWriter.class);
         ServiceTariffDMImpl stdm = mock(ServiceTariffDMImpl.class);
