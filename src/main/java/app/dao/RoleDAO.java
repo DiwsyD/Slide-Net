@@ -6,6 +6,6 @@ public interface RoleDAO {
 
     Role getRoleById(long id);
 
-    public Role getRoleByName(String name);
+    Role getRoleByName(String name);
 }
 

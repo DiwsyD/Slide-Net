@@ -2,13 +2,19 @@ package app.serviceTest;
 
 import app.entity.Service;
 import app.entity.Tariff;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.DownloadFile;
+import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import org.junit.Test;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class downloadFileTest {
 
@@ -65,6 +71,50 @@ public class downloadFileTest {
         assertEquals(expected, result);
     }
 
+    @Test
+    public void deosnloadServicesMethodTest() throws IOException {
+        HttpServletResponse resp = mock(HttpServletResponse.class);
+        PrintWriter prwr = mock(PrintWriter.class);
+        ServiceTariffDMImpl stdm = mock(ServiceTariffDMImpl.class);
 
+        when(resp.getWriter()).thenReturn(prwr);
 
+        when(DMFactoryImpl.getInstance().getServiceTariffDM().getAllServices()).thenReturn(null);
+
+        DownloadFile.downloadServices(resp);
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

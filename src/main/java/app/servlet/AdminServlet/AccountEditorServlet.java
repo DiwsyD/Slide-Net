@@ -1,7 +1,7 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Account;
-import app.service.AccountDataManager;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.Encryption;
 import app.service.language;
 import org.apache.log4j.Logger;
@@ -36,10 +36,10 @@ public class AccountEditorServlet extends HttpServlet {
             LOG.debug("Account id: " + req.getParameter("account_id"));
             if (req.getParameter("account_id") != null) {
                 int account_id = Integer.parseInt(req.getParameter("account_id"));
-                account = AccountDataManager.findAccountByIdOrNull(account_id);
+                account = DMFactoryImpl.getInstance().getAccountDM().findAccountByIdOrNull(account_id);
             }
             if (account == null) {
-                account = AccountDataManager.createNewAccount();
+                account = DMFactoryImpl.getInstance().getAccountDM().createNewAccount();
             }
 
             req.getSession().setAttribute("account", account);
@@ -96,7 +96,7 @@ public class AccountEditorServlet extends HttpServlet {
                 account.setPassword(Encryption.encrypt(newPassword));
             }
 
-            AccountDataManager.applyAccountData(account);
+            DMFactoryImpl.getInstance().getAccountDM().applyAccountData(account);
         } catch (Exception e) {
             e.printStackTrace();
             LOG.error("Wrong data from Input! Or Account is not exist!");
@@ -108,6 +108,6 @@ public class AccountEditorServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(AccountDataManager.generatePassword(9));       // Write response body.
+        resp.getWriter().write(DMFactoryImpl.getInstance().getAccountDM().generatePassword(9));       // Write response body.
     }
 }

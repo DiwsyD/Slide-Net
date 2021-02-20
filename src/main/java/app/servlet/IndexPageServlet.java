@@ -1,9 +1,9 @@
 package app.servlet;
 
 import app.entity.Service;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.DownloadFile;
 import app.service.ServiceTable;
-import app.service.ServiceTariffDataManager;
 import app.service.language;
 import org.apache.log4j.Logger;
 
@@ -23,8 +23,8 @@ public class IndexPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.debug("Main page");
         language.checkLanguage(req, resp);
-        List<Service> serviceList = ServiceTariffDataManager.getAllServicesWithoutTariffs();
-        ServiceTable.loadServiceTable(req, resp, serviceList);
+        List<Service> serviceList = DMFactoryImpl.getInstance().getServiceTariffDM().getAllServicesWithoutTariffs();
+        ServiceTable.loadServiceTable(req, serviceList);
         LOG.info("Service list has been load.");
 
         if (req.getParameter("download") != null) {

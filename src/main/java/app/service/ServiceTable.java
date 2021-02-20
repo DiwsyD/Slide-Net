@@ -2,16 +2,16 @@ package app.service;
 
 import app.entity.Service;
 import app.entity.Tariff;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class ServiceTable {
     private static final Logger LOG = Logger.getLogger(ServiceTable.class);
 
-    public static void loadServiceTable(HttpServletRequest req, HttpServletResponse resp, List<Service> serviceList) {
+    public static void loadServiceTable(HttpServletRequest req, List<Service> serviceList) {
         String orderBy = req.getParameter("orderBy");
         String desc = "";
         long serviceId = 1;
@@ -33,7 +33,7 @@ public class ServiceTable {
         //Pagination
         int page = 1;
         int pagePaginSize = 3;
-        int maxPage = (int)Math.ceil((double) ServiceTariffDataManager.getServiceTariffCount(serviceId) / pagePaginSize);
+        int maxPage = (int)Math.ceil((double) DMFactoryImpl.getInstance().getServiceTariffDM().getServiceTariffCount(serviceId) / pagePaginSize);
 
         String pageNum = req.getParameter("page");
         if(pageNum != null) {
@@ -53,7 +53,7 @@ public class ServiceTable {
             page = maxPage;
         }
 
-        List<Tariff> tariffList =  ServiceTariffDataManager.getCertainServiceTariffs(serviceId, page, pagePaginSize, orderBy, desc);
+        List<Tariff> tariffList =  DMFactoryImpl.getInstance().getServiceTariffDM().getCertainServiceTariffs(serviceId, page, pagePaginSize, orderBy, desc);
 
         req.setAttribute("serviceList", serviceList);
         req.setAttribute("tariffList", tariffList);

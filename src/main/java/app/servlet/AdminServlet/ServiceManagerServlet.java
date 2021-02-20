@@ -1,8 +1,8 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Service;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.ServiceTable;
-import app.service.ServiceTariffDataManager;
 import app.service.language;
 import org.apache.log4j.Logger;
 
@@ -21,8 +21,8 @@ public class ServiceManagerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         language.checkLanguage(req, resp);
-        List<Service> serviceList = ServiceTariffDataManager.getAllServicesWithoutTariffs();
-        ServiceTable.loadServiceTable(req, resp, serviceList);
+        List<Service> serviceList = DMFactoryImpl.getInstance().getServiceTariffDM().getAllServicesWithoutTariffs();
+        ServiceTable.loadServiceTable(req, serviceList);
         LOG.info("Service list has been load.");
 
         req.getRequestDispatcher( req.getRequestURI() + ".jsp").forward(req, resp);
@@ -44,7 +44,7 @@ public class ServiceManagerServlet extends HttpServlet {
 
         int sId = Integer.parseInt(serviceId);
 
-        ServiceTariffDataManager.applyTariff(sId, tariffName, tariffDescription, tariffPrice);
+        DMFactoryImpl.getInstance().getServiceTariffDM().applyTariff(sId, tariffName, tariffDescription, tariffPrice);
     }
 
     @Override
@@ -52,6 +52,6 @@ public class ServiceManagerServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         LOG.info("Removing tariff");
         String tariffName = req.getParameter("tariffName");
-        ServiceTariffDataManager.removeTariff(tariffName);
+        DMFactoryImpl.getInstance().getServiceTariffDM().removeTariff(tariffName);
     }
 }

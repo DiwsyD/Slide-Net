@@ -2,6 +2,7 @@ package app.service;
 
 import app.entity.Account;
 import app.entity.AccountService;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
@@ -12,7 +13,7 @@ public class GetPayment {
     private static final Logger LOG = Logger.getLogger(GetPayment.class);
 
     public static void getPayment() {
-        List<Account> accountList = AccountDataManager.getAllAccounts();
+        List<Account> accountList = DMFactoryImpl.getInstance().getAccountDM().getAllAccounts();
         for (Account account : accountList) {
             LOG.info("Processing account [" + account.getId() + "]");
             getPaymentFromAccount(account);
@@ -20,7 +21,7 @@ public class GetPayment {
     }
 
     private static void getPaymentFromAccount(Account account) {
-        List<AccountService> linkedServices = ServiceTariffDataManager.getAllAccountServices(account.getId());
+        List<AccountService> linkedServices = DMFactoryImpl.getInstance().getServiceTariffDM().getAllAccountServices(account.getId());
         int servicesLinked = linkedServices.size();
         if (servicesLinked <= 0) {
             return;
@@ -30,7 +31,7 @@ public class GetPayment {
             if (!acs.isStatus() || !acs.isPayed() || acs.getNexPaymentDay() != now) {
                 continue;
             }
-            int tariffPrice = ServiceTariffDataManager.getTariffById(acs.getTariffId()).getPrice();
+            int tariffPrice = DMFactoryImpl.getInstance().getServiceTariffDM().getTariffById(acs.getTariffId()).getPrice();
             if (account.getMoneyBalance() >= tariffPrice) {
                 account.setMoneyBalance(account.getMoneyBalance() - tariffPrice);
                 Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
@@ -41,12 +42,12 @@ public class GetPayment {
                 acs.setStatus(false);
                 acs.setPaymentAmount(tariffPrice);
             }
-            ServiceTariffDataManager.updateAccountService(acs);
+            DMFactoryImpl.getInstance().getServiceTariffDM().updateAccountService(acs);
         }
         if (servicesLinked <= 0) {
             account.setAccountStatus(false);
         }
-        AccountDataManager.applyAccountData(account);
+        DMFactoryImpl.getInstance().getAccountDM().applyAccountData(account);
     }
 
 
@@ -61,7 +62,7 @@ public class GetPayment {
 
     public static void getMonthPayment(int monthCount) {
         for (int i = 0; i < monthCount; i++) {
-            List<Account> accountList = AccountDataManager.getAllAccounts();
+            List<Account> accountList = DMFactoryImpl.getInstance().getAccountDM().getAllAccounts();
             for (Account account : accountList) {
                 LOG.info("Processing account [" + account.getId() + "]");
                 getPaymentFromAccountUnsafe(account);
@@ -70,7 +71,7 @@ public class GetPayment {
     }
 
     private static void getPaymentFromAccountUnsafe(Account account) {
-        List<AccountService> linkedServices = ServiceTariffDataManager.getAllAccountServices(account.getId());
+        List<AccountService> linkedServices = DMFactoryImpl.getInstance().getServiceTariffDM().getAllAccountServices(account.getId());
         int servicesLinked = linkedServices.size();
         if (servicesLinked <= 0) {
             return;
@@ -80,7 +81,7 @@ public class GetPayment {
             if (!acs.isStatus() || !acs.isPayed()) {
                 continue;
             }
-            int tariffPrice = ServiceTariffDataManager.getTariffById(acs.getTariffId()).getPrice();
+            int tariffPrice = DMFactoryImpl.getInstance().getServiceTariffDM().getTariffById(acs.getTariffId()).getPrice();
             if (account.getMoneyBalance() >= tariffPrice) {
                 account.setMoneyBalance(account.getMoneyBalance() - tariffPrice);
                 Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
@@ -91,12 +92,12 @@ public class GetPayment {
                 acs.setStatus(false);
                 acs.setPaymentAmount(tariffPrice);
             }
-            ServiceTariffDataManager.updateAccountService(acs);
+            DMFactoryImpl.getInstance().getServiceTariffDM().updateAccountService(acs);
         }
         if (servicesLinked <= 0) {
             account.setAccountStatus(false);
         }
-        AccountDataManager.applyAccountData(account);
+        DMFactoryImpl.getInstance().getAccountDM().applyAccountData(account);
     }
 
 }

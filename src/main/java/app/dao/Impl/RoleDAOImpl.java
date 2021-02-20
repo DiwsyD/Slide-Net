@@ -4,7 +4,7 @@ import app.constants.ConstantQuery;
 import app.connectionpool.ConnectionPool;
 import app.dao.RoleDAO;
 import app.entity.Role;
-import app.service.ServiceTariffDataManager;
+import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RoleDAOImpl implements RoleDAO {
-    private static final Logger LOG = Logger.getLogger(ServiceTariffDataManager.class);
+    private static final Logger LOG = Logger.getLogger(ServiceTariffDMImpl.class);
 
     ConnectionPool connectionPool = ConnectionPool.getInstance();
 

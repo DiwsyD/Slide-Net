@@ -1,6 +1,8 @@
 package app.servlet;
 
 import app.constants.Role;
+import app.entityDataManager.Impl.DMFactoryImpl;
+import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import app.service.*;
 import app.entity.Account;
 import org.apache.log4j.Logger;
@@ -17,7 +19,7 @@ import java.io.IOException;
         name = "AuthorizationServlet",
         urlPatterns = {"/sign"})
 public class SignInOutServlet extends HttpServlet {
-    private static final Logger LOG = Logger.getLogger(ServiceTariffDataManager.class);
+    private static final Logger LOG = Logger.getLogger(ServiceTariffDMImpl.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,7 +63,7 @@ public class SignInOutServlet extends HttpServlet {
         if (Authorization.validateUser(login, userAuthPass)) {
             LOG.info("Valid data.");
             LOG.info("=======Log In=======");
-            Account account = AccountDataManager
+            Account account = DMFactoryImpl.getInstance().getAccountDM()
                     .findAccountByLoginOrNull(Validator.validateLogin(login));
 
             session.setAttribute("login", account.getLogin());

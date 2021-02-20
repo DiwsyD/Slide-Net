@@ -1,8 +1,7 @@
 package app.servlet.AdminServlet;
 
-import app.service.AccountDataManager;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.GetPayment;
-import app.service.ServiceTariffDataManager;
 import app.service.language;
 import org.apache.log4j.Logger;
 
@@ -23,9 +22,9 @@ public class AdminAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         language.checkLanguage(req, resp);
         LOG.debug("doGet: " + req.getRequestURI());
-        int serviceCount = ServiceTariffDataManager.getServiceCount();
-        int tariffCount = ServiceTariffDataManager.getTariffCount();
-        int accountCount = AccountDataManager.getAccountCount();
+        int serviceCount = DMFactoryImpl.getInstance().getServiceTariffDM().getServiceCount();
+        int tariffCount = DMFactoryImpl.getInstance().getServiceTariffDM().getTariffCount();
+        int accountCount = DMFactoryImpl.getInstance().getAccountDM().getAccountCount();
 
         req.setAttribute("serviceCount", serviceCount);
         req.setAttribute("tariffCount", tariffCount);

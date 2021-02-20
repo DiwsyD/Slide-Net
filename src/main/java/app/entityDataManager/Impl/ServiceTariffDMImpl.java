@@ -1,10 +1,11 @@
-package app.service;
+package app.entityDataManager.Impl;
 
 import app.dao.Impl.AccountDAOImpl;
 import app.dao.Impl.ServiceTariffDAOImpl;
 import app.entity.AccountService;
 import app.entity.Service;
 import app.entity.Tariff;
+import app.entityDataManager.ServiceTariffDM;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
@@ -12,47 +13,42 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class ServiceTariffDataManager {
-    private static final Logger LOG = Logger.getLogger(ServiceTariffDataManager.class);
+public class ServiceTariffDMImpl implements ServiceTariffDM {
+    private static final Logger LOG = Logger.getLogger(ServiceTariffDMImpl.class);
 
     public static final int DAY_IN_MONTH = 30;
 
-    private ServiceTariffDataManager() {}
-
-    public static Service getServiceById(long id) {
+    public Service getServiceById(long id) {
         return ServiceTariffDAOImpl.getInstance().getServiceById(id);
     }
 
-    public static List<Service> getAllServices() {
+    public List<Service> getAllServices() {
         return ServiceTariffDAOImpl.getInstance().getAllServices();
     }
-    public static List<Service> getAllServicesWithoutTariffs() {
+
+    public List<Service> getAllServicesWithoutTariffs() {
         return ServiceTariffDAOImpl.getInstance().getAllServicesWithoutTariffs();
     }
 
-    public static List<Tariff> getAllServiceTariffs(long serviceId) {
-        return ServiceTariffDAOImpl.getInstance().getTariffsByServiceId(serviceId);
-    }
-
-    public static List<Tariff> getCertainServiceTariffs(long service_id, int page, int pageSize, String orderBy, String desc) {
+    public List<Tariff> getCertainServiceTariffs(long service_id, int page, int pageSize, String orderBy, String desc) {
         int tariffsToGet = (page - 1) * pageSize;
         return ServiceTariffDAOImpl.getInstance().getPartTariffsByServiceId(service_id, pageSize, tariffsToGet, orderBy, desc);
     }
 
-    public static AccountService getAccountService(long accountId, long serviceId) {
+    public AccountService getAccountService(long accountId, long serviceId) {
         return ServiceTariffDAOImpl.getInstance().getAccountServiceByAccountId(accountId, serviceId);
     }
 
-    public static List<AccountService> getAllAccountServices(long accountId) {
+    public List<AccountService> getAllAccountServices(long accountId) {
         return ServiceTariffDAOImpl.getInstance().getAccountServicesByAccountId(accountId);
     }
 
-    public static int getServiceTariffCount(long serviceId) {
+    public int getServiceTariffCount(long serviceId) {
         return ServiceTariffDAOImpl.getInstance().getServiceTariffCount(serviceId);
     }
 
     //Tariff actions
-    public static void applyTariff(int serviceId, String tariffName, String tariffDescription, int tariffPrice) {
+    public void applyTariff(int serviceId, String tariffName, String tariffDescription, int tariffPrice) {
         Tariff tariff = new Tariff();
 
         tariff.setServiceId(serviceId);
@@ -73,23 +69,23 @@ public class ServiceTariffDataManager {
 
     }
 
-    public static void removeTariff(String tariffName) {
+    public void removeTariff(String tariffName) {
         ServiceTariffDAOImpl.getInstance().removeTariff(tariffName);
     }
 
-    public static Tariff getTariffById(long tariffId) {
+    public Tariff getTariffById(long tariffId) {
         return ServiceTariffDAOImpl.getInstance().getTariffById(tariffId);
     }
 
-    public static int getServiceCount() {
+    public int getServiceCount() {
         return ServiceTariffDAOImpl.getInstance().getServiceCount();
     }
 
-    public static int getTariffCount() {
+    public int getTariffCount() {
         return ServiceTariffDAOImpl.getInstance().getTariffCount();
     }
 
-    public static void updateTariffAccountService(AccountService linkedService, long tariffId) {
+    public void updateTariffAccountService(AccountService linkedService, long tariffId) {
         if (!linkedService.isPayed()) {
             linkedService.setTariffId(tariffId);
             AccountDAOImpl.getInstance().updateServiceToAccount(linkedService);
@@ -101,8 +97,8 @@ public class ServiceTariffDataManager {
         Date nextPaymentDay = Date.valueOf(LocalDate.now().plusMonths(1));
 
         int differenceDays = (int) ChronoUnit.DAYS.between(today.toLocalDate(), oldNextPaymentDay.toLocalDate());
-        int oldTariffPrice = ServiceTariffDataManager.getTariffById(linkedService.getTariffId()).getPrice();
-        int newTariffPrice = ServiceTariffDataManager.getTariffById(tariffId).getPrice() ;
+        int oldTariffPrice = getTariffById(linkedService.getTariffId()).getPrice();
+        int newTariffPrice = getTariffById(tariffId).getPrice() ;
 
         int diffPrice = (int) (newTariffPrice - (differenceDays * ((double)oldTariffPrice / DAY_IN_MONTH)));
 
@@ -118,11 +114,11 @@ public class ServiceTariffDataManager {
         AccountDAOImpl.getInstance().updateServiceToAccount(linkedService);
     }
 
-    public static void updateAccountService(AccountService accountService) {
+    public void updateAccountService(AccountService accountService) {
         AccountDAOImpl.getInstance().updateServiceToAccount(accountService);
     }
 
-    public static int getActiveAccountServiceCount(long accountId) {
+    public int getActiveAccountServiceCount(long accountId) {
         return ServiceTariffDAOImpl.getInstance().getActiveAccountService(accountId);
     }
 

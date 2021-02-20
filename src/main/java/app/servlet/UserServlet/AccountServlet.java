@@ -3,8 +3,7 @@ package app.servlet.UserServlet;
 import app.entity.Account;
 import app.entity.AccountService;
 import app.entity.Service;
-import app.service.AccountDataManager;
-import app.service.ServiceTariffDataManager;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.language;
 import org.apache.log4j.Logger;
 import org.apache.log4j.helpers.LogLog;
@@ -38,12 +37,12 @@ public class AccountServlet extends HttpServlet {
             serviceAction(req, resp);
             return;
         }
-        List<Service> serviceList = ServiceTariffDataManager.getAllServices();
+        List<Service> serviceList = DMFactoryImpl.getInstance().getServiceTariffDM().getAllServices();
 
         //Update AccountData
         HttpSession session = req.getSession();
         long accountId = (long) session.getAttribute("id");
-        Account account = AccountDataManager.findAccountByIdOrNull(accountId);
+        Account account = DMFactoryImpl.getInstance().getAccountDM().findAccountByIdOrNull(accountId);
         session.setAttribute("account_data", account);
         List<AccountService> linkedServices = account.getActiveServices();
 
@@ -73,7 +72,7 @@ public class AccountServlet extends HttpServlet {
             String newPass = req.getParameter("newPass");
             String newPassRepeat = req.getParameter("newPassRepeat");
             LOG.debug("oldPass = " + oldPass + "; newPass = " + newPass + "; newPassRepeat = " + newPassRepeat);
-            if (!AccountDataManager.changePassword(id, oldPass, newPass, newPassRepeat)) {
+            if (!DMFactoryImpl.getInstance().getAccountDM().changePassword(id, oldPass, newPass, newPassRepeat)) {
                 LOG.warn("=Invalid password format!=");
                 session.setAttribute("changePasswordError", true);
                 this.doGet(req, resp);
@@ -90,7 +89,7 @@ public class AccountServlet extends HttpServlet {
         try {
             long id = (long) session.getAttribute("id");
             int amount = Integer.parseInt(req.getParameter("topup_amount"));
-            AccountDataManager.topUpBalance(id, amount);
+            DMFactoryImpl.getInstance().getAccountDM().topUpBalance(id, amount);
         } catch (Exception e) {
             e.printStackTrace();
             session.setAttribute("topup_error", true);
@@ -127,13 +126,13 @@ public class AccountServlet extends HttpServlet {
                     .append("&tariffId=").append(req.getParameter("tariffId"));
         }
         if (action.equals("disable")) {
-            AccountDataManager.disableService(id, serviceId);
+            DMFactoryImpl.getInstance().getAccountDM().disableService(id, serviceId);
         }
         if (action.equals("pause")) {
-            AccountDataManager.pauseServiceOnAccount(id, serviceId);
+            DMFactoryImpl.getInstance().getAccountDM().pauseServiceOnAccount(id, serviceId);
         }
         if (action.equals("start")) {
-            AccountDataManager.startServiceOnAccount(id, serviceId);
+            DMFactoryImpl.getInstance().getAccountDM().startServiceOnAccount(id, serviceId);
         }
         resp.sendRedirect(path.toString());
     }

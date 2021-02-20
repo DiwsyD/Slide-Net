@@ -1,7 +1,7 @@
 package app.servlet.AdminServlet;
 
 import app.entity.Account;
-import app.service.AccountDataManager;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.language;
 import org.apache.log4j.Logger;
 
@@ -22,7 +22,7 @@ public class AccountManagerServlet extends HttpServlet {
         language.checkLanguage(req, resp);
         int page = 1;
         int pagePaginSize = 5;
-        int maxPage = (int)Math.ceil((double) AccountDataManager.getAccountCount() / pagePaginSize);
+        int maxPage = (int)Math.ceil((double) DMFactoryImpl.getInstance().getAccountDM().getAccountCount() / pagePaginSize);
 
         String pageNum = req.getParameter("page");
         if(pageNum != null) {
@@ -39,7 +39,7 @@ public class AccountManagerServlet extends HttpServlet {
         }
 
 
-        List<Account> accountList = AccountDataManager.getAccounts(page, pagePaginSize);
+        List<Account> accountList = DMFactoryImpl.getInstance().getAccountDM().getAccounts(page, pagePaginSize);
 
         req.setAttribute("accountList", accountList);
 

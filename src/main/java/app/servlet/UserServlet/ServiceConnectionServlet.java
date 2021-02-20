@@ -1,9 +1,8 @@
 package app.servlet.UserServlet;
 
 import app.entity.Service;
-import app.service.AccountDataManager;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import app.service.ServiceTable;
-import app.service.ServiceTariffDataManager;
 import app.service.language;
 import org.apache.log4j.Logger;
 
@@ -32,13 +31,13 @@ public class ServiceConnectionServlet extends HttpServlet {
         try {
             LOG.info("Load Service Table...");
             int serviceId = Integer.parseInt(req.getParameter("serviceId"));
-            Service service = ServiceTariffDataManager.getServiceById(serviceId);
+            Service service = DMFactoryImpl.getInstance().getServiceTariffDM().getServiceById(serviceId);
             if (service == null) {
                 redirectToCabinet(resp);
                 return;
             }
             List<Service> serviceList = Collections.singletonList(service);
-            ServiceTable.loadServiceTable(req, resp, serviceList);
+            ServiceTable.loadServiceTable(req, serviceList);
         } catch (Exception e) {
             LOG.error("Error value of >serviceId<!");
             e.printStackTrace();
@@ -54,7 +53,7 @@ public class ServiceConnectionServlet extends HttpServlet {
             long id = (long) session.getAttribute("id");
             long serviceId = Integer.parseInt(req.getParameter("serviceId"));
             long tariffId = Integer.parseInt(req.getParameter("selectedTariff"));
-            AccountDataManager.applyServiceToAccount(id, serviceId, tariffId);
+            DMFactoryImpl.getInstance().getAccountDM().applyServiceToAccount(id, serviceId, tariffId);
         } catch (Exception e) {
             e.printStackTrace();
             LOG.warn("=Wrong Disable Action!=");

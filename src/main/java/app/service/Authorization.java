@@ -1,6 +1,7 @@
 package app.service;
 
 import app.entity.Account;
+import app.entityDataManager.Impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 public class Authorization {
@@ -17,7 +18,7 @@ public class Authorization {
             return false;
         }
         //Find User and add it to UsersPool
-        Account account = AccountDataManager.findAccountByLoginOrNull(loginInt);
+        Account account = DMFactoryImpl.getInstance().getAccountDM().findAccountByLoginOrNull(loginInt);
 
         boolean isEqualPassword = false;
         if (account != null && Validator.validatePassword(password.trim())) {
