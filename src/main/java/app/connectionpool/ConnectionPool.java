@@ -1,5 +1,8 @@
 package app.connectionpool;
 
+import app.service.language;
+import org.apache.log4j.Logger;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -8,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ConnectionPool {
+    private static final Logger LOG = Logger.getLogger(ConnectionPool.class);
 
     private static ConnectionPool connectionPool = new ConnectionPool();
 
@@ -28,10 +32,9 @@ public class ConnectionPool {
             DataSource dts = (DataSource) ctx.lookup("java:comp/env/jdbc/slidenetdb");
             con = dts.getConnection();
         } catch (NamingException | SQLException e) {
-            System.out.println(e.getMessage()); //Use Logger
-        } finally {
-            return con;
+            LOG.error("Can't get Connection! Something wrong with connection to DB (properties).");
         }
+        return con;
     }
 
 }
