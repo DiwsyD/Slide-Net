@@ -29,6 +29,13 @@ public class RoleDAOImpl implements RoleDAO {
         return roleDAOImpl;
     }
 
+    /**.
+     * Just for Tests.
+     * */
+    public void setConnectionPool(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
+    }
+
     public Role getRoleById(long id) {
         Role role = null;
         try (Connection con = connectionPool.getConnection()) {

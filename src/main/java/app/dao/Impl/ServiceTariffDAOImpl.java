@@ -90,7 +90,7 @@ public class ServiceTariffDAOImpl implements ServiceTariffDAO {
         return serviceList;
     }
 
-    public List<AccountService> getAccountServicesByAccountId(long accountId) {
+    public List<AccountService> getAllAccountServicesByAccountId(long accountId) {
         List<AccountService> accountServices = new ArrayList<>();
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ALL_ACCOUNT_SERVICES);
@@ -140,7 +140,7 @@ public class ServiceTariffDAOImpl implements ServiceTariffDAO {
         return accountService;
     }
 
-    public int getActiveAccountService(long accountId) {
+    public int getActiveAccountServiceCount(long accountId) {
         int result = 0;
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_ACTIVE_SERVICE_COUNT);
@@ -201,11 +201,11 @@ public class ServiceTariffDAOImpl implements ServiceTariffDAO {
         return tariffs;
     }
 
-    public int getServiceTariffCount(long id) {
+    public int getServiceTariffCount(long serviceId) {
         int count = 0;
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.GET_SERVICE_TARIFF_COUNT);
-            pst.setLong(1, id);
+            pst.setLong(1, serviceId);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 count = rs.getInt("tariffs");
@@ -217,18 +217,18 @@ public class ServiceTariffDAOImpl implements ServiceTariffDAO {
     }
 
     public long checkTariffIsExist(Tariff tariff) {
-        long result = -1;
+        long tariffId = -1;
         try (Connection con = connectionPool.getConnection()) {
             PreparedStatement pst = con.prepareStatement(ConstantQuery.CHECK_EXIST_TARIFF);
             pst.setString(1, tariff.getName());
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                result = rs.getLong(ConstantQuery.ID);
+                tariffId = rs.getLong(ConstantQuery.ID);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return result;
+        return tariffId;
     }
 
     public Tariff getTariffById(long tariffId) {

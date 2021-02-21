@@ -1,7 +1,5 @@
 package app.entityDataManager.Impl;
 
-import app.dao.Impl.AccountDAOImpl;
-import app.dao.Impl.ServiceTariffDAOImpl;
 import app.entity.AccountService;
 import app.entity.Service;
 import app.entity.Tariff;
@@ -41,7 +39,7 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
     }
 
     public List<AccountService> getAllAccountServices(long accountId) {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAccountServicesByAccountId(accountId);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAllAccountServicesByAccountId(accountId);
     }
 
     public int getServiceTariffCount(long serviceId) {
@@ -120,7 +118,7 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
     }
 
     public int getActiveAccountServiceCount(long accountId) {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getActiveAccountService(accountId);
+        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getActiveAccountServiceCount(accountId);
     }
 
 }

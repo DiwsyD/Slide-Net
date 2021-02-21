@@ -20,11 +20,7 @@ public class ServiceTariffDAOImplTest extends TestCase {
     @Mock
     private static ConnectionPool CP;
     @Mock
-    private static Service serv;
-    @Mock
     private static Tariff tar;
-    @Mock
-    private static AccountService accountService;
 
     private static final ServiceTariffDAOImpl serviceTariffDAO = ServiceTariffDAOImpl.getInstance();
 
@@ -43,48 +39,79 @@ public class ServiceTariffDAOImplTest extends TestCase {
 
     public void testGetAllServices() throws SQLException {
         List<Service> services = serviceTariffDAO.getAllServices();
-        assertEquals(1, services.size());
+        assertTrue(services.size() > 0);
     }
 
     public void testGetAllServicesWithoutTariffs() {
+        List<Service> services = serviceTariffDAO.getAllServicesWithoutTariffs();
+        assertEquals(5, services.size());
     }
 
-    public void testGetAccountServicesByAccountId() {
+    public void testGetAllAccountServicesByAccountId() {
+        List<AccountService> services = serviceTariffDAO.getAllAccountServicesByAccountId(1);
+        assertEquals(anyInt(), services.size());
     }
 
     public void testGetAccountServiceByAccountId() {
+        AccountService services = serviceTariffDAO.getAccountServiceByAccountId(1, 1);
+        assertNull(services);
     }
 
-    public void testGetActiveAccountService() {
+    public void testGetActiveAccountServiceCount() {
+        int servicesCount = serviceTariffDAO.getActiveAccountServiceCount(1);
+        assertNotNull(servicesCount);
     }
 
     public void testGetTariffsByServiceId() {
+        List<Tariff> tariff = serviceTariffDAO.getTariffsByServiceId(1);
+        assertEquals(2, tariff.size());
     }
 
     public void testGetPartTariffsByServiceId() {
+        List<Tariff> tariff = serviceTariffDAO.getPartTariffsByServiceId(1, 2, 0, "price", "desc");
+        assertEquals(2, tariff.size());
     }
 
     public void testGetServiceTariffCount() {
+        int tariffCount = serviceTariffDAO.getServiceTariffCount(4);
+        assertEquals(5, tariffCount);
     }
 
     public void testCheckTariffIsExist() {
+        long id = 10L;
+        Tariff tariff = new Tariff();
+        tariff.setName("Basic");
+        long tariffId = serviceTariffDAO.checkTariffIsExist(tariff);
+        assertEquals(id, tariffId);
     }
 
     public void testGetTariffById() {
+        Tariff tariff = serviceTariffDAO.getTariffById(3L);
+        assertEquals("Lux 1G", tariff.getName());
     }
 
     public void testAddNewTariff() {
+        serviceTariffDAO.addNewTariff(tar);
+        verify(tar, times(1)).getName();
     }
 
-    public void testRemoveTariff() {
+    public void testRemoveTariff() throws SQLException {
+        serviceTariffDAO.removeTariff("Turbo 300");
+        verify(CP, times(1)).getConnection();
     }
 
     public void testEditTariff() {
+        serviceTariffDAO.editTariff(tar);
+        verify(tar, times(1)).getId();
     }
 
     public void testGetServiceCount() {
+        int serviceCount = serviceTariffDAO.getServiceCount();
+        assertEquals(5, serviceCount);
     }
 
     public void testGetTariffCount() {
+        int tariffCount = serviceTariffDAO.getTariffCount();
+        assertEquals(16, tariffCount);
     }
 }

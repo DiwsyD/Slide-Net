@@ -14,11 +14,11 @@ public interface ServiceTariffDAO {
 
     List<Service> getAllServicesWithoutTariffs();
 
-    List<AccountService> getAccountServicesByAccountId(long accountId);
+    List<AccountService> getAllAccountServicesByAccountId(long accountId);
 
     AccountService getAccountServiceByAccountId(long accountId, long serviceId);
 
-    int getActiveAccountService(long accountId);
+    int getActiveAccountServiceCount(long accountId);
 
     List<Tariff> getTariffsByServiceId(long id);
 
