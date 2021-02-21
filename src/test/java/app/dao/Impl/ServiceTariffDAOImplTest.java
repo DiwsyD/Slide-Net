@@ -101,8 +101,9 @@ public class ServiceTariffDAOImplTest extends TestCase {
     }
 
     public void testEditTariff() {
-        serviceTariffDAO.editTariff(tar);
-        verify(tar, times(1)).getId();
+        Tariff tariff = new Tariff();
+        serviceTariffDAO.editTariff(tariff);
+        verify(tariff, times(1)).getId();
     }
 
     public void testGetServiceCount() {

@@ -11,20 +11,17 @@ public class DMFactoryImplTest extends TestCase {
     DMFactoryImpl factory = DMFactoryImpl.getInstance();
 
     public void testGetAccountDM() {
-        AccountDMImpl accountDMxp = new AccountDMImpl();
         AccountDMImpl accountDM = factory.getAccountDM();
-        assertEquals(accountDMxp, accountDM);
+        assertNotNull(accountDM);
     }
 
     public void testGetRoleDM() {
-        RoleDMImpl roleDMExp = new RoleDMImpl();
         RoleDMImpl roleDM = factory.getRoleDM();
-        assertEquals(roleDMExp, roleDM);
+        assertNotNull(roleDM);
     }
 
     public void testGetServiceTariffDM() {
-        ServiceTariffDMImpl serviceTariffDMExp = new ServiceTariffDMImpl();
         ServiceTariffDMImpl serviceTariffDM = factory.getServiceTariffDM();
-        assertEquals(serviceTariffDMExp, serviceTariffDM);
+        assertNotNull(serviceTariffDM);
     }
 }
