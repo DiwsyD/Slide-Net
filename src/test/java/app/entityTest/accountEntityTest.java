@@ -19,6 +19,7 @@ public class accountEntityTest {
         Account account1 = mock(Account.class);
         AccountService accountService = mock(AccountService.class);
         Service service = mock(Service.class);
+        Service service1 = new Service();
 
         account.setId(1L);
         account.setRoleId(1L);
@@ -49,7 +50,8 @@ public class accountEntityTest {
         assertNotEquals(null, account.getMoneyBalance());
         assertNotEquals(null, account.isAccountStatus());
         assertNotEquals(null, account.getActiveServices());
-        assertNull(account.isServiceLinked(service));
+        assertNotNull(account.isServiceLinked(service));
+        assertNull(account.isServiceLinked(service1));
 
         assertFalse(account.equals(account1));
         assertNotNull(account.toString());

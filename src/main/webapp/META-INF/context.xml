@@ -13,6 +13,7 @@
               removeAbandoned="true"
               removeAbandonedTimeout="30"
               logAbandoned="true"
+              defaultTransactionIsolation="READ_UNCOMMITTED"
     />
 
 </Context>

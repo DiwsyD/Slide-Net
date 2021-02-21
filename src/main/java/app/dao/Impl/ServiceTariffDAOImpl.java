@@ -29,6 +29,14 @@ public class ServiceTariffDAOImpl implements ServiceTariffDAO {
         return serviceTariffDAO;
     }
 
+    /**.
+     * Just for Tests.
+     * */
+    public void setConnectionPool(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
+    }
+
+
     public Service getServiceById(long id) {
         Service service = null;
         try (Connection con = connectionPool.getConnection()) {

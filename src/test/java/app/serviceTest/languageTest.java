@@ -1,6 +1,7 @@
 package app.serviceTest;
 
 import app.service.language;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
@@ -24,18 +25,19 @@ public class languageTest {
     @Mock
     Cookie cookie;
 
-
-    @Test
-    public void checkNonExistentLanguageTest() {
+    @Before
+    public void setup() {
         req = mock(HttpServletRequest.class);
         resp = mock(HttpServletResponse.class);
         session = mock(HttpSession.class);
-        cookie = mock(Cookie.class);
+        cookie = new Cookie("language", "ru");
 
-        Cookie[] cookies = new Cookie[]{cookie};
-
-        when(req.getParameter(anyString())).thenReturn("fr");
         when(req.getSession()).thenReturn(session);
+    }
+
+    @Test
+    public void checkNonExistentLanguageTest() {
+        when(req.getParameter(anyString())).thenReturn("fr");
         when(session.getAttribute(anyString())).thenReturn(null);
         when(req.getCookies()).thenReturn(null);
 
@@ -44,25 +46,14 @@ public class languageTest {
 
     @Test
     public void checkExistentLanguageTest() {
-        req = mock(HttpServletRequest.class);
-        resp = mock(HttpServletResponse.class);
-        session = mock(HttpSession.class);
-        cookie = mock(Cookie.class);
-
         when(req.getParameter(anyString())).thenReturn("en");
-        when(req.getSession()).thenReturn(session);
 
         language.checkLanguage(req, resp);
     }
 
     @Test
     public void checkNotSetLangueageTest() {
-        req = mock(HttpServletRequest.class);
-        resp = mock(HttpServletResponse.class);
-        session = mock(HttpSession.class);
-
         when(req.getParameter(anyString())).thenReturn(null);
-        when(req.getSession()).thenReturn(session);
         when(session.getAttribute(anyString())).thenReturn("ua");
 
         language.checkLanguage(req, resp);
@@ -70,15 +61,10 @@ public class languageTest {
 
     @Test
     public void checkSetLangueageFromCookieTest() {
-        req = mock(HttpServletRequest.class);
-        resp = mock(HttpServletResponse.class);
-        session = mock(HttpSession.class);
-        cookie = new Cookie("language", "ru");
 
         Cookie[] cookies = new Cookie[]{cookie};
 
         when(req.getParameter(anyString())).thenReturn(null);
-        when(req.getSession()).thenReturn(session);
         when(session.getAttribute(anyString())).thenReturn(null);
         when(req.getCookies()).thenReturn(cookies);
 

@@ -14,7 +14,7 @@ import java.util.List;
 public class AccountDAOImpl implements AccountDAO {
     private static final Logger LOG = Logger.getLogger(AccountDAOImpl.class);
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private static final AccountDAOImpl accountUserDAO = new AccountDAOImpl();
 
@@ -24,6 +24,12 @@ public class AccountDAOImpl implements AccountDAO {
         return accountUserDAO;
     }
 
+    /**.
+     * Just for Tests.
+     * */
+    public void setConnectionPool(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
+    }
 
     public Account getAccountById(long id) {
         Account account = new Account();
@@ -51,7 +57,7 @@ public class AccountDAOImpl implements AccountDAO {
                 return account;
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            LOG.error(e.getMessage());
         }
         return null;
     }
@@ -82,7 +88,7 @@ public class AccountDAOImpl implements AccountDAO {
                 return account;
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            LOG.error(e.getMessage());
         }
         return null;
     }
@@ -116,7 +122,7 @@ public class AccountDAOImpl implements AccountDAO {
                 accountList.add(account);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
         return accountList;
     }
@@ -135,7 +141,7 @@ public class AccountDAOImpl implements AccountDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
         return accountCount;
     }
@@ -150,7 +156,7 @@ public class AccountDAOImpl implements AccountDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
         return maxId;
     }
@@ -177,8 +183,7 @@ public class AccountDAOImpl implements AccountDAO {
             pst.execute();
 
         } catch (SQLException e) {
-            LOG.warn("Can't add new Account!");
-            e.printStackTrace();
+            LOG.warn("Can't add new Account! Reason:\n" + e);
         }
     }
 
@@ -207,7 +212,7 @@ public class AccountDAOImpl implements AccountDAO {
             pst.execute();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
     }
 
@@ -227,8 +232,7 @@ public class AccountDAOImpl implements AccountDAO {
             pst.setInt(8, accountService.getPaymentAmount());
             pst.execute();
         } catch (SQLException e) {
-            LOG.error("Failed to activate!");
-            e.printStackTrace();
+            LOG.error("Failed to activate! Reason:\n" + e);
         }
         LOG.debug("Activated!");
     }
@@ -248,8 +252,7 @@ public class AccountDAOImpl implements AccountDAO {
             pst.setLong(8, accountService.getServiceId());
             pst.execute();
         } catch (SQLException e) {
-            LOG.error("Failed to updatee!");
-            e.printStackTrace();
+            LOG.error("Failed to update! Reason:\n" + e);
         }
         LOG.debug("Updated!");
     }
@@ -261,8 +264,7 @@ public class AccountDAOImpl implements AccountDAO {
             pst.setInt(2, serviceId);
             pst.execute();
         } catch (SQLException e) {
-            LOG.error("Failed to disable!");
-            e.printStackTrace();
+            LOG.error("Failed to disable! Reason:\n" + e);
         }
         LOG.debug("Disabled!");
     }

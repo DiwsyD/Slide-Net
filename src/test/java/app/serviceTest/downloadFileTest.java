@@ -70,20 +70,6 @@ public class downloadFileTest {
 
         assertEquals(expected, result);
     }
-
-    @Test
-    public void downloadServicesMethodTest() throws IOException {
-        HttpServletResponse resp = mock(HttpServletResponse.class);
-        PrintWriter prwr = mock(PrintWriter.class);
-        ServiceTariffDMImpl stdm = mock(ServiceTariffDMImpl.class);
-
-        when(resp.getWriter()).thenReturn(prwr);
-
-        when(DMFactoryImpl.getInstance().getServiceTariffDM().getAllServices()).thenReturn(null);
-
-        DownloadFile.downloadServices(resp);
-
-    }
 }
 
 
