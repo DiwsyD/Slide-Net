@@ -49,7 +49,7 @@ public class ServiceTariffDAOImplTest extends TestCase {
 
     public void testGetAllAccountServicesByAccountId() {
         List<AccountService> services = serviceTariffDAO.getAllAccountServicesByAccountId(1);
-        assertEquals(anyInt(), services.size());
+        assertNotNull(services.size());
     }
 
     public void testGetAccountServiceByAccountId() {
@@ -64,7 +64,7 @@ public class ServiceTariffDAOImplTest extends TestCase {
 
     public void testGetTariffsByServiceId() {
         List<Tariff> tariff = serviceTariffDAO.getTariffsByServiceId(1);
-        assertEquals(2, tariff.size());
+        assertEquals(3, tariff.size());
     }
 
     public void testGetPartTariffsByServiceId() {
@@ -95,15 +95,15 @@ public class ServiceTariffDAOImplTest extends TestCase {
         verify(tar, times(1)).getName();
     }
 
-    public void testRemoveTariff() throws SQLException {
-        serviceTariffDAO.removeTariff("Turbo 300");
-        verify(CP, times(1)).getConnection();
-    }
-
     public void testEditTariff() {
-        Tariff tariff = new Tariff();
+        Tariff tariff = mock(Tariff.class);
+        tariff.setId(1L);
+        tariff.setServiceId(1L);
+        tariff.setPrice(225);
+        tariff.setName("Turbo 300");
+        tariff.setDescription("Up to 300 Mbps");
         serviceTariffDAO.editTariff(tariff);
-        verify(tariff, times(1)).getId();
+        verify(tariff).getName();
     }
 
     public void testGetServiceCount() {
@@ -113,6 +113,6 @@ public class ServiceTariffDAOImplTest extends TestCase {
 
     public void testGetTariffCount() {
         int tariffCount = serviceTariffDAO.getTariffCount();
-        assertEquals(16, tariffCount);
+        assertEquals(17, tariffCount);
     }
 }

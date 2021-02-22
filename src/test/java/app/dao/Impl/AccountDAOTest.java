@@ -51,13 +51,13 @@ public class AccountDAOTest {
     @Test
     public void testGetAccounts() {
         List<Account> accounts = accountDAO.getAccounts(5, 0);
-        assertEquals(4, accounts.size());
+        assertEquals(3, accounts.size());
     }
 
     @Test
     public void testGetAccountCount() {
         int accountCount = accountDAO.getAccountCount();
-        assertEquals(4, accountCount);
+        assertEquals(3, accountCount);
     }
 
     @Test

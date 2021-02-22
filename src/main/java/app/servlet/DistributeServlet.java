@@ -20,7 +20,7 @@ public class DistributeServlet extends HttpServlet {
         resp.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         resp.setDateHeader("Expires", 0); // Proxies.
 
-        StringBuilder redirectTo = new StringBuilder();
+        StringBuilder redirectTo = new StringBuilder(req.getContextPath());
         try {
             HttpSession session = req.getSession();
             String role = session.getAttribute(Role.ROLE).toString();

@@ -20,8 +20,8 @@ import java.util.List;
 public class ServiceConnectionServlet extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(ServiceConnectionServlet.class);
 
-    private void redirectToCabinet (HttpServletResponse resp) throws IOException {
-        resp.sendRedirect( "/cabinet/user/user_cabinet");
+    private void redirectToCabinet (HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.sendRedirect( req.getContextPath() + "/cabinet/user/user_cabinet");
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ServiceConnectionServlet extends HttpServlet {
             int serviceId = Integer.parseInt(req.getParameter("serviceId"));
             Service service = DMFactoryImpl.getInstance().getServiceTariffDM().getServiceById(serviceId);
             if (service == null) {
-                redirectToCabinet(resp);
+                redirectToCabinet(req, resp);
                 return;
             }
             List<Service> serviceList = Collections.singletonList(service);
@@ -59,6 +59,6 @@ public class ServiceConnectionServlet extends HttpServlet {
             LOG.warn("=Wrong Disable Action!=");
         }
         LOG.debug("redirecting to cabinet");
-        redirectToCabinet(resp);
+        redirectToCabinet(req, resp);
     }
 }

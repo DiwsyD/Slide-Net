@@ -45,7 +45,7 @@ public class AdminAccountServlet extends HttpServlet {
             e.printStackTrace();
         }
         //req.getRequestDispatcher(req.getRequestURI() + ".jsp").forward(req, resp);
-        resp.sendRedirect( "/cabinet/admin/admin_cabinet");
+        resp.sendRedirect( req.getContextPath() + "/cabinet/admin/admin_cabinet");
     }
 
 

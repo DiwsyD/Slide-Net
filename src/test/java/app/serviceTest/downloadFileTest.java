@@ -78,28 +78,6 @@ public class downloadFileTest {
         assertEquals(expected, result);
     }
 
-    @InjectMocks
-    ServiceTariffDMImpl serviceTariffDM;
-    @InjectMocks
-    private static ConnectionPool CP;
-
-    @Test
-    public void testDownloadServicesMethod() throws IOException, SQLException {
-        MockitoAnnotations.initMocks(this);
-        CP = mock(ConnectionPool.class);
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/slidenetdb", "testuser", "testpass");
-        doReturn(connection).when(CP).getConnection();
-
-        HttpServletResponse resp = mock(HttpServletResponse.class);
-
-        ServiceTariffDMImpl serviceTariffDM = mock(ServiceTariffDMImpl.class);
-        List<Service> serviceList = new ArrayList<>();
-
-        when(serviceTariffDM.getAllServices()).thenReturn(serviceList);
-
-
-        DownloadFile.downloadServices(resp);
-    }
 }
 
 

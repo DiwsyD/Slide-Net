@@ -33,7 +33,7 @@ public class SignInOutServlet extends HttpServlet {
                     && session.getAttribute(Role.ROLE) != null;
             
             if(!signed) {
-                req.getRequestDispatcher("/sign.jsp").forward(req, resp);
+                req.getRequestDispatcher(req.getContextPath() + "/sign.jsp").forward(req, resp);
                 return;
             }
 
@@ -43,10 +43,10 @@ public class SignInOutServlet extends HttpServlet {
                 LOG.info("=======Log Out=======");
                 session.removeAttribute("login");
                 session.removeAttribute(Role.ROLE);
-                resp.sendRedirect("/sign");
+                resp.sendRedirect(req.getContextPath() + "/sign");
             } else if (signAction.equals("in")) {
                 LOG.info("Redirecting to private cabinet...");
-                resp.sendRedirect("/cabinet");
+                resp.sendRedirect(req.getContextPath() + "/cabinet");
             }
 
         } catch (NullPointerException npe) {
@@ -72,7 +72,7 @@ public class SignInOutServlet extends HttpServlet {
             session.setAttribute("id", account.getId());
             session.setAttribute("role", account.getRoleName());
 
-            resp.sendRedirect("/cabinet");
+            resp.sendRedirect(req.getContextPath() + "/cabinet");
         } else {
             LOG.info("Invalid data.");
             req.setAttribute("AuthorizationResultError", true);

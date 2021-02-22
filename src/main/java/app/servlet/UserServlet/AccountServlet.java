@@ -26,7 +26,7 @@ public class AccountServlet extends HttpServlet {
     private static final Logger LOG = Logger.getLogger(AccountServlet.class);
 
     protected void redirectToCabinet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect( "/cabinet/user/user_cabinet");
+        resp.sendRedirect( req.getContextPath() + "/cabinet/user/user_cabinet");
     }
 
     @Override

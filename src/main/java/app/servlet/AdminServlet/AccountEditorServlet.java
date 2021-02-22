@@ -25,7 +25,7 @@ public class AccountEditorServlet extends HttpServlet {
 
     protected void getBackToAccountManager(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.info("Redirecting to manager...");
-        resp.sendRedirect( "/cabinet/admin/account_mng");
+        resp.sendRedirect( req.getContextPath() + "/cabinet/admin/account_mng");
     }
 
     @Override
