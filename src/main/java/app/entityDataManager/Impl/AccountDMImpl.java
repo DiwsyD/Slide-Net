@@ -23,16 +23,18 @@ public class AccountDMImpl {
     private final static int maxAccountCount = 10_000_000;
 
     public Account findAccountByIdOrNull(long id) {
-        return finalizeAccount(DAOFactoryImpl.getInstance().getAccountDAO().getAccountById(id));
+        return finalizeAccount(getAccountDAO().getAccountById(id));
     }
 
     public Account findAccountByLoginOrNull(long login) {
-        return finalizeAccount(DAOFactoryImpl.getInstance().getAccountDAO().getAccountByLogin(login));
+        return finalizeAccount(getAccountDAO().getAccountByLogin(login));
     }
 
+    /* Set role name and linked services to Account */
     private Account finalizeAccount(Account account) {
         if(account != null) {
-            Role role = DMFactoryImpl.getInstance().getRoleDM().getRoleById(account.getRoleId());
+            RoleDMImpl roleDM = DMFactoryImpl.getInstance().getRoleDM();
+            Role role = roleDM.getRoleById(account.getRoleId());
             account.setRoleName(role.getName());
             ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
             account.setActiveServices(serviceTariffDM.getAllAccountServices(account.getId()));
@@ -41,43 +43,50 @@ public class AccountDMImpl {
     }
     //--------------
 
+    /* Get certain number of accounts. Need for Pagination. */
     public List<Account> getAccounts(int page, int pageSize) {
         List<Account> accountList = new ArrayList<>();
         int accountsToGet = (page - 1) * pageSize;
-        for (Account account : DAOFactoryImpl.getInstance().getAccountDAO().getAccounts(pageSize, accountsToGet)) {
+        for (Account account : getAccountDAO().getAccounts(pageSize, accountsToGet)) {
             accountList.add(setAccountRoleName(account));
         }
         return accountList;
     }
 
     public List<Account> getAllAccounts() {
-        return DAOFactoryImpl.getInstance().getAccountDAO().getAllAccounts();
+        return getAccountDAO().getAllAccounts();
     }
 
     public int getAccountCount() {
-        return DAOFactoryImpl.getInstance().getAccountDAO().getAccountCount();
+        return getAccountDAO().getAccountCount();
     }
 
     //Setters
     private Account setAccountRoleName(Account account) {
-        account.setRoleName(DMFactoryImpl.getInstance().getRoleDM().getRoleById(account.getRoleId()).getName());
+        RoleDMImpl roleDM = DMFactoryImpl.getInstance().getRoleDM();
+        account.setRoleName(roleDM.getRoleById(account.getRoleId()).getName());
         return account;
     }
 
     //Adders
-
+    /* Update account in DB */
     public void applyAccountData(Account account) {
+        AccountDAOImpl accountDAO = getAccountDAO();
         if (findAccountByIdOrNull(account.getId()) != null) {
             LOG.debug("Money: " + account.getMoneyBalance());
-            DAOFactoryImpl.getInstance().getAccountDAO().updateAccount(account);
+            accountDAO.updateAccount(account);
             return;
         }
         account.setPassword(Encryption.encrypt(account.getPassword()));
-        DAOFactoryImpl.getInstance().getAccountDAO().addAccount(account);
+        accountDAO.addAccount(account);
     }
 
     //Updaters
-
+    /**.
+     * Check if password is correct
+     * Encrypt and set password to account
+     * Update Account in DB
+     * */
     public boolean changePassword(long account_id, String oldPass, String newPass, String newPassRepeat) {
         Account account = findAccountByIdOrNull(account_id);
         if (!account.getPassword().equals(Encryption.encrypt(oldPass))
@@ -90,6 +99,7 @@ public class AccountDMImpl {
         return true;
     }
 
+    /* Change Account money amount and update account in DB*/
     public void topUpBalance(long account_id, int amount) {
         if (amount < 20) {
             return;
@@ -106,7 +116,7 @@ public class AccountDMImpl {
         Account account = new Account();
         Role userRole = DMFactoryImpl.getInstance().getRoleDM().getRoleByName("user");
 
-        account.setId((long) (DAOFactoryImpl.getInstance().getAccountDAO().getLastAccountId() + 1));
+        account.setId((long) (getAccountDAO().getLastAccountId() + 1));
         account.setRoleId(userRole.getId());
         account.setRoleName(userRole.getName());
         account.setLogin(generateNewLogin());
@@ -118,7 +128,7 @@ public class AccountDMImpl {
 
     //Generate New Account login
     public int generateNewLogin() {
-        int accountCount = DAOFactoryImpl.getInstance().getAccountDAO().getLastAccountId();
+        int accountCount = getAccountDAO().getLastAccountId();
         int newId = maxAccountCount - (accountCount + 1);
         StringBuilder newLogin = new StringBuilder(String.valueOf(newId)).reverse();
         int nullsToAdd = String.valueOf(maxAccountCount).length() - String.valueOf(newLogin).length();
@@ -145,6 +155,12 @@ public class AccountDMImpl {
         return String.valueOf(password);
     }
 
+    /**
+     * Check if service and tariff that we want to add to account
+     * is already exist in account data
+     * If exist - update
+     * if not - add as new
+     * */
     public void applyServiceToAccount(long accountId, long serviceId, long tariffId) {
         LOG.debug("Applying Service [" + serviceId + "] with tariff [" + tariffId + "] To Account [" + accountId + "]");
         ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
@@ -158,6 +174,7 @@ public class AccountDMImpl {
         }
     }
 
+    /* Add service and service tariff to account. Update account linked services data in DB */
     private void addAccountService(long accountId, long serviceId, long tariffId) {
         ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
         Date activationDate = Date.valueOf(LocalDate.now());
@@ -171,7 +188,7 @@ public class AccountDMImpl {
         int tariffPrice = serviceTariffDM.getTariffById(tariffId).getPrice();
         accountService.setPaymentAmount(tariffPrice);
         LOG.debug("New Tariff - " + serviceTariffDM.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
-        DAOFactoryImpl.getInstance().getAccountDAO().activateServiceToAccount(accountService);
+        getAccountDAO().activateServiceToAccount(accountService);
     }
 
     public void pauseServiceOnAccount(long accountId, long serviceId) {
@@ -180,9 +197,17 @@ public class AccountDMImpl {
         linkedServices.setStatus(false);
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
         DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedServices);
-        checAccountStatus(accountId);
+        checkAccountStatus(accountId);
     }
 
+    /**.
+     * Check if service that we want to start
+     * is already payed.
+     * If true - just start it.
+     * If not - get money from account for this service\tariff.
+     *
+     * Update account linked services data in DB.
+     * */
     public void startServiceOnAccount(long accountId, long serviceId) {
         ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
         AccountService linkedServices = serviceTariffDM.getAccountService(accountId, serviceId);
@@ -206,9 +231,10 @@ public class AccountDMImpl {
             applyAccountData(account);
         }
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
-        DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedServices);
+        getAccountDAO().updateServiceToAccount(linkedServices);
     }
 
+    //Decrease money balance from account
     private void getPayForService(long accountId, int paymentAmount) {
         LOG.debug("I'll get + " + paymentAmount);
         Account account = findAccountByIdOrNull(accountId);
@@ -219,10 +245,11 @@ public class AccountDMImpl {
     public void disableService(long accountId, int serviceId) {
         LOG.debug("Disabling...");
         DAOFactoryImpl.getInstance().getAccountDAO().disableServiceFromAccount(accountId, serviceId);
-        checAccountStatus(accountId);
+        checkAccountStatus(accountId);
     }
 
-    private void checAccountStatus(long accountId) {
+    /* If Account has no active services - set account status as disabled. */
+    private void checkAccountStatus(long accountId) {
         ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
         int linkedServices = serviceTariffDM.getActiveAccountServiceCount(accountId);
         if (linkedServices <= 0) {
@@ -230,6 +257,10 @@ public class AccountDMImpl {
             account.setAccountStatus(false);
             applyAccountData(account);
         }
+    }
+
+    public AccountDAOImpl getAccountDAO() {
+        return DAOFactoryImpl.getInstance().getAccountDAO();
     }
 }
 
