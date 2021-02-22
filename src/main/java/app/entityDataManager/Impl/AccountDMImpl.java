@@ -45,11 +45,9 @@ public class AccountDMImpl {
 
     /* Get certain number of accounts. Need for Pagination. */
     public List<Account> getAccounts(int page, int pageSize) {
-        List<Account> accountList = new ArrayList<>();
         int accountsToGet = (page - 1) * pageSize;
-        for (Account account : getAccountDAO().getAccounts(pageSize, accountsToGet)) {
-            accountList.add(setAccountRoleName(account));
-        }
+        List<Account> accountList = new ArrayList<>(getAccountDAO().getAccounts(pageSize, accountsToGet));
+        accountList.forEach(this::setAccountRoleName);
         return accountList;
     }
 
