@@ -60,10 +60,9 @@ public class AccountDMImpl {
     }
 
     //Setters
-    private Account setAccountRoleName(Account account) {
+    private void setAccountRoleName(Account account) {
         RoleDMImpl roleDM = DMFactoryImpl.getInstance().getRoleDM();
         account.setRoleName(roleDM.getRoleById(account.getRoleId()).getName());
-        return account;
     }
 
     //Adders
