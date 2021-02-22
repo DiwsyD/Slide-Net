@@ -2,6 +2,7 @@ package app.service;
 
 import app.entity.Service;
 import app.entity.Tariff;
+import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import app.factory.Impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
@@ -20,12 +21,15 @@ public class DownloadFile {
         resp.setContentType("text/html");
         resp.setContentType("APPLICATION/OCTET-STREAM");
         resp.setHeader("Content-Disposition","attachment; filename=\"" + FILE_NAME + ".txt" + "\"");
-
-        List<Service> serviceList = DMFactoryImpl.getInstance().getServiceTariffDM().getAllServices();
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+        List<Service> serviceList = serviceTariffDM.getAllServices();
         out.write(generateServiceInformation(serviceList));
         out.close();
     }
 
+    /**.
+     * Get List of services, pack it to String value and return.
+     * */
     public static String generateServiceInformation(List<Service> serviceList) {
         StringBuilder sb = new StringBuilder("Slide-Net Service Tariffs!");
         if (serviceList == null || serviceList.size() < 1) {

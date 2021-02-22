@@ -11,6 +11,11 @@ import java.util.Locale;
 public class Encryption {
     private static final Logger LOG = Logger.getLogger(Encryption.class);
 
+    /**.
+     * get pass, convert to lover case
+     * add reversed pass ion lower case
+     * encrypt by MD5
+     * */
     public static String encrypt(String line) {
         StringBuilder result = new StringBuilder(line.toLowerCase(Locale.ROOT));
         result.append(result.reverse().toString().toLowerCase(Locale.ROOT));

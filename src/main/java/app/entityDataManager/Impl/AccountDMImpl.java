@@ -34,7 +34,8 @@ public class AccountDMImpl {
         if(account != null) {
             Role role = DMFactoryImpl.getInstance().getRoleDM().getRoleById(account.getRoleId());
             account.setRoleName(role.getName());
-            account.setActiveServices(DMFactoryImpl.getInstance().getServiceTariffDM().getAllAccountServices(account.getId()));
+            ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+            account.setActiveServices(serviceTariffDM.getAllAccountServices(account.getId()));
         }
         return account;
     }
@@ -146,10 +147,11 @@ public class AccountDMImpl {
 
     public void applyServiceToAccount(long accountId, long serviceId, long tariffId) {
         LOG.debug("Applying Service [" + serviceId + "] with tariff [" + tariffId + "] To Account [" + accountId + "]");
-        AccountService linkedServices = DMFactoryImpl.getInstance().getServiceTariffDM().getAccountService(accountId, serviceId);
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+        AccountService linkedServices = serviceTariffDM.getAccountService(accountId, serviceId);
         if (linkedServices != null) {
             LOG.debug("Service already activated, updating...");
-            DMFactoryImpl.getInstance().getServiceTariffDM().updateTariffAccountService(linkedServices, tariffId);
+            serviceTariffDM.updateTariffAccountService(linkedServices, tariffId);
         } else {
             LOG.debug("Service not activated yet, activating...");
             addAccountService(accountId, serviceId, tariffId);
@@ -157,6 +159,7 @@ public class AccountDMImpl {
     }
 
     private void addAccountService(long accountId, long serviceId, long tariffId) {
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
         Date activationDate = Date.valueOf(LocalDate.now());
         AccountService accountService = new AccountService();
         accountService.setAccountId(accountId);
@@ -165,14 +168,15 @@ public class AccountDMImpl {
         accountService.setStatus(false);
         accountService.setPayed(false);
         accountService.setActivationTime(activationDate);
-        int tariffPrice = DMFactoryImpl.getInstance().getServiceTariffDM().getTariffById(tariffId).getPrice();
+        int tariffPrice = serviceTariffDM.getTariffById(tariffId).getPrice();
         accountService.setPaymentAmount(tariffPrice);
-        LOG.debug("New Tariff - " + DMFactoryImpl.getInstance().getServiceTariffDM().getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
+        LOG.debug("New Tariff - " + serviceTariffDM.getTariffById(tariffId).getName() + "; Price: " + tariffPrice);
         DAOFactoryImpl.getInstance().getAccountDAO().activateServiceToAccount(accountService);
     }
 
     public void pauseServiceOnAccount(long accountId, long serviceId) {
-        AccountService linkedServices = DMFactoryImpl.getInstance().getServiceTariffDM().getAccountService(accountId, serviceId);
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+        AccountService linkedServices = serviceTariffDM.getAccountService(accountId, serviceId);
         linkedServices.setStatus(false);
         System.out.println("isPayed?? >>" + linkedServices.isPayed());
         DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedServices);
@@ -180,7 +184,8 @@ public class AccountDMImpl {
     }
 
     public void startServiceOnAccount(long accountId, long serviceId) {
-        AccountService linkedServices = DMFactoryImpl.getInstance().getServiceTariffDM().getAccountService(accountId, serviceId);
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+        AccountService linkedServices = serviceTariffDM.getAccountService(accountId, serviceId);
         if (!linkedServices.isPayed()) {
             LOG.debug("GetMoney: " + linkedServices.getPaymentAmount());
             //get money from account
@@ -218,7 +223,8 @@ public class AccountDMImpl {
     }
 
     private void checAccountStatus(long accountId) {
-        int linkedServices = DMFactoryImpl.getInstance().getServiceTariffDM().getActiveAccountServiceCount(accountId);
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+        int linkedServices = serviceTariffDM.getActiveAccountServiceCount(accountId);
         if (linkedServices <= 0) {
             Account account = findAccountByIdOrNull(accountId);
             account.setAccountStatus(false);

@@ -1,5 +1,7 @@
 package app.entityDataManager.Impl;
 
+import app.dao.Impl.AccountDAOImpl;
+import app.dao.Impl.ServiceTariffDAOImpl;
 import app.entity.AccountService;
 import app.entity.Service;
 import app.entity.Tariff;
@@ -18,20 +20,24 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
     public static final int DAY_IN_MONTH = 30;
 
     public Service getServiceById(long id) {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getServiceById(id);
+        ServiceTariffDAOImpl serviceTariffDAO = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDAO.getServiceById(id);
     }
 
     public List<Service> getAllServices() {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAllServices();
+        ServiceTariffDAOImpl serviceTariffDAO = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDAO.getAllServices();
     }
 
     public List<Service> getAllServicesWithoutTariffs() {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAllServicesWithoutTariffs();
+        ServiceTariffDAOImpl serviceTariffDAO = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDAO.getAllServicesWithoutTariffs();
     }
 
     public List<Tariff> getCertainServiceTariffs(long service_id, int page, int pageSize, String orderBy, String desc) {
         int tariffsToGet = (page - 1) * pageSize;
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getPartTariffsByServiceId(service_id, pageSize, tariffsToGet, orderBy, desc);
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDM.getPartTariffsByServiceId(service_id, pageSize, tariffsToGet, orderBy, desc);
     }
 
     public AccountService getAccountService(long accountId, long serviceId) {
@@ -39,11 +45,13 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
     }
 
     public List<AccountService> getAllAccountServices(long accountId) {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getAllAccountServicesByAccountId(accountId);
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDM.getAllAccountServicesByAccountId(accountId);
     }
 
     public int getServiceTariffCount(long serviceId) {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getServiceTariffCount(serviceId);
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDM.getServiceTariffCount(serviceId);
     }
 
     //Tariff actions
@@ -56,38 +64,44 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
         tariff.setPrice(tariffPrice);
 
         LOG.debug(tariff.toString());
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
 
-        long id = DAOFactoryImpl.getInstance().getServiceTariffDAO().checkTariffIsExist(tariff);
+        long id = serviceTariffDM.checkTariffIsExist(tariff);
         if (id > 0) {
             tariff.setId(id);
-            DAOFactoryImpl.getInstance().getServiceTariffDAO().editTariff(tariff);
+            serviceTariffDM.editTariff(tariff);
         } else {
             LOG.debug("ADD");
-            DAOFactoryImpl.getInstance().getServiceTariffDAO().addNewTariff(tariff);
+            serviceTariffDM.addNewTariff(tariff);
         }
 
     }
 
     public void removeTariff(String tariffName) {
-        DAOFactoryImpl.getInstance().getServiceTariffDAO().removeTariff(tariffName);
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        serviceTariffDM.removeTariff(tariffName);
     }
 
     public Tariff getTariffById(long tariffId) {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getTariffById(tariffId);
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDM.getTariffById(tariffId);
     }
 
     public int getServiceCount() {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getServiceCount();
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDM.getServiceCount();
     }
 
     public int getTariffCount() {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getTariffCount();
+        ServiceTariffDAOImpl serviceTariffDM = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDM.getTariffCount();
     }
 
     public void updateTariffAccountService(AccountService linkedService, long tariffId) {
+        AccountDAOImpl accountDAO = DAOFactoryImpl.getInstance().getAccountDAO();
         if (!linkedService.isPayed()) {
             linkedService.setTariffId(tariffId);
-            DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedService);
+            accountDAO.updateServiceToAccount(linkedService);
             return;
         }
 
@@ -110,15 +124,17 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
         linkedService.setPayed(false);
         linkedService.setPaymentAmount(paymentForUpdatedTariff);
 
-        DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(linkedService);
+        accountDAO.updateServiceToAccount(linkedService);
     }
 
     public void updateAccountService(AccountService accountService) {
-        DAOFactoryImpl.getInstance().getAccountDAO().updateServiceToAccount(accountService);
+        AccountDAOImpl accountDAO = DAOFactoryImpl.getInstance().getAccountDAO();
+        accountDAO.updateServiceToAccount(accountService);
     }
 
     public int getActiveAccountServiceCount(long accountId) {
-        return DAOFactoryImpl.getInstance().getServiceTariffDAO().getActiveAccountServiceCount(accountId);
+        ServiceTariffDAOImpl serviceTariffDAO = DAOFactoryImpl.getInstance().getServiceTariffDAO();
+        return serviceTariffDAO.getActiveAccountServiceCount(accountId);
     }
 
 }

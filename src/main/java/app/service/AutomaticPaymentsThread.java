@@ -12,7 +12,7 @@ public class AutomaticPaymentsThread extends Thread{
         while (true) {
             try {
                 Thread.sleep(checkDelay);
-                LOG.info("==Hour of reckoning!==");
+                LOG.info("==Reckoning hour!==");
                 LOG.info("(Get payments from accounts)");
                 GetPayment.getPayment();
             } catch (InterruptedException e) {

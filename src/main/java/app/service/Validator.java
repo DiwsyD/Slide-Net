@@ -15,6 +15,11 @@ public class Validator {
     private static final Integer maxPass = 16;
     private static final Integer minPass = 4;
 
+    /**.
+     * Try to convert String login to Int state.
+     * In case where login contains letters or symbols
+     * we will get exception so it's not valid login so return false. else - true;
+     * */
     public static long validateLogin(String login) {
         long result = -1;
         if (login.length() > maxLogin || login.length() < minLogin) {
@@ -40,9 +45,8 @@ public class Validator {
     }
 
     /**.
-     * Get User object with data from DB and
-     * if its not null, add it to pool of users and return true - that means
-     * user is valid, received data is valid.
+     * Compare received data with requested account.
+     *  Return true if data is valid and false if not.
      * */
     public static boolean validateAccount(Account account, String login, String password) {
         long loginInt = Validator.validateLogin(login.trim());

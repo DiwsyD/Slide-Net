@@ -1,15 +1,22 @@
 package app.serviceTest;
 
+import app.connectionpool.ConnectionPool;
 import app.entity.Service;
 import app.entity.Tariff;
 import app.factory.Impl.DMFactoryImpl;
 import app.service.DownloadFile;
 import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +76,29 @@ public class downloadFileTest {
         String result = DownloadFile.generateServiceInformation(mockedSlit);
 
         assertEquals(expected, result);
+    }
+
+    @InjectMocks
+    ServiceTariffDMImpl serviceTariffDM;
+    @InjectMocks
+    private static ConnectionPool CP;
+
+    @Test
+    public void testDownloadServicesMethod() throws IOException, SQLException {
+        MockitoAnnotations.initMocks(this);
+        CP = mock(ConnectionPool.class);
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/slidenetdb", "testuser", "testpass");
+        doReturn(connection).when(CP).getConnection();
+
+        HttpServletResponse resp = mock(HttpServletResponse.class);
+
+        ServiceTariffDMImpl serviceTariffDM = mock(ServiceTariffDMImpl.class);
+        List<Service> serviceList = new ArrayList<>();
+
+        when(serviceTariffDM.getAllServices()).thenReturn(serviceList);
+
+
+        DownloadFile.downloadServices(resp);
     }
 }
 

@@ -2,6 +2,7 @@ package app.service;
 
 import app.entity.Service;
 import app.entity.Tariff;
+import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import app.factory.Impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
@@ -11,6 +12,17 @@ import java.util.List;
 public class ServiceTable {
     private static final Logger LOG = Logger.getLogger(ServiceTable.class);
 
+    /**.
+     * Get params from URI:
+     * -Currently viewed service
+     * -Sort type
+     * -Sort direction
+     *
+     * Get page if exist.
+     * Get All service Tariffs.
+     * Load all data to attributes to display on jsp.
+     * Display in depending of service viewed, sort type, page.
+     * */
     public static void loadServiceTable(HttpServletRequest req, List<Service> serviceList) {
         String orderBy = req.getParameter("orderBy");
         String desc = "";
@@ -30,10 +42,12 @@ public class ServiceTable {
             desc = sort[1];
         }
 
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+
         //Pagination
         int page = 1;
         int pagePaginSize = 3;
-        int maxPage = (int)Math.ceil((double) DMFactoryImpl.getInstance().getServiceTariffDM().getServiceTariffCount(serviceId) / pagePaginSize);
+        int maxPage = (int)Math.ceil((double) serviceTariffDM.getServiceTariffCount(serviceId) / pagePaginSize);
 
         String pageNum = req.getParameter("page");
         if(pageNum != null) {
