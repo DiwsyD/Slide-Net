@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SlideNet:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3c2b752d-c982-457a-802c-b0ad187d2386" name="Default Changelist" comment="Tests">
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/entityDataManager/Impl/AccountDMImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entityDataManager/Impl/AccountDMImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit3 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="1oiX0s06rddZMTKOM4pl4vHuHz2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SolidTrying" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="app.entityDataManager.Impl" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="app.dao.Impl" />
+      <recent name="app" />
+      <recent name="app.dao" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="app.factory.Impl" />
+      <recent name="app.dao.Impl" />
+      <recent name="app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.411">
+    <configuration name="DAOFactoryImplTest.testGetAccountDAO" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SlideNet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.factory.Impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.factory.Impl" />
+      <option name="MAIN_CLASS_NAME" value="app.factory.Impl.DAOFactoryImplTest" />
+      <option name="METHOD_NAME" value="testGetAccountDAO" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTariffDAOImplTest.testEditTariff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SlideNet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.dao.Impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.dao.Impl" />
+      <option name="MAIN_CLASS_NAME" value="app.dao.Impl.ServiceTariffDAOImplTest" />
+      <option name="METHOD_NAME" value="testEditTariff" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app in SlideNet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SlideNet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.dao.Impl.*" />
+          <option name="ENABLED" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.dao.Impl" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="directory" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/java/app" />
+      <dir value="$PROJECT_DIR$/src/test/java/app" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="downloadFileTest.testDownloadServicesMethod" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SlideNet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.serviceTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.serviceTest" />
+      <option name="MAIN_CLASS_NAME" value="app.serviceTest.downloadFileTest" />
+      <option name="METHOD_NAME" value="testDownloadServicesMethod" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="serviceTest.tariffListManipulations" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SlideNet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.entityTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.entityTest" />
+      <option name="MAIN_CLASS_NAME" value="app.entityTest.serviceTest" />
+      <option name="METHOD_NAME" value="tariffListManipulations" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.411" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.411" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="SlideNet:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="9f05bfb8-29b6-434e-ac94-c98e0131c433" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="49629" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="SlideNet:war" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.app in SlideNet" />
+      <item itemvalue="JUnit.DAOFactoryImplTest.testGetAccountDAO" />
+      <item itemvalue="JUnit.ServiceTariffDAOImplTest.testEditTariff" />
+      <item itemvalue="JUnit.serviceTest.tariffListManipulations" />
+      <item itemvalue="JUnit.downloadFileTest.testDownloadServicesMethod" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.411" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.downloadFileTest.testDownloadServicesMethod" />
+        <item itemvalue="JUnit.app in SlideNet" />
+        <item itemvalue="JUnit.serviceTest.tariffListManipulations" />
+        <item itemvalue="JUnit.ServiceTariffDAOImplTest.testEditTariff" />
+        <item itemvalue="JUnit.DAOFactoryImplTest.testGetAccountDAO" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3c2b752d-c982-457a-802c-b0ad187d2386" name="Default Changelist" comment="" />
+      <created>1613770165546</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613770165546</updated>
+      <workItem from="1613770166925" duration="9084000" />
+      <workItem from="1613827334394" duration="2236000" />
+      <workItem from="1613829600866" duration="30000" />
+      <workItem from="1613829643101" duration="110000" />
+      <workItem from="1613829766991" duration="17514000" />
+      <workItem from="1613850661187" duration="12793000" />
+      <workItem from="1613916946059" duration="11460000" />
+      <workItem from="1613931681184" duration="199000" />
+      <workItem from="1613941543919" duration="2234000" />
+      <workItem from="1613984720155" duration="7653000" />
+      <workItem from="1613995419728" duration="1659000" />
+    </task>
+    <task id="LOCAL-00001" summary="Tests">
+      <created>1613770873335</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613770873335</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Tests">
+      <created>1613771093481</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613771093481</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Tests">
+      <created>1613771794912</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1613771794912</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Tests">
+      <created>1613773714473</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1613773714473</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Tests">
+      <created>1613775065024</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1613775065024</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Tests">
+      <created>1613831542408</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1613831542408</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Tests">
+      <created>1613839437761</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1613839437761</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Tests">
+      <created>1613840566142</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1613840566142</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Tests">
+      <created>1613841328676</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1613841328676</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Tests">
+      <created>1613841646776</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1613841646776</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Tests">
+      <created>1613859418554</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1613859418554</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Tests">
+      <created>1613859772852</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1613859772852</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Tests">
+      <created>1613861290382</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1613861290382</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Tests">
+      <created>1613920330026</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1613920330027</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Tests">
+      <created>1613926416212</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613926416212</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Tests">
+      <created>1613929274978</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1613929274978</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Tests">
+      <created>1613930929723</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1613930929723</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Tests">
+      <created>1613986784482</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1613986784482</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Tests">
+      <created>1613992403211</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1613992403211</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Tests">
+      <created>1613993255288</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1613993255288</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Tests">
+      <created>1613996572769</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1613996572769</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SlideNet$validatorTest_passwordValidationTest.ic" NAME="validatorTest.passwordValidationTest Coverage Results" MODIFIED="1613772450338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$validatorTest_loginValidationTest.ic" NAME="validatorTest.loginValidationTest Coverage Results" MODIFIED="1613771241531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$app_in_SlideNet.ic" NAME="app in SlideNet Coverage Results" MODIFIED="1613942116149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$All_SlideNet.ic" NAME="All SlideNet Coverage Results" MODIFIED="1613851131834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$validatorTest_validateAccountWithIncorrectDataTest.ic" NAME="validatorTest.validateAccountWithIncorrectDataTest Coverage Results" MODIFIED="1613857377497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$downloadFileTest.ic" NAME="downloadFileTest Coverage Results" MODIFIED="1613830215812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$encryptionTest_encryptionWithErrorTest.ic" NAME="encryptionTest.encryptionWithErrorTest Coverage Results" MODIFIED="1613830634257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$downloadFileTest_generateInfoWithNullListTest.ic" NAME="downloadFileTest.generateInfoWithNullListTest Coverage Results" MODIFIED="1613826791199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$TestsCoverage.ic" NAME="TestsCoverage Coverage Results" MODIFIED="1613771325740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$All_in_SlideNet.ic" NAME="All in SlideNet Coverage Results" MODIFIED="1613845339194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SlideNet$downloadFileTest_downloadFile.ic" NAME="downloadFileTest.downloadFile Coverage Results" MODIFIED="1613824523712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$all_in_SlideNet.ic" NAME="all in SlideNet Coverage Results" MODIFIED="1613917951257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$accountEntityTest_creationAccountTest.ic" NAME="accountEntityTest.creationAccountTest Coverage Results" MODIFIED="1613860642054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.entityTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$AccountDAOTest.ic" NAME="AccountDAOTest Coverage Results" MODIFIED="1613908103727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$Services_Test.ic" NAME="Services Test Coverage Results" MODIFIED="1613845353289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$encryptionTest_encryptionTest.ic" NAME="encryptionTest.encryptionTest Coverage Results" MODIFIED="1613773580111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$AccountDAOTest_testActivateServiceToAccount.ic" NAME="AccountDAOTest.testActivateServiceToAccount Coverage Results" MODIFIED="1613918634574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/SlideNet$validatorTest.ic" NAME="validatorTest Coverage Results" MODIFIED="1613857429819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.serviceTest.*</FILTER>
+    </SUITE>
+  </component>
+</project>
