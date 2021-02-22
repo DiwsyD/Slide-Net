@@ -2,8 +2,8 @@ package app.service;
 
 import app.entity.Service;
 import app.entity.Tariff;
-import app.entityDataManager.Impl.ServiceTariffDMImpl;
-import app.factory.Impl.DMFactoryImpl;
+import app.entityDataManager.impl.ServiceTariffDMImpl;
+import app.factory.impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;

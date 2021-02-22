@@ -2,8 +2,8 @@ package app.service;
 
 import app.entity.Service;
 import app.entity.Tariff;
-import app.entityDataManager.Impl.ServiceTariffDMImpl;
-import app.factory.Impl.DMFactoryImpl;
+import app.entityDataManager.impl.ServiceTariffDMImpl;
+import app.factory.impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +21,10 @@ public class DownloadFile {
         resp.setContentType("text/html");
         resp.setContentType("APPLICATION/OCTET-STREAM");
         resp.setHeader("Content-Disposition","attachment; filename=\"" + FILE_NAME + ".txt" + "\"");
+
         ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
         List<Service> serviceList = serviceTariffDM.getAllServices();
+
         out.write(generateServiceInformation(serviceList));
         out.close();
     }

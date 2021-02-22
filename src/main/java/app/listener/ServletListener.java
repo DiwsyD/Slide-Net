@@ -2,7 +2,7 @@ package app.listener;
 
 import app.service.AutomaticPaymentsThread;
 import app.service.language;
-import app.servlet.AdminServlet.AdminAccountServlet;
+import app.servlet.adminServlet.AdminAccountServlet;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContextEvent;

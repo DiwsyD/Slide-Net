@@ -1,22 +1,10 @@
 package app.serviceTest;
 
-import app.connectionpool.ConnectionPool;
 import app.entity.Service;
 import app.entity.Tariff;
-import app.factory.Impl.DMFactoryImpl;
 import app.service.DownloadFile;
-import app.entityDataManager.Impl.ServiceTariffDMImpl;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

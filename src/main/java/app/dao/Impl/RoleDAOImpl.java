@@ -4,7 +4,7 @@ import app.constants.ConstantQuery;
 import app.connectionpool.ConnectionPool;
 import app.dao.RoleDAO;
 import app.entity.Role;
-import app.entityDataManager.Impl.ServiceTariffDMImpl;
+import app.entityDataManager.impl.ServiceTariffDMImpl;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;

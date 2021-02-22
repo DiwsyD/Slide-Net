@@ -1,8 +1,8 @@
 package app.factory;
 
-import app.entityDataManager.Impl.AccountDMImpl;
-import app.entityDataManager.Impl.RoleDMImpl;
-import app.entityDataManager.Impl.ServiceTariffDMImpl;
+import app.entityDataManager.impl.AccountDMImpl;
+import app.entityDataManager.impl.RoleDMImpl;
+import app.entityDataManager.impl.ServiceTariffDMImpl;
 
 public interface DMFactory {
 

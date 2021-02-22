@@ -1,7 +1,7 @@
 package app.servlet;
 
 import app.entity.Service;
-import app.factory.Impl.DMFactoryImpl;
+import app.factory.impl.DMFactoryImpl;
 import app.service.DownloadFile;
 import app.service.ServiceTable;
 import app.service.language;

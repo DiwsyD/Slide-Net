@@ -1,9 +1,9 @@
 package app.servlet;
 
 import app.constants.Role;
-import app.entityDataManager.Impl.AccountDMImpl;
-import app.factory.Impl.DMFactoryImpl;
-import app.entityDataManager.Impl.ServiceTariffDMImpl;
+import app.entityDataManager.impl.AccountDMImpl;
+import app.factory.impl.DMFactoryImpl;
+import app.entityDataManager.impl.ServiceTariffDMImpl;
 import app.service.*;
 import app.entity.Account;
 import org.apache.log4j.Logger;
