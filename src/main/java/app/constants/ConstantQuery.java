@@ -137,7 +137,6 @@ public class ConstantQuery {
     /**.
      * Tariff Queries
      * */
-
     public static final String GET_SERVICE_TARIFF_COUNT = "SELECT COUNT(*) AS tariffs " +
             "FROM tariff " +
             "WHERE service_id = ?";

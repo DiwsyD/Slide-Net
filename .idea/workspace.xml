@@ -9,8 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c2b752d-c982-457a-802c-b0ad187d2386" name="Default Changelist" comment="Tests">
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entityDataManager/Impl/AccountDMImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entityDataManager/Impl/AccountDMImpl.java" afterDir="false" />
+    <list default="true" id="3c2b752d-c982-457a-802c-b0ad187d2386" name="Default Changelist" comment="Final touch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/constants/ConstantQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/constants/ConstantQuery.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +294,7 @@
       <workItem from="1613931681184" duration="199000" />
       <workItem from="1613941543919" duration="2234000" />
       <workItem from="1613984720155" duration="7653000" />
-      <workItem from="1613995419728" duration="1659000" />
+      <workItem from="1613995419728" duration="2492000" />
     </task>
     <task id="LOCAL-00001" summary="Tests">
       <created>1613770873335</created>
@@ -442,7 +443,28 @@
       <option name="project" value="LOCAL" />
       <updated>1613996572769</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Tests">
+      <created>1613997495630</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1613997495630</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Tests">
+      <created>1613997607064</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1613997607064</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Final touch">
+      <created>1613997636136</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1613997636136</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +484,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests" />
+    <MESSAGE value="Final touch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final touch" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SlideNet$validatorTest_passwordValidationTest.ic" NAME="validatorTest.passwordValidationTest Coverage Results" MODIFIED="1613772450338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

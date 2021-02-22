@@ -176,6 +176,7 @@ public class AccountDAOImpl implements AccountDAO {
             pst.setString(7, account.getAddress());
             pst.setString(8, account.getPhoneNumber());
             pst.setString(9, account.getIpAddress());
+
             pst.setInt(10, account.getMoneyBalance());
 
             pst.setBoolean(11, account.isAccountStatus());
