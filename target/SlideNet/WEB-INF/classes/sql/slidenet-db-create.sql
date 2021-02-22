@@ -18,11 +18,8 @@ USE `slideNetDB` ;
 -- Table `slideNetDB`.`role`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `slideNetDB`.`role` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL)
     DEFAULT CHARSET = utf8;
 
 
@@ -30,11 +27,8 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`role` (
 -- Table `slideNetDB`.`service`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `slideNetDB`.`service` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(45) NULL UNIQUE)
     DEFAULT CHARSET = utf8;
 
 
@@ -42,18 +36,13 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`service` (
 -- Table `slideNetDB`.`tariff`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `slideNetDB`.`tariff` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `service_id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(512) NOT NULL,
   `price` INT NULL,
-  INDEX `fk_service_tariffs_service1_idx` (`service_id` ASC) VISIBLE,
-  PRIMARY KEY (`id`),
   CONSTRAINT `fk_service_tariffs_service1`
-    FOREIGN KEY (`service_id`)
-    REFERENCES `slideNetDB`.`service` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    FOREIGN KEY (`service_id`) REFERENCES `slideNetDB`.`service` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
     DEFAULT CHARSET = utf8;
 
 
@@ -74,7 +63,6 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`account` (
   `balance` INT NULL,
   `account_status` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_role_id_idx` (`role_id` ASC) VISIBLE,
   CONSTRAINT `fk_role_id`
     FOREIGN KEY (`role_id`)
     REFERENCES `slideNetDB`.`role` (`id`)
@@ -95,9 +83,6 @@ CREATE TABLE IF NOT EXISTS `slideNetDB`.`account_service_tariff` (
   `next_payment_day` DATE NULL,
   `payed` TINYINT NULL,
   `payment_amount` INT NULL,
-  INDEX `fk_account_services_tariffs_service1_idx` (`service_id` ASC) VISIBLE,
-  INDEX `fk_account_services_tariffs_service_tariff1_idx` (`tariff_id` ASC) VISIBLE,
-  INDEX `fk_account_services_tariffs_account1_idx` (`account_id` ASC) VISIBLE,
   CONSTRAINT `fk_account_services_tariffs_service1`
     FOREIGN KEY (`service_id`)
     REFERENCES `slideNetDB`.`service` (`id`)
