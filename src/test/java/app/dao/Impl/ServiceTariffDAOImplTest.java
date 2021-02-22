@@ -49,7 +49,7 @@ public class ServiceTariffDAOImplTest extends TestCase {
 
     public void testGetAllAccountServicesByAccountId() {
         List<AccountService> services = serviceTariffDAO.getAllAccountServicesByAccountId(1);
-        assertNotNull(services.size());
+        assertNotNull(services);
     }
 
     public void testGetAccountServiceByAccountId() {
