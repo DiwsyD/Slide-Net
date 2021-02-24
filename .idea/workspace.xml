@@ -11,70 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3c2b752d-c982-457a-802c-b0ad187d2386" name="Default Changelist" comment="Final touch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/dao/Impl/RoleDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/dao/Impl/RoleDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entityDataManager/Impl/AccountDMImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entityDataManager/impl/AccountDMImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entityDataManager/Impl/RoleDMImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entityDataManager/impl/RoleDMImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entityDataManager/Impl/ServiceTariffDMImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entityDataManager/impl/ServiceTariffDMImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/factory/DMFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/factory/DMFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/factory/Impl/DAOFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/factory/impl/DAOFactoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/factory/Impl/DMFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/factory/impl/DMFactoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/listener/ServletListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/listener/ServletListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/DownloadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/DownloadFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/GetPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/GetPayment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/ServiceTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/ServiceTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/AdminServlet/AccountEditorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/AccountEditorServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/AdminServlet/AccountManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/AccountManagerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/AdminServlet/AdminAccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/AdminAccountServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/AdminServlet/ServiceManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/ServiceManagerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/IndexPageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/IndexPageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/entityDataManager/impl/ServiceTariffDMImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entityDataManager/impl/ServiceTariffDMImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/SignInOutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/SignInOutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/UserServlet/AccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/userServlet/AccountServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/UserServlet/ServiceConnectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/userServlet/ServiceConnectionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/app/factory/Impl/DAOFactoryImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/factory/impl/DAOFactoryImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/app/factory/Impl/DMFactoryImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/factory/impl/DMFactoryImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/app/serviceTest/downloadFileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/serviceTest/downloadFileTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/dao/Impl/RoleDAOImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/dao/Impl/RoleDAOImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/entityDataManager/Impl/AccountDMImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/entityDataManager/Impl/AccountDMImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/entityDataManager/Impl/RoleDMImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/entityDataManager/Impl/RoleDMImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/entityDataManager/Impl/ServiceTariffDMImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/entityDataManager/Impl/ServiceTariffDMImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/factory/DMFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/factory/DMFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/factory/Impl/DAOFactoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/factory/Impl/DAOFactoryImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/factory/Impl/DMFactoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/factory/Impl/DMFactoryImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/listener/ServletListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/listener/ServletListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/service/DownloadFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/service/DownloadFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/service/GetPayment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/service/GetPayment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/service/ServiceTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/service/ServiceTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/AccountEditorServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/AccountEditorServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/AccountManagerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/AccountManagerServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/AdminAccountServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/AdminAccountServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/ServiceManagerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/AdminServlet/ServiceManagerServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/IndexPageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/IndexPageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/SignInOutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/SignInOutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/UserServlet/AccountServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/UserServlet/AccountServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/UserServlet/ServiceConnectionServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/SlideNet/WEB-INF/classes/app/servlet/UserServlet/ServiceConnectionServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/dao/Impl/RoleDAOImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/dao/Impl/RoleDAOImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/entityDataManager/Impl/AccountDMImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/entityDataManager/Impl/AccountDMImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/entityDataManager/Impl/RoleDMImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/entityDataManager/Impl/RoleDMImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/entityDataManager/Impl/ServiceTariffDMImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/entityDataManager/Impl/ServiceTariffDMImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/factory/DMFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/factory/DMFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/factory/Impl/DAOFactoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/factory/Impl/DAOFactoryImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/factory/Impl/DMFactoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/factory/Impl/DMFactoryImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/listener/ServletListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/listener/ServletListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/service/DownloadFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/service/DownloadFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/service/GetPayment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/service/GetPayment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/service/ServiceTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/service/ServiceTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/AccountEditorServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/AccountEditorServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/AccountManagerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/AccountManagerServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/AdminAccountServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/AdminAccountServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/ServiceManagerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/AdminServlet/ServiceManagerServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/IndexPageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/IndexPageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/SignInOutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/SignInOutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/UserServlet/AccountServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/UserServlet/AccountServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/servlet/UserServlet/ServiceConnectionServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/servlet/UserServlet/ServiceConnectionServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/app/factory/Impl/DAOFactoryImplTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/app/factory/Impl/DAOFactoryImplTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/app/factory/Impl/DMFactoryImplTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/app/factory/Impl/DMFactoryImplTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/app/serviceTest/downloadFileTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/app/serviceTest/downloadFileTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/AdminAccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/AdminAccountServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/cabinet/admin/admin_cabinet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cabinet/admin/admin_cabinet.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/cabinet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/cabinet.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +66,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Practices/vulrhvbo-task2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -147,19 +88,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.411">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServiceTariffDAOImplTest.testEditTariff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SlideNet" />
       <extension name="coverage">
@@ -372,7 +300,11 @@
       <workItem from="1613984720155" duration="7653000" />
       <workItem from="1613995419728" duration="2658000" />
       <workItem from="1613999342494" duration="6249000" />
-      <workItem from="1614011052058" duration="5267000" />
+      <workItem from="1614011052058" duration="5508000" />
+      <workItem from="1614094808164" duration="389000" />
+      <workItem from="1614095858249" duration="115000" />
+      <workItem from="1614154694227" duration="608000" />
+      <workItem from="1614156983592" duration="6028000" />
     </task>
     <task id="LOCAL-00001" summary="Tests">
       <created>1613770873335</created>
@@ -570,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614008631134</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Final touch">
+      <created>1614016477826</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1614016477826</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

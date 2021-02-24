@@ -40,6 +40,47 @@
                     </button>
                 </form>
             </div>
+            <div class="account_services_table">
+                <c:if test="${accServDataActive}">
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>
+                                First Name
+                            </td>
+                            <td>
+                                Last Name
+                            </td>
+                            <td>
+                                Second Name
+                            </td>
+                            <td>
+                                Service count
+                            </td>
+                        </tr>
+                        </thead>
+                        <c:forEach var="accServData" items="${accountServices}" >
+                            <tr>
+                                <td>
+                                        ${accServData.getKey().getfName()}
+                                </td>
+                                <td>
+                                        ${accServData.getKey().getlName()}
+                                </td>
+                                <td>
+                                        ${accServData.getKey().getsName()}
+                                </td>
+                                <td>
+                                        ${accServData.getValue()}
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+
+                </c:if>
+                <a class="edit_button show_account_services_table" href="admin_cabinet?showAccServData=${!accServDataActive}">Show Account Services</a>
+            </div>
         </div>
     </div>
     <!-- footer -->

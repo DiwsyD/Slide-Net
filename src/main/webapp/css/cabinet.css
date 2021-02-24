@@ -142,3 +142,13 @@ h1 {
     color: #e59c42;
     margin-bottom: 15px;
 }
+
+/*---------ADDitional-------------*/
+
+.account_services_table {
+    margin: 45px 0 45px;
+}
+
+.show_account_services_table {
+    margin: 45px 0 45px;
+}

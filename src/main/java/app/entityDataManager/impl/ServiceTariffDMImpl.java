@@ -2,17 +2,22 @@ package app.entityDataManager.impl;
 
 import app.dao.Impl.AccountDAOImpl;
 import app.dao.Impl.ServiceTariffDAOImpl;
+import app.entity.Account;
 import app.entity.AccountService;
 import app.entity.Service;
 import app.entity.Tariff;
 import app.entityDataManager.ServiceTariffDM;
 import app.factory.impl.DAOFactoryImpl;
+import app.factory.impl.DMFactoryImpl;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ServiceTariffDMImpl implements ServiceTariffDM {
     private static final Logger LOG = Logger.getLogger(ServiceTariffDMImpl.class);
@@ -88,6 +93,8 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
         return getServiceTariffDM().getTariffCount();
     }
 
+
+
     private ServiceTariffDAOImpl getServiceTariffDM() {
         return DAOFactoryImpl.getInstance().getServiceTariffDAO();
     }
@@ -135,6 +142,21 @@ public class ServiceTariffDMImpl implements ServiceTariffDM {
 
     public int getActiveAccountServiceCount(long accountId) {
         return getServiceTariffDM().getActiveAccountServiceCount(accountId);
+    }
+
+    public Map<Account, Integer> getAccountsServices() {
+        Map<Account, Integer> accountsServices = new HashMap<>();
+
+        AccountDMImpl accountDM = DMFactoryImpl.getInstance().getAccountDM();
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+
+        List<Account> accountList = accountDM.getAllAccounts();
+
+        for (Account acc: accountList) {
+            accountsServices.put(acc, serviceTariffDM.getActiveAccountServiceCount(acc.getId()));
+        }
+
+        return accountsServices;
     }
 
 }

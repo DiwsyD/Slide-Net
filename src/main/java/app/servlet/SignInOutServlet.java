@@ -48,9 +48,9 @@ public class SignInOutServlet extends HttpServlet {
                 LOG.info("Redirecting to private cabinet...");
                 resp.sendRedirect(req.getContextPath() + "/cabinet");
             }
-
         } catch (NullPointerException npe) {
-            npe.printStackTrace();
+            LOG.debug("Sing Action is undefined! Returning to distribute servlet...");
+            resp.sendRedirect(req.getContextPath() + "/cabinet");
         }
     }
 

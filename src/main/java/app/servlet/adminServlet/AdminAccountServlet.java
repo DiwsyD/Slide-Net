@@ -1,5 +1,8 @@
 package app.servlet.adminServlet;
 
+import app.entity.Account;
+import app.entityDataManager.impl.AccountDMImpl;
+import app.entityDataManager.impl.ServiceTariffDMImpl;
 import app.factory.impl.DMFactoryImpl;
 import app.service.GetPayment;
 import app.service.language;
@@ -11,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns =
         {"/cabinet/admin/admin_cabinet",
@@ -22,9 +28,15 @@ public class AdminAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         language.checkLanguage(req, resp);
         LOG.debug("doGet: " + req.getRequestURI());
-        int serviceCount = DMFactoryImpl.getInstance().getServiceTariffDM().getServiceCount();
-        int tariffCount = DMFactoryImpl.getInstance().getServiceTariffDM().getTariffCount();
-        int accountCount = DMFactoryImpl.getInstance().getAccountDM().getAccountCount();
+
+        ServiceTariffDMImpl serviceTariffDM = DMFactoryImpl.getInstance().getServiceTariffDM();
+        AccountDMImpl accountDM = DMFactoryImpl.getInstance().getAccountDM();
+
+        int serviceCount = serviceTariffDM.getServiceCount();
+        int tariffCount = serviceTariffDM.getTariffCount();
+        int accountCount = accountDM.getAccountCount();
+
+        showAccountServicesData(req, serviceTariffDM);
 
         req.setAttribute("serviceCount", serviceCount);
         req.setAttribute("tariffCount", tariffCount);
@@ -35,7 +47,6 @@ public class AdminAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            LOG.debug("Hello wassup?");
             int monthAccelerate = Integer.parseInt(req.getParameter("month"));
             monthAccelerate = Math.max(monthAccelerate, 1);
             LOG.debug("monthAccelerate = " + monthAccelerate);
@@ -44,9 +55,18 @@ public class AdminAccountServlet extends HttpServlet {
             LOG.warn("=Invalid month accelerate number!=");
             e.printStackTrace();
         }
-        //req.getRequestDispatcher(req.getRequestURI() + ".jsp").forward(req, resp);
         resp.sendRedirect( req.getContextPath() + "/cabinet/admin/admin_cabinet");
     }
 
+    private void showAccountServicesData(HttpServletRequest req, ServiceTariffDMImpl serviceTariffDM) {
+        String triggerInfo = req.getParameter("showAccServData");
+        if (!Boolean.parseBoolean(triggerInfo)) {
+            return;
+        }
 
+        Map<Account, Integer> accountServices = serviceTariffDM.getAccountsServices();
+
+        req.setAttribute("accServDataActive", true);
+        req.setAttribute("accountServices", accountServices.entrySet());
+    }
 }
