@@ -1,6 +1,5 @@
 package app.connectionpool;
 
-import app.service.language;
 import org.apache.log4j.Logger;
 
 import javax.naming.Context;

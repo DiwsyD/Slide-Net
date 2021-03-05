@@ -9,13 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c2b752d-c982-457a-802c-b0ad187d2386" name="Default Changelist" comment="Final touch">
+    <list default="true" id="3c2b752d-c982-457a-802c-b0ad187d2386" name="Default Changelist" comment="Additional Task">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entityDataManager/impl/ServiceTariffDMImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entityDataManager/impl/ServiceTariffDMImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/SignInOutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/SignInOutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/AdminAccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/servlet/adminServlet/AdminAccountServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cabinet/admin/admin_cabinet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cabinet/admin/admin_cabinet.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/cabinet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/cabinet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/connectionpool/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/connectionpool/ConnectionPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/cabinet/admin/account_mng/account_editor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cabinet/admin/account_mng/account_editor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/serviceTest/accountDMTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Practices/vulrhvbo-task2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -305,6 +303,17 @@
       <workItem from="1614095858249" duration="115000" />
       <workItem from="1614154694227" duration="608000" />
       <workItem from="1614156983592" duration="6028000" />
+      <workItem from="1614164047542" duration="125000" />
+      <workItem from="1614358046743" duration="77000" />
+      <workItem from="1614436375242" duration="629000" />
+      <workItem from="1614513190265" duration="136000" />
+      <workItem from="1614516696591" duration="658000" />
+      <workItem from="1614519039578" duration="14000" />
+      <workItem from="1614521251175" duration="6789000" />
+      <workItem from="1614722694771" duration="28000" />
+      <workItem from="1614769420901" duration="161000" />
+      <workItem from="1614770156042" duration="157000" />
+      <workItem from="1614885267070" duration="1380000" />
     </task>
     <task id="LOCAL-00001" summary="Tests">
       <created>1613770873335</created>
@@ -509,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614016477826</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Additional Task">
+      <created>1614164090577</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1614164090577</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +546,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Tests" />
     <MESSAGE value="Final touch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final touch" />
+    <MESSAGE value="Additional Task" />
+    <option name="LAST_COMMIT_MESSAGE" value="Additional Task" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SlideNet$validatorTest_passwordValidationTest.ic" NAME="validatorTest.passwordValidationTest Coverage Results" MODIFIED="1613772450338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

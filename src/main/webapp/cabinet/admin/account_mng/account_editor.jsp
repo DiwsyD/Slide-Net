@@ -17,6 +17,15 @@
         <div class="body-info">
             <div class="page_title"><fmt:message key="label.editaccount"/></div>
 
+            <div>
+                <p>URL:
+                    <c:set var="someurl" value="/"/>
+                    <c:forEach var="pageCrumb" items="${pageContext.request.requestURI.split('/')}">
+                        /<a href="${pageContext.request.requestURI.split(pageCrumb)[0]}"><c:out value="${pageCrumb}"/></a>
+                    </c:forEach>
+                </p>
+            </div>
+
             <form method="post">
                 <div class="member_info">
                     <div class="static_info">
